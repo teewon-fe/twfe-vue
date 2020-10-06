@@ -1,0 +1,146 @@
+// 此scss的样式需要全局引用，因为富文本编辑后的内容，有可能在其他页面显示出来
+$xeditor-border-color: #b6c3cc !default;
+
+// 富文本编辑器
+.tw-xeditor {
+  position: relative;
+  background: #fff;
+}
+
+// 菜单容器-做为元素挂载时使用
+.tw-xeditor.xmounded {
+  position: fixed;
+  z-index: 1;
+}
+
+//=== 菜单容器 ===
+.tw-xeditor-menu {
+  position: relative;
+  display: flex;
+  height: 40px;
+  background: #f1f3f7;
+  border: 1px solid $xeditor-border-color;
+}
+
+// 菜单容器-自动隐藏
+.tw-xeditor-menu.xautohide {
+  position: absolute;
+  top: -39px;
+  left: 0;
+  display: none;
+  width: 100%;
+}
+
+.tw-xeditor:hover > .tw-xeditor-menu.xautohide {
+  display: flex;
+}
+
+// 菜单组
+.tw-xeditor-menu-group {
+  display: flex;
+  align-items: center;
+}
+
+// 菜单项
+.tw-xeditor-menu-group > a {
+  position: relative;
+  width: 38px;
+  height: 100%;
+  line-height: 38px;
+  text-align: center;
+}
+
+// 菜单项-不限制宽度
+.tw-xeditor-menu-group > a.xwauto {
+  width: auto;
+}
+
+// 菜单项-滑过效果
+.tw-xeditor-menu-group > a:hover,
+.tw-xeditor-menu-group > a.xactive {
+  background: $color-main;
+}
+
+.tw-xeditor-menu-group > a:hover > span,
+.tw-xeditor-menu-group > a:hover > i,
+.tw-xeditor-menu-group > a.xactive > span,
+.tw-xeditor-menu-group > a.xactive > i {
+  color: #fff;
+}
+
+// === 下拉弹出框 ===
+.tw-poppane.xeditor {
+  background: #fff;
+  border-radius: 0;
+}
+
+.tw-xeditor-menu .tw-popswitch {
+  padding-left: $spacing-tiny;
+  white-space: nowrap;
+}
+
+// === 点位区 ===
+.tw-xeditor-placeholder {
+  position: absolute;
+  padding: $spacing-tiny $spacing-small;
+  color: $color-text-placeholder;
+}
+
+// === 编辑区 ===
+%xeditor-body {
+  min-height: 40px;
+  overflow-y: auto;
+  word-wrap: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+%xeditor-body.xborder {
+  border: 1px solid $xeditor-border-color;
+}
+
+// 表格
+.tw-xeditor-table {
+  width: 100%;
+  margin: $spacing-tiny 0;
+  table-layout: fixed;
+}
+
+// 表格-单元格
+.tw-xeditor-table td {
+  min-height: 32px;
+  line-height: 20px;
+  padding: $spacing-step $spacing-tiny;
+  font-weight: 400;
+  border: 1px solid #999;
+}
+
+.tw-xeditor-body {
+  position: relative;
+  max-width: 100%;
+  padding: $spacing-tiny;
+  margin-top: -1px;
+  @extend %xeditor-body;
+}
+
+// 点位线
+.tw-xeditor-line {
+  max-width: 100%;
+  line-height: 30px;
+  padding: 0 3px;
+  margin: 0 2px;
+  color: transparent;
+  text-decoration: none;
+  border-bottom: 1px solid $color-text-main;
+}
+
+// 文本编辑器主体
+.tw-xeditorbody {
+  @extend %xeditor-body;
+}
+
+.tw-xeditorbody img {
+  max-width: 100%;
+}

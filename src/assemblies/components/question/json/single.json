@@ -1,0 +1,122 @@
+{
+  "errorId": null,
+  "questionParentId": "0",
+  "itemList": [
+    {
+      "sequenceNo": "0",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "即使距今年代最近的明长城,虽然有8%的墙体保存完好",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "1",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "只有8%的墙体保存完好的明长城,是距今年代最近的长城",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "2",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "明代长城虽然距今年代最近,但也只有8%的墙体保存完好",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "3",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "即使距今年代最近的明长城,也只有8%的墙体保存完好",
+      "height": "0"
+    }
+  ],
+  "note": "",
+  "questionType": "1",
+  "typeLevelLabelId": "1",
+  "noteFileList": [],
+  "fileList": [],
+  "itemEmpty": "0",
+  "answerList": [
+    {
+      "sequenceNo": "0",
+      "content": "3",
+      "score": "2.0"
+    }
+  ],
+  "defaultScore": "2.0",
+  "typeLevelLabelName": null,
+  "title": " 填入下面一段文字横线上的语句,最恰当的一项是（     ）<br/>据报道,古长城现状堪忧,不少地段的长城淹没在杂草、乱石之中,甚至被人为损坏。<br/>国家文物局公布的数据显示,________,超过七成保存状况较差。",
+  "degreeName": null,
+  "degree": "",
+  "questionTypeName": null,
+  "questionId": "CNBJTW0600001000049",
+  "refertimes": "3",
+  "childQuestionList": null,
+  "statis": {
+    "totalAnswer": 4,
+    "totalRightAnser": 25,
+    "commonMistake": ""
+  },
+  "isSubjective": 0,
+  "creator": "E000001P200000135895"
+}
+
+"answerList": [
+  {
+    "sequenceNo": "0",
+    "content": "3",
+    "score": "2.0"
+  }
+]
+
+{
+  "questionId": "CNBJTW0200002028401",
+  "publishId": "CJTWBS1S600000257358",
+  "orderNo": "3.1",
+  "childId": "CNBJTW0200002032217",
+  "studentId": "E000001P200000135897",
+  "typeLevel": "1",
+  "answerList": [
+    {
+      "questionId": "CNBJTW0200002032217",
+      "sequenceNo": 0,
+      "userAnswer": "1",
+      "attachmentList": []
+    }
+  ],
+  "attachmentList": []
+}
+
+{
+  "childId": "",
+  "result": "2",
+  "questionId": "CNBJTW0200002243127",
+  "orderNo": "1",
+  "isSubjective": 0,
+  "spendTime": null,
+  "errorId": null,
+  "publishId": "CJTWBS1S600000257356",
+  "studentId": "E000001P200000135897",
+  "paperResultId": "CJTWBS1S600015709452",
+  "score": 2,
+  "answer": "1",
+  "typeLevel": "1",
+  "answerCount": 0,
+  "correctRate": 0,
+  "commonMistakeAnswer": "",
+  "attachmentList": [],
+  "answerList": [
+    {
+      "sequenceNo": 0,
+      "userAnswer": "1",
+      "score": 2,
+      "result": "2"
+    }
+  ],
+  "answerSource": "0"
+}

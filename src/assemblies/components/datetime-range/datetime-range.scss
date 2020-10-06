@@ -1,0 +1,37 @@
+// 日期时间范围选择
+.tw-dtrange {
+  // noop
+}
+
+// 日期时间范围选择-标签
+.tw-dtrange-label {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  color: $color-text-secondary;
+  text-align: center;
+  background: #eee;
+  border-radius: $border-radius-mobile;
+}
+
+// 日期时间范围选择-连接线
+.tw-dtrange-line {
+  display: inline-block;
+  width:17px;
+  height: 1px;
+  margin:0 $spacing-step;
+  vertical-align: middle;
+  border-top: 1px solid #ccc;
+}
+
+// 日期时间范围选择-弹出层标题
+.tw-dtrange-title {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+  line-height: 44px;
+  font-size: $font-size-default;
+  color: $color-text-secondary;
+  transform: translateX(-50%);
+}

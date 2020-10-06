@@ -1,0 +1,24 @@
+/* 信息提示 */
+
+// -------------------- tooltip --------------------
+// stylelint-disable
+
+// tooltip: 容器
+.el-tooltip__popper {
+  line-height: 1.6;
+  padding: $spacing-step $spacing-tiny;
+  font-size: $font-size-default;
+}
+
+// tooltip: 白色背景
+.el-tooltip__popper.is-light {
+  max-width: 340px;
+  background: #fff;
+  border: 1px solid $color-border-pop;
+  box-shadow: 0 3px 9px #edecec;
+}
+
+// tooltip: 箭头颜色
+.el-tooltip__popper.is-light[x-placement^=top] .popper__arrow {
+  border-top-color: $color-border-pop;
+}

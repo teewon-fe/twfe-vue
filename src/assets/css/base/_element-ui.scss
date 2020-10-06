@@ -1,0 +1,350 @@
+/* !------------------------------------------------------------
+* 重置element-ui中完全独立的样式
+*
+* ------------------------------------------------------------ */
+// stylelint-disable
+
+// -------------------- tag --------------------
+.el-tag {
+  border-radius: 3px;
+}
+
+// -------------------- alert --------------------
+// alert: 容器
+.el-alert {
+  font-size: $font-size-small;
+}
+
+// alert: 标题
+.el-alert__title {
+  font-size: $font-size-small;
+}
+
+// alert: 成功
+.el-alert--success {
+  background-color: $color-success;
+  color: $color-text-highlight;
+}
+
+// alert: 信息
+.el-alert--info {
+  background-color: $color-info;
+  color: $color-text-highlight;
+}
+
+// alert: 警告
+.el-alert--warning {
+  background-color: $color-warning;
+  color: $color-text-highlight;
+}
+
+// alert: 错误
+.el-alert--error {
+  background-color: $color-error;
+  color: $color-text-highlight;
+}
+
+// alert: 关闭按钮
+.el-icon-close:before {
+  position: relative;
+  top:0;
+  font-size: $font-size-medium;
+}
+
+// -------------------- 提示图标 --------------------
+// 提示图标: 图标
+.el-icon-info:before,
+.el-icon-error:before,
+.el-icon-warning:before,
+.el-icon-success:before {
+  content: "";
+  @extend %ico-base;
+  transform: scale(.66) translateY(-4px);
+}
+
+// 提示图标: 信息
+.el-icon-info:before {
+  @extend .tw-ico, .xinfo, .xlarge;
+}
+
+// 提示图标: 错误
+.el-icon-error:before {
+  @extend .tw-ico, .xerror , .xlarge;
+}
+
+// 提示图标: 警告
+.el-icon-warning:before {
+  @extend .tw-ico, .xwarning, .xlarge;
+}
+
+// 提示图标: 成功
+.el-icon-success:before {
+  @extend .tw-ico, .xsuccess, .xlarge;
+}
+
+// -------------------- 提示占位类 --------------------
+// 提示占位类: 信息
+%msg-info {
+  background-color: $color-info;
+  border-color: #a5cdf0;
+}
+
+// 提示占位类: 错误
+%msg-error {
+  background-color: $color-error;
+  border-color: #ffbdb8;
+}
+
+// 提示占位类: 警告
+%msg-warning {
+  background-color: $color-warning;
+  border-color: #ffdcaf;
+}
+
+// 提示占位类: 成功
+%msg-success {
+  background-color: $color-success;
+  border-color: #b7e8b3;
+}
+
+// -------------------- message --------------------
+// message: 容器
+.el-message {
+  align-items: flex-start;
+  top: $header-height + $body-content-py;
+  min-width: 100px;
+  max-width: 500px;
+  padding: $spacing-tiny - 2 $spacing-tiny;
+  border-radius: 0;
+  box-shadow: 0 3px 8px transparentize(#e6ebf0, .5);
+}
+
+// message: 图标
+.el-message__icon {
+  width: 16px;
+  height: 16px;
+}
+
+// message: 内容文本
+.el-message__content {
+  line-height: 1.4;
+  font-size: $font-size-small;
+  color: $color-text-main !important;
+}
+
+// message: 信息
+.el-message--info {
+ @extend %msg-info;
+}
+
+// message: 错误
+.el-message--error {
+  @extend %msg-error;
+}
+
+// message: 警告
+.el-message--warning {
+  @extend %msg-warning;
+}
+
+// message: 成功
+.el-message--success {
+  @extend %msg-success;
+}
+
+// message: 关闭按钮
+.el-message__closeBtn {
+  top: $spacing-tiny;
+  right: 5px;
+  transform: none;
+}
+
+// -------------------- notification --------------------
+// notification: 容器
+.el-notification {
+  top: $header-height + $body-content-py !important;
+  right: $body-content-py - 0.5 !important;
+  width: 360px;
+  padding: $spacing-tiny 26px $spacing-tiny $spacing-tiny;
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: 0 3px 8px transparentize(#e6ebf0, .5);
+}
+
+// notification: 因位置会重叠，非最后一个notification不显示阴影
+.el-notification:not(:last-child) {
+  box-shadow: none;
+}
+
+// notification: 信息
+.el-notification--info {
+  @extend %msg-info;
+ }
+
+ // notification: 错误
+ .el-notification--error {
+   @extend %msg-error;
+ }
+
+ // notification: 警告
+ .el-notification--warning {
+   @extend %msg-warning;
+ }
+
+ // notification: 成功
+ .el-notification--success {
+   @extend %msg-success;
+ }
+
+// notification: 内容区
+.el-notification__group {
+  margin-left: $spacing-step;
+}
+
+// notification: 计数器
+body {
+  counter-reset: notification-num;
+}
+
+// notification: 计数圆点
+.el-notification__group:before {
+  counter-increment: notification-num;
+  content: counter(notification-num);
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  min-width: 16px;
+  height: 16px;
+  line-height: 14px;
+  padding: 0 3px;
+  font-size: 12px;
+  color: #ff2721;
+  background: #fff;
+  border: 1px solid #ff2721;
+  border-radius: 8px;
+  text-align: center;
+}
+
+// notification: 标题
+.el-notification__title {
+  font-size: $font-size-default;
+}
+
+// notification: 内容
+.el-notification__content {
+  margin-top: 0;
+  font-size: $font-size-small;
+  color: $color-text-main;
+}
+
+// notification: 关闭按钮
+.el-notification__closeBtn {
+  top: 13px;
+  right: 8px;
+}
+
+// -------------------- messageBox --------------------
+// messageBox: 容器
+.el-message-box {
+  border-radius: 0;
+}
+
+// messageBox: 头部
+.el-message-box__header {
+  padding: $spacing-tiny $spacing-small;
+  border-bottom: 1px solid $modal-header-border-color;
+}
+
+// messageBox: 头部-标题
+.el-message-box__title {
+  font-size: $font-size-medium;
+}
+
+// messageBox: 内容区
+.el-message-box__content {
+  padding: 40px $spacing-medium;
+  color: $color-text-main;
+}
+
+// messageBox: 图标区
+.el-message-box__status {
+  top: 0;
+  transform: translateY(0);
+}
+
+.el-message-box__status:before {
+  transform: scale(1) translateY(0);
+}
+
+// messageBox: 按钮区
+.el-message-box__btns {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+// messageBox: 按钮间距
+.el-message-box__btns .el-button {
+  margin: 0 $spacing-step;
+  padding: $spacing-tiny ($spacing-tiny + 2);
+}
+
+// messageBox: 关闭按钮
+.el-message-box__headerbtn {
+  top: 8px;
+}
+
+.el-message-box__headerbtn .el-icon-close:before {
+  font-size: 20px;
+}
+
+// -------------------- 分页 --------------------
+.el-pagination {
+  margin: $spacing-medium 0;
+  text-align: center;
+}
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+  font-weight: 400;
+  color: $color-text-secondary;
+  background: transparent;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+  color: $color-main-active;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  color: #fff;
+  background-color: $color-main;
+}
+
+.el-pagination .btn-next .el-icon,
+.el-pagination .btn-prev .el-icon:after {
+  content: "上一页";
+}
+
+.el-pagination .el-icon-arrow-right:before {
+  content: "下一页";
+}
+
+.el-pagination .btn-next .el-icon, .el-pagination .btn-next .el-icon-arrow-right:after {
+  content: "\E604";
+}
+
+// -------------------- 表单 --------------------
+.el-form-item__label {
+  color: $color-text-main;
+}
+
+// -------------------- 多选按钮组容器 --------------------
+.el-checkbox-group.xorderly {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$spacing-tiny (-$spacing-small) 0;
+}
+
+.el-checkbox-group.xorderly > .el-checkbox {
+  width: 6em;
+  margin: 0 $spacing-small;
+}

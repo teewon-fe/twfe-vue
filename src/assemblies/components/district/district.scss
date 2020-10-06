@@ -1,0 +1,134 @@
+.tw-district-body {
+  display: flex;
+  height: 1.6rem;
+  line-height: 1.6rem;
+}
+
+.tw-district-body-text {
+  flex: 1;
+  @include ellipsis;
+}
+
+.tw-district-body-arrowbox {
+  position: relative;
+}
+
+.tw-district-body-arrowbox:before {
+  content: "";
+  display: block;
+  @include arrow(right, #c2c2c2);
+}
+
+.tw-district-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1999;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+}
+
+.tw-district-popup {
+  height: 85%;
+}
+
+.tw-district-optbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tw-district-optbox-header {
+  padding: 0 .75rem;
+}
+
+.tw-district-optbox-title {
+  font-size: .8rem;
+  text-align: center;
+}
+
+.tw-district-optbox-close {
+  position: absolute;
+  top: .1rem;
+  right: 0;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5em;
+  color: $color-text-weaking;
+  text-align: center;
+}
+
+.tw-district-selected {
+  line-height: 2.2;
+  padding: 0 .75rem .75rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.tw-district-selected > li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.tw-district-selected > li:before {
+  content: "";
+  position: absolute;
+  top: .75rem;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  background: $color-main;
+  border-radius: 50%;
+}
+
+.tw-district-selected > li:after {
+  content: "";
+  position: absolute;
+  top: .75rem;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: $color-main;
+}
+
+.tw-district-selected > li:last-child:after {
+  display: none;
+}
+
+.tw-district-option {
+  flex: 1;
+  line-height: 2;
+  padding: .5rem .75rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tw-district-option > li {
+  position: relative;
+  padding-right: 1rem;
+}
+
+.tw-district-option > li.xselected {
+  font-weight: 700;
+  color: $color-main;
+}
+
+.tw-district-option > li.xselected:after {
+  content: "";
+  position: absolute;
+  top: .4rem;
+  right: 0;
+  width: .5rem;
+  height: .3rem;
+  border-bottom: 1px solid $color-main;
+  border-left: 1px solid $color-main;
+  transform: rotate(-45deg);
+}
+
+.tw-district-option-confirm {
+  display: inline-block;
+  color: $color-text-link;
+}

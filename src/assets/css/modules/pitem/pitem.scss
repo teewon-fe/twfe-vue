@@ -1,0 +1,159 @@
+/* 图片项 */
+$piclr-spacing: $spacing-tiny !default; // 左右布局图片间距
+$pictb-spcing: $spacing-step !default; // 上下布局图片间距
+$pic-des-ling-height: $line-height-default !default; // 图片描述行高
+$pic-title-font-size: $font-size-medium !default; // 文本区字号
+$pic-props-spacing: $spacing-step !default; // 图片属性区上边距
+$pic-props-font-size: $font-size-small !default; // 图片属性区字号
+$picitem-imgbar-height: 35px !default; // 内部布局图片文本区高度
+$picitem-imgbar-px: $spacing-tiny !default; // 内部布局图片文本区内边距
+$picitem-imgbar-bg: rgba(0, 0, 0, .6) !default; // 内部布局图片文本区背景
+$picitem-imgbar-color: #fff !default; // 内部布局图片文本颜色
+$picitem-imgbar-body-height: 80px !default; // 图片工具栏主体高度
+
+// -------------------- 左右布局图片项 --------------------
+.tw-piclr {
+  display: flex;
+  align-items: center;
+}
+
+// 左右布局图片项: 图片区
+.tw-piclr-imgbox {
+  position: relative;
+  flex-shrink: 0;
+}
+
+// 左右布局图片项: 文本区
+.tw-piclr-text {
+  flex: 1;
+  min-width: 0;
+  padding-left: $piclr-spacing;
+  font-size: $pic-title-font-size;
+}
+
+// -------------------- 上下布局图片项 --------------------
+.tw-pictb {
+  position: relative;
+}
+
+// 左右布局图片项: 图片区
+.tw-pictb-imgbox {
+  position: relative;
+  overflow: hidden;
+}
+
+// 左右布局图片项: 图片
+.tw-pictb-imgbox > img {
+  width: 100%;
+  transition: all $time * 2 linear;
+}
+
+// 左右布局图片项: 文本区
+.tw-pictb-text {
+  margin-top: $pictb-spcing;
+  font-size: $pic-title-font-size;
+}
+
+// -------------------- 共用项: 左右与上下布局 --------------------
+// 图片缩放
+.tw-pictb-imgbox.xscale:hover > img {
+  transform: scale(1.25);
+}
+
+// 超出省略
+.tw-piclr-des.xellipsis,
+.tw-piclr-title.xellipsis,
+.tw-pictb-title.xellipsis,
+.tw-pictb-des.xellipsis {
+  line-height: $pic-des-ling-height;
+  @include ellipsis;
+}
+
+// 图片描述
+.tw-piclr-des,
+.tw-pictb-des {
+  margin-top: $spacing-step;
+  font-size: 75%;
+}
+
+// 图片标题/描述: 两行
+.tw-piclr-title.xtwoline,
+.tw-pictb-title.xtwoline {
+  height: $pic-des-ling-height * $pic-title-font-size * 2;
+  overflow: hidden;
+}
+
+.tw-piclr-des.xtwoline,
+.tw-pictb-des.xtwoline {
+  height: $pic-des-ling-height * $pic-title-font-size * .75 * 2;
+  overflow: hidden;
+}
+
+// 图片属性区
+.tw-piclr-props,
+.tw-pictb-props {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $pic-props-spacing;
+  font-size: $pic-props-font-size;
+}
+
+// 图片工具栏
+.tw-piclr-imgbar,
+.tw-pictb-imgbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $picitem-imgbar-height;
+  padding: 0 $picitem-imgbar-px;
+  color: $picitem-imgbar-color;
+  background: $picitem-imgbar-bg;
+  transition: all $time linear;
+  @include ellipsis;
+}
+
+// 图片工具栏：开启hover切换功能
+.tw-piclr-imgbar.xhover,
+.tw-pictb-imgbar.xhover {
+  height: 0;
+}
+
+// 图片工具栏：imagbar做为图片内容区
+.tw-piclr-imgbox:hover > .tw-piclr-imgbar.xhover,
+.tw-pictb-imgbox:hover > .tw-pictb-imgbar.xhover {
+  display: flex;
+  height: $picitem-imgbar-height;
+}
+
+// 图片工具栏: 做为图片内部内容
+.tw-piclr-imgbar.xinside,
+.tw-pictb-imgbar.xinside {
+  height: auto;
+}
+
+// 图片工具栏: 标题
+.tw-piclr-imgbar-title,
+.tw-pictb-imgbar-title {
+  flex-basis: 100%;
+  line-height: $picitem-imgbar-height;
+  font-size: $pic-title-font-size;
+}
+
+// 图片工具栏: 主内容
+.tw-piclr-imgbar-body,
+.tw-pictb-imgbar-body {
+  height: 0;
+  white-space: normal;
+  transition: all $time linear;
+}
+
+.tw-piclr-imgbox:hover .tw-piclr-imgbar-body,
+.tw-pictb-imgbox:hover .tw-pictb-imgbar-body {
+  height: $picitem-imgbar-body-height;
+}

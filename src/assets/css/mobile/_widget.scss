@@ -1,0 +1,127 @@
+// -------------------- 标签 --------------------
+$tag-height: 24px !default; // 标签高度
+$tag-small-height: 18px !default; // 小标签高度
+$tag-large-height: 30px !default; // 大标签高度
+$tag-px: $spacing-tiny !default; // 标签内边距
+$tag-small-px: $spacing-step !default; // 标签内小尺寸边距
+$tag-font-size: $font-size-small !default; // 字体大小
+$tag-border-color: $color-border-main !default; // 带边框标签边框色
+
+// 标签: 容器
+.tw-tag {
+  display: inline-block;
+  height: $tag-height;
+  line-height: $tag-height;
+  padding: 0 $tag-px;
+  font-style: normal;
+  color: $color-text-secondary;
+  text-align: center;
+  border: 1px solid #cbd8e4;
+  border-radius: 2px;
+}
+
+.tw-tag.xactive{
+    color: $color-main;
+    border: 1px solid $color-main;
+}
+
+
+// 标签: 圆形
+.tw-tag.xround {
+  border-radius: $tag-height / 2;
+}
+
+
+// 标签: 带边框
+.tw-tag.xborder {
+  line-height: $tag-height - 2;
+  border: 1px solid $tag-border-color;
+}
+
+// 标签: 大尺寸
+.tw-tag.xlarge {
+  height: $tag-large-height;
+  line-height: $tag-large-height - 2;
+}
+
+// 标签: 小尺寸
+.tw-tag.xsmall {
+    height: $tag-small-height;
+    line-height: $tag-small-height - 2;
+    padding:0 $tag-small-px;
+    font-size: $font-size-tiny;
+
+  }
+  
+  // 标签: 错题
+.tw-tag.xwmain {
+  margin-right: $spacing-tiny;
+  color: #f0595f;
+  border-color: #f0595f;
+}
+
+.tw-tag.xwinfo {
+  margin-right: $spacing-tiny;
+  color: $color-text-highlight;
+  border-color: $color-text-highlight;
+}
+
+// 
+// 标签:
+.tw-tag.xnormal{
+  max-width: 150px;
+  font-size: $font-size-small;
+  vertical-align: middle;
+  @include ellipsis;
+}
+.tw-tag.xnormal + .tw-tag.xnormal {
+  margin: $spacing-step;
+}
+
+// 标签数字标签
+.tw-tag.xmnum{
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  background: #aebcc3;
+  border-radius: 50%;
+
+}
+
+// 标签 错题标签
+.tw-tag.xeditable {
+  height: 30px;
+  line-height: 28px;
+  margin-right: $spacing-step;
+  margin-bottom: $spacing-step;
+  border: 1px solid #cbd8e4;
+  border-radius: 15px;
+}
+
+.tw-tag.xeditable span{
+  display: inline-block;
+  max-width: 130px;
+  margin-right: 3px;
+  color: $color-text-main;
+  vertical-align: middle;
+  @include ellipsis;
+}
+
+.tw-tag.xeditable.xsmall {
+  width: 50px;
+  margin-right: $spacing-tiny;
+  font-size: $font-size-default;
+  color: $color-text-main;
+  text-align: center;
+}
+
+// 拖动控制点
+.tw-controlpoint {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #ccc;
+}

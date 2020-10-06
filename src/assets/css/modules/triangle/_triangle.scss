@@ -1,0 +1,21 @@
+// 小三角形
+
+.tw-triangle.xup {
+  @include triangle(up);
+  transform-origin: 50% 80%;
+}
+
+.tw-triangle.xright {
+  @include triangle(right);
+  transform-origin: 30% 50%;
+}
+
+.tw-triangle.xdown {
+  @include triangle(down);
+  transform-origin: 50% 30%;
+}
+
+.tw-triangle.xleft {
+  @include triangle(left);
+  transform-origin: 80% 50%;
+}

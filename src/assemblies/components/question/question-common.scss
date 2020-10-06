@@ -1,0 +1,14 @@
+.tw-question img {
+  max-width: 100%;
+  max-height: 125px;
+  vertical-align: baseline;
+}
+
+// 试题：填空题-填空项-答案
+.tw-question-blankitem-answer {
+  padding: $spacing-step;
+}
+
+.tw-question-blankitem-answer.xshortanswer {
+  min-height: 60px;
+}

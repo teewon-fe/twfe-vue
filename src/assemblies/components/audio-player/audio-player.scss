@@ -1,0 +1,138 @@
+// 音频播放器-容器
+.tw-audio {
+  position: relative;
+}
+
+// 音频播放器-主体
+.tw-audio-body {
+  display: flex;
+  align-items: center;
+}
+
+// 音频播放器-图标容器
+.tw-audio-iconbox {
+  padding-right: $spacing-step;
+}
+
+// 音频播放器-时间
+.tw-audio-time {
+  color: $color-text-secondary;
+}
+
+// 音频播放器-进度条容器
+.tw-audio-progressbox {
+  flex: 1;
+  padding: 0 $spacing-tiny;
+}
+
+// 音频播放器-block布局模式
+.tw-audio.xblock > .tw-audio-body {
+  display: block;
+}
+
+// 音频播放器-进度条按钮样式
+// stylelint-disable selector-class-pattern
+.tw-audio-progressbox .van-slider__button {
+  position: relative;
+  width: 20px;
+  height: 10px;
+  background: $color-main;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.tw-audio.xmin .van-slider__bar {
+  width: 1% !important;
+}
+
+.tw-audio.xmax .van-slider__bar {
+  width: 99% !important;
+}
+
+// 音频播放器-控制栏
+.tw-audio-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tw-audio-control > li {
+  padding: $spacing-tiny $spacing-tiny 0;
+}
+
+.tw-audio-control-skip {
+  position: relative;
+}
+
+.tw-audio-control-skip > .tw-ico {
+  font-style: normal;
+  text-align: center;
+}
+
+.tw-audio-control-skip > .tw-ico > span {
+  position: relative;
+}
+
+.tw-audio.xweb .tw-audio-control-skip span {
+  top: 3px;
+  left: -1px;
+  display: inline-block;
+  color: $color-text-secondary;
+}
+
+.tw-audio.xmobile .tw-audio-control-skip span {
+  display: inline-block;
+  transform: scale(.65);
+}
+
+// 音频播放器标题
+.tw-audio-title {
+  font-size: 12px;
+  color: $color-text-weaking;
+  @include ellipsis;
+}
+
+// 音频播放 mini 按钮
+.tw-audio-playbtn {
+  position: relative;
+  display: inline-block;
+  width: 175px;
+  height: 40px;
+  margin-bottom: -5px;
+  background: url("~@images/audio.png") no-repeat 8% center#a3df66;
+  background-size:15px 22px;
+  border: 1px solid #8bd640;
+  border-radius: 4px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-right-color: #8bd640;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-right-color: #a3df66;
+  }
+}
+
+// 音频播放 正在播放动画
+.tw-audio.xplaying.xmobile .tw-audio-playbtn {
+  background-image: url("~@images/audioplay.gif")
+}
+
+// 避免弹出的播放器被摭盖住
+.van-popup.xplayer {
+  z-index: 3001 !important;
+}

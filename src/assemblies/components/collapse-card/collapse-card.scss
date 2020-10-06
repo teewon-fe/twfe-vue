@@ -1,0 +1,53 @@
+.tw-collapse-cardtitle {
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #666;
+  border-bottom: 1px solid #e1e7eb;
+}
+
+.tw-collapse-cardtitle::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: #08f;
+}
+
+.tw-collapse-cardtitle-toggle {
+  display: inline-block;
+  float: right;
+  width: 40px;
+  height: 30px;
+  margin-top: 5px;
+  background: url("./images/open.png") center no-repeat;
+  transition: .3s;
+  transform: rotate(0);
+}
+
+.tw-collapse-cardtitle-toggle:hover {
+  background: url("./images/open-active.png") center no-repeat;
+}
+
+.tw-collapse-cardtitle-toggle.tw-collapse-isOpen {
+  transition: .3s;
+  transform: rotate(180deg);
+}
+
+.tw-collapse-cardbody {
+  padding: 20px;
+}
+
+.tw-collapse-cardbody > span:first-child{
+  color: #666;
+}
+
+.tw-collapse-card.tw-body-nopadding .tw-collapse-cardbody {
+  padding: 20px 0;
+}
+
+.tw-collapse-card + .tw-collapse-card {
+  margin-top: 20px;
+}

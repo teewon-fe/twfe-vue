@@ -1,0 +1,91 @@
+/* 标题 */
+$title-marker-left: -$spacing-medium !default; // 左侧竖线偏移量
+$title-marker-bg: $color-main !default; // 左侧竖线颜色
+$title-marker-width: 3px !default; // 左侧竖线宽度
+$title-line-height: $line-height-default !default; // 标题行高
+$title-pb: $spacing-tiny !default; // 标题底部内间距
+$title-mb: $spacing-small !default; // 标题底部外间距
+$title-font-size: $font-size-medium !default; // 标题字体大小
+$title-left-icon-spacing: $spacing-step !default; // 标题左侧图标间距
+$title-color: $color-text-main !default; // 标题文本颜色
+$title-border-color: $color-border-main !default; // 标题边框颜色
+$title-sub-marker-size: 4px !default; // 子标题左侧标识大小
+$title-iconbox-size: 26px !default; // 图标标题图标容器大小
+
+// 标题-容器
+.tw-title {
+  @include clearfix;
+  position: relative;
+  line-height: $title-line-height;
+  padding-bottom: $title-pb;
+  margin-bottom: $title-mb;
+  font-size: $title-font-size;
+  font-weight: 700;
+  color: $title-color;
+  border-bottom: 1px dashed $title-border-color;
+}
+
+// 标题-左侧坚线标记
+.tw-title:before {
+  content: "";
+  position: absolute;
+  left: $title-marker-left;
+  width: 3px;
+  height: $title-font-size * $line-height-default;
+  background: $title-marker-bg;
+}
+
+// 标题-左侧内容
+.tw-title-left {
+  float: left;
+  font-weight: 700;
+}
+
+.tw-title-left > .tw-ico,
+.tw-title-left > .tw-font {
+  margin-right: $title-left-icon-spacing;
+}
+
+// 标题-标注
+.tw-title-note {
+  margin-left: $spacing-step;
+  font-size: 85%;
+  color: lighten($title-color, 20%);
+}
+
+// 标题-右侧内容
+.tw-title-right {
+  float: right;
+  font-size: $font-size-default;
+  font-weight: 400;
+}
+
+// 标题-副标题
+.tw-title.xsub {
+  padding-bottom: 0;
+  margin-bottom: $title-mb - $spacing-step;
+  font-size: $title-font-size - 2px;
+  border-bottom: none;
+}
+
+.tw-title.xsub:before {
+  top: floor(($title-font-size - 2px) * $line-height-default / 2);
+  left: $title-marker-left / 2;
+  width: $title-sub-marker-size;
+  height: $title-sub-marker-size;
+}
+
+// 标题-无标识线
+.tw-title.xnomark:before {
+  display: none;
+}
+
+// 标题-图标标题
+.tw-title.xico > .tw-ico,
+.tw-title.xico > .tw-font {
+  position: absolute;
+  top: 0;
+  bottom: percentage($title-pb / ($title-font-size * $title-line-height + $title-pb + 1));
+  left: 0;
+  margin: auto 0 auto (-$title-iconbox-size);
+}

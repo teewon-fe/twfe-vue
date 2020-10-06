@@ -1,0 +1,87 @@
+/* 列表 */
+$select-height: $ctr-height-default !default; // 默认选择框高度
+$select-height-small: $ctr-height-small !default; // 小选择框高度
+$select-height-large: $ctr-height-large !default; // 大选择框高度
+$select-max-height: 300px !default; // 选项框最大高度
+$select-padding-right: $spacing-tiny !default; // 选择框右内边距
+$select-triangle-color: $color-border-main !default; // 选择框三角形颜色
+$select-list-border-color: $color-border-main !default; // 选项列表边框色
+$select-list-item-line-height: $ctr-height-default !default; // 选项列表项行高
+$select-list-item-px: $spacing-tiny !default; // 选项水平内边距
+$select-list-item-hover-bg: #f5f5f5 !default; // 选项滑过背景
+$select-list-item-hover-color: $color-main-hover !default; // 选项滑过字体颜色
+$select-list-item-selected-bg: $color-main-hover !default; // 选项选中背景
+$select-list-item-selected-color: $color-text-inverse !default; // 选项选中背景
+$select-list-item-selected-ico-size: $font-size-medium !default; // 选中图标大小
+$select-list-item-selected-ico-color: $color-secondary !default; // 选中图标颜色
+$select-group-name-height: $ctr-height-small !default; // 选项组名高度
+$select-group-name-color: $color-text-weaking !default; // 选项组名颜色
+
+// 选择框
+.tw-select {
+  position: relative;
+  display: inline-block;
+}
+
+.tw-select .tw-popswitch {
+  padding-right: 0;
+}
+
+.tw-select .tw-popswitch > .tw-triangle {
+  right: $select-padding-right;
+  color: $select-triangle-color;
+}
+
+.tw-select .tw-input {
+  padding-right: $select-padding-right + 10px;
+}
+
+.tw-select-label {
+  line-height: $select-height;
+}
+
+// 选项列表
+.tw-select-pane {
+  max-height: $select-max-height;
+  overflow: auto;
+  border: 1px solid $select-list-border-color;
+}
+
+// 选项列表项
+.tw-select-item {
+  position: relative;
+  line-height: $select-list-item-line-height;
+  padding: 0 $select-list-item-px;
+  cursor: pointer;
+
+  &.xactive,
+  &:hover {
+    color: $select-list-item-hover-color;
+    background: $select-list-item-hover-bg;
+  }
+}
+
+// 选项组名
+.tw-select-groupname {
+  line-height: $select-group-name-height;
+  padding: 0 $select-list-item-px / 2;
+  font-weight: bold;
+  color: $select-group-name-color;
+}
+
+// xsingle表单选状态,xmultiple表多选状态
+.tw-select-pane.xsingle .tw-select-item.xselected {
+  color: $select-list-item-selected-color;
+  background: $select-list-item-selected-bg;
+}
+
+// 选中图标
+.tw-select-item .tw-font.xselect {
+  display: none;
+  font-size: $select-list-item-selected-ico-size;
+  color: $select-list-item-selected-ico-color;
+}
+
+.tw-select-item.xselected .tw-font.xselect {
+  display: block;
+}

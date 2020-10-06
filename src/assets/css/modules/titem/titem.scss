@@ -1,0 +1,55 @@
+/* 标题项 */
+$titem-spacing: $spacing-tiny !default; // 标题项项内边距
+$titem-border-color: $color-border-main !default; // 边框颜色
+$titem-title-font-size: $font-size-medium !default; // 标题字体大小
+$titem-title-color: $color-text-main !default; // 标题字体颜色
+$titem-title-hover-color: $color-text-link-hover !default; // 标题滑过颜色
+$titem-title-dot-size: 5px !default; // 标题小圆点尺寸
+$titem-title-dot-bg: #97aebf !default; // 标题小圆点颜色
+$titem-title-icon-mr: $spacing-tiny !default; // 标题图标间距
+$titem-right-color: $color-text-weaking !default; // 右侧内容区字体颜色
+
+// 内容标题项: 容器
+.tw-titem {
+  display: flex;
+  align-items: center;
+  padding: $titem-spacing;
+  border-bottom: 1px dashed $titem-border-color;
+}
+
+// 内容标题项: 标题
+.tw-titem-title {
+  flex: 1;
+  font-size: $titem-title-font-size;
+  color: $titem-title-color;
+  @include ellipsis();
+
+  &:hover {
+    color: $titem-title-hover-color;
+  }
+}
+
+// 内容标题项: 标题图标间距
+.tw-titem-title > img,
+.tw-titem-title > .tw-ico,
+.tw-titem-title > .tw-font{
+  margin-right: $titem-title-icon-mr;
+}
+
+// 内容标题项: 标题-带小圆点
+.tw-titem-title.xdot:before {
+  content: "";
+  display: inline-block;
+  width: $titem-title-dot-size;
+  height: $titem-title-dot-size;
+  margin-right: $titem-title-icon-mr;
+  vertical-align: middle;
+  background: $titem-title-dot-bg;
+  border-radius: 50%;
+}
+
+// 内容标题项: 右侧内容区
+.tw-titem-right {
+  padding-left: 2 * $titem-spacing;
+  color: $titem-right-color;
+}

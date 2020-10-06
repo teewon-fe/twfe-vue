@@ -1,0 +1,209 @@
+/* 上传控件 */
+$file-card-width: 100% !default; // 卡片式文件列表项宽度
+$file-card-height: auto !default; // 卡片式文件列表项高度
+$file-text-width: 40px !default; // 文本式文件列表项宽度
+$file-text-height: 40px !default; // 文本式文件列表项高度
+$file-card-bg: #edf5fc !default; // 文件卡片背景
+$file-item-hover-bg: #edf2f7 !default; // 文件项滑过背景
+$file-progress-bg: #d3dce7 !default; // 进度条背景色
+$file-progress-color: #78cf70 !default; // 进度条颜色
+$file-item-hover-bg: #edf2f7 !default; // 文件项滑过背景
+
+// upload: 包装容器
+.tw-upload {
+  padding: .5rem 0;
+}
+.tw-upload .el-upload {
+  text-align: left;
+}
+.tw-upload.xdisabled  .tw-upload-list-item:last-child{
+  display: none;
+}
+.tw-upload.xdisabled .tw-upload-list-item  .tw-upload-file .tw-ico{
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.1rem;
+}
+// upload: 添加按钮
+.el-upload .tw-addplus {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 4rem;
+  vertical-align: top;
+  background: #f4f4f4;
+  border: none;
+  border-radius: 3px;
+}
+.tw-upload-list-item.tw-grid-col > div, .tw-upload-list-item.tw-grid-col > div .el-upload--picture{
+  width: 100%;
+}
+.el-upload .tw-addplus .tw-ico.xaddplus{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -.8rem;
+  margin-left: -.8rem;
+}
+
+// upload: 文件列表(默认为卡片式)
+.tw-upload-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 (-$spacing-tiny);
+}
+
+// upload: 文件列表项
+.tw-upload-list-item {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  padding: $spacing-tiny;
+}
+
+// upload: 文件
+.tw-upload-file {
+  position: relative;
+  width: $file-card-width;
+  height: $file-card-height;
+  overflow: hidden;
+  cursor: pointer;
+  background: #edf5fc;
+}
+
+.tw-upload-percentage {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  background: #000;
+  opacity: .65;
+  transition: all $time linear;
+}
+
+.tw-upload.xdisabled .tw-upload-percentage {
+  display: none;
+}
+
+// upload: 文件-图片
+.tw-upload-file > img {
+  position: relative;
+  left: 50%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+// upload: 文件-删除按钮
+.tw-upload-file > .tw-ico.xuldel1 {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  z-index: 1;
+  cursor: pointer;
+  opacity: .8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.tw-upload-file:hover > .tw-ico {
+  display: block;
+}
+
+// upload: 文件上传进度条
+.tw-upload-file-process {
+  position: absolute;
+  top: 50%;
+  right: $spacing-tiny;
+  left: $spacing-tiny;
+  z-index: 1;
+  margin-top: -3px;
+}
+
+.tw-upload-file-process .el-progress-bar {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.tw-upload-file-process .el-progress-bar__outer {
+  background-color: $file-progress-bg;
+}
+
+.tw-upload-file-process .el-progress-bar__inner {
+  background-color: $file-progress-color;
+}
+
+// upload: 文件列表(文本式)
+.tw-upload-list.xtext {
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: $spacing-tiny;
+}
+
+.tw-upload-list.xtext > li {
+  padding: 0;
+}
+
+.tw-upload.xdisabled .tw-upload-list.xtext {
+  margin-top: 0;
+}
+
+.tw-upload-file.xtext {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: $spacing-tiny;
+  background: transparent;
+
+  &:hover {
+    background: $file-item-hover-bg;
+  }
+}
+
+.tw-upload-file-imgbox {
+  position: relative;
+  width: $file-text-width;
+  height: $file-text-height;
+  overflow: hidden;
+  background: #edf5fc;
+}
+
+.tw-upload-file-imgbox > img {
+  position: relative;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.tw-upload-file-name {
+  flex: 1;
+  padding-left: $spacing-step;
+
+  @include ellipsis;
+}
+
+.tw-upload-file-tools {
+  padding-left: $spacing-tiny;
+}
+
+// upload: 禁用
+.tw-upload.xdisabled > div:first-child {
+  display: none;
+}
+
+.tw-upload-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  background: transparent;
+}

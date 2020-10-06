@@ -1,0 +1,33 @@
+/* 面包屑 */
+$crm-item-mx: $spacing-step !default; // 每一项间距
+$crm-mb: $spacing-small !default; // 下边距
+$crm-font-size: $font-size-default !default; // 字体大小
+$crm-link-color: $color-text-secondary !default; // 文本颜色
+$crm-link-hover-color: $color-text-link !default; // 滑过文本色
+$crm-current-item-color: $color-text-weaking !default; // 当前面包屑文本色
+
+// 面包屑:容器
+.tw-crm {
+  margin-bottom: $crm-mb;
+  font-size: $crm-font-size;
+}
+
+// 面包屑:链接项
+.tw-crm-link {
+  color: $crm-link-color;
+
+  &:hover {
+    color: $crm-link-hover-color;
+  }
+}
+
+.tw-crm-arrow {
+  margin: 0 $crm-item-mx - 2;
+  vertical-align: middle;
+  @include arrow(right, 8px, 1px, $crm-link-color);
+}
+
+// 面包屑:当前项
+.tw-crm-self {
+  color: $crm-current-item-color;
+}

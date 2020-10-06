@@ -1,0 +1,183 @@
+// 弹出层
+$poppane-bg: #17233d !default;
+
+.tw-poplayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-higher;
+  width: 100%;
+}
+
+.tw-poplayer.xseltree {
+  z-index: $zindex-higher;
+}
+
+// 弹出面板
+.tw-poppane {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  overflow: hidden;
+  background: #fff;
+  border-radius: $border-radius;
+  opacity: 0;
+  transition: all $time linear;
+  transform: scaleY(.1);
+  transform-origin: top center;
+}
+
+.tw-poppane.xheader {
+  border-radius: 0;
+}
+
+@if ($app-type == mobile) {
+  .tw-poppane.xmobile {
+    border-radius: $border-radius-mobile;
+  }
+  
+  // 弹出面板有箭头间距
+  .tw-poppane.xarrowtop {
+    overflow: visible;
+  }
+}
+
+.tw-poppane.xnotopradius {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+// 弹出面板-打开
+.tw-poppane.xopen {
+  display: block;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+// 弹出面板-打开-全屏
+.tw-poppane.xfull {
+  width: 100%;
+  padding: $spacing-step 0 $spacing-large;
+  margin: 0 auto;
+  text-align: center;
+  background-color: $poppane-bg;
+}
+
+// 弹出面板-阴影
+.tw-poppane.xshadow {
+ box-shadow: 0 3px 9px #edecec;
+}
+
+.tw-poppane.xfull .tw-header-menu {
+  display: inline-block;
+  width: 220px;
+  text-align: left;
+}
+.tw-poppane.xfull .tw-header-menu-title {
+  padding-bottom: 12px;
+}
+
+// 弹出面板-变换原点
+.tw-poppane.xleftbottom,
+.tw-poppane.xrightbottom,
+.tw-poppane[class*="xtop"],
+.tw-poppane[class*="xauto"][style*="bottom"] {
+  transform-origin: bottom center;
+}
+
+.tw-poppane.xleftcenter,
+.tw-poppane.xrightcenter {
+  transform-origin: center center;
+}
+
+// 弹出面板-触发开关
+.tw-popswitch {
+  position: relative;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+// 弹出面板-置左时-触发开关
+.tw-popswitch[class*="xleft"] {
+  padding-right: 0;
+  padding-left: 15px;
+}
+
+// 弹出面板-禁用
+.tw-popswitch.xdisabled {
+  @include disable();
+}
+
+// 弹出面板-箭头
+.tw-popswitch > .tw-triangle {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  margin-top: -2px;
+  transition: all $time linear;
+}
+
+.tw-popswitch > .tw-triangle.xleft,
+.tw-popswitch > .tw-triangle.xright {
+  margin-top: -5px;
+}
+
+.tw-popswitch[class*="xleft"] > .tw-triangle {
+  right: auto;
+  left: 0;
+}
+
+.tw-popswitch.xopen > .tw-triangle,
+.tw-popswitch.xhover:hover > .tw-triangle {
+  transform: rotate(180deg);
+}
+
+// 弹出面板-触发开关-无箭头
+.tw-popswitch.xnoarrow {
+  padding-right: 0;
+}
+
+.tw-popswitch.xadmin .tw-triangle {
+  display: none;
+}
+
+// 弹出面板-空心箭头
+.tw-popswitch.xhollarrow > .tw-triangle{
+  width: 8px;
+  height: 8px;
+  margin-top: -5px;
+  border: none;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+
+.tw-popswitch.xhollarrow > .tw-triangle.xdown
+{
+  transform: rotate(-45deg);
+}
+
+.tw-popswitch.xhollarrow > .tw-triangle.xopen
+{
+  transform: rotate(-45deg);
+}
+
+.tw-popswitch.xhollarrow.xopen > .tw-triangle,
+.tw-popswitch.xhover:hover > .tw-triangle {
+  margin-top: 2px;
+  transform: rotate(135deg);
+}
+
+// 弹出面板-收起展开
+.tw-popswitch.xfold {
+  margin-left: 8px;
+  color: $color-text-link;
+}
+
+.tw-popswitch.xfold.xopen {
+  color: $color-main;
+}
+
+.tw-poppane.xquestion  {
+  max-width: 0;
+}

@@ -1,0 +1,61 @@
+/* 表单 */
+$form-mb: $spacing-medium !default; // 表单下边距
+$form-size: $font-size-default !default; // 表单字号
+$form-item-pb: $spacing-medium !default; // 表单项下边距
+$form-label-pl: $spacing-medium !default; // 表单项标签左边距
+
+// 表单-以表格方式布局
+.tw-form.xtable {
+  display: table;
+  width: 100%;
+  margin-bottom: $form-mb;
+  font-size: $form-size;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tw-form-row {
+  display: table-row;
+}
+
+.tw-form-col {
+  position: relative;
+  display: table-cell;
+  padding-bottom: $form-item-pb;
+  vertical-align: top;
+}
+
+.tw-form-col > .tw-input,
+.tw-form-col > .tw-select,
+.tw-form-col > .tw-inputlabel {
+  width: 100%;
+  vertical-align: top;
+}
+
+.tw-form-col > .tw-select .tw-select-input {
+  width: 100%;
+}
+
+.tw-form-col > .tw-inputlabel {
+  padding-left: $form-label-pl;
+}
+
+.tw-form-col:first-child > .tw-inputlabel {
+  padding-left: 0;
+}
+
+// 表单-以表格方式布局-小尺寸
+.tw-form.xtable.xsmall {
+  font-size: $form-size - 2px;
+}
+
+.tw-form.xtable.xsmall .tw-form-col {
+  padding-bottom: $form-item-pb - $spacing-step;
+}
+
+// stylelint-disable
+// element控件: select
+.tw-form-col > .el-select {
+  width: 100%;
+  vertical-align: middle;
+}

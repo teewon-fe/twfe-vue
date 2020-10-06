@@ -1,0 +1,17 @@
+// stylelint-disable
+
+// 文本截断
+.ellipsis {
+  @include ellipsis();
+}
+
+// 禁用
+.disabled {
+  cursor: not-allowed !important;
+  opacity: .45 !important;
+}
+
+// 隐藏
+.vhidden {
+  visibility: hidden !important;
+}

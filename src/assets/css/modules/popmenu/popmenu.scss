@@ -1,0 +1,52 @@
+/* 弹出菜单 */
+$popmenu-bg: #fff !default; // 弹出菜单背景
+$popmenu-border-color: $color-border-pop !default; // 弹出菜单边框色
+$popmenu-item-height: 30px !default; // 弹出菜单项高度
+$popmenu-item-px: $spacing-small !default; //弹出菜单内边距
+$popmenu-item-hover-color: $color-main !default; //弹出菜单滑过色
+$popmenu-item-hover-bg: #ebf5ff !default; //弹出菜单滑过背景
+$popmenu-item-active-color: $color-main !default; //弹出菜单激活色
+$popmenu-item-active-bg: #ebf5ff !default; //弹出菜单激活背景
+
+// 弹出菜单: 容器
+.tw-popmenu {
+  background: $popmenu-bg;
+  border: 1px solid $popmenu-border-color;
+}
+
+// 弹出菜单: 菜单项
+.tw-popmenu-item {
+  line-height: $popmenu-item-height;
+  padding: 0 $popmenu-item-px;
+  cursor: pointer;
+
+  &:hover {
+    color: $popmenu-item-hover-color;
+    background: $popmenu-item-hover-bg;
+  }
+
+  &.xactive {
+    color: $popmenu-item-active-color;
+    background: $popmenu-item-active-bg;
+  }
+}
+
+// 弹出菜单: 菜单头部
+.tw-popmenu-header {
+  line-height: 39px;
+  padding: 0 $spacing-tiny;
+  border-bottom: 1px solid $color-border-weaking;
+}
+
+// 弹出菜单: 菜单主体
+.tw-popmenu-body {
+  padding: $spacing-tiny $spacing-small;
+}
+
+// 弹出菜单: 菜单底部
+.tw-popmenu-footer {
+  padding: $spacing-tiny;
+  text-align: center;
+  background: #edf2f7;
+  border-top: 1px solid $color-border-weaking;
+}

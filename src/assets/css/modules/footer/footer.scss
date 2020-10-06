@@ -1,0 +1,29 @@
+/* 页脚 */
+$footer-height: 40px !default; // 高度
+$footer-line-height: $footer-height !default; // 行高
+$footer-font-size: $font-size-small !default; // 字体大小
+$footer-color:$color-text-inverse !default; // 文本颜色
+$footer-bg: $color-bg-footer !default; // 背景色
+
+.tw-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $footer-height;
+  line-height: $footer-line-height;
+  font-size: $footer-font-size;
+  color: $footer-color;
+  text-align: center;
+  background: $footer-bg;
+}
+
+body {
+  padding-bottom: $footer-height;
+}
+
+.tw-footer.xadmin {
+  color: $color-text-weaking;
+  background: #e9ecee;
+}
+

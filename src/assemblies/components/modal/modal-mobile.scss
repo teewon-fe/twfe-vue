@@ -1,0 +1,180 @@
+/* 弹窗 */
+$modal-zindex: $zindex-higher !default; // 图层等级
+$modal-default-width: 90% !default; // 弹窗默认宽度
+$modal-mw: map-get($media-breakpoints, pc) !default; // 弹窗最大宽度
+$modal-size-tiny: 320px !default; // 超小弹窗宽度
+$modal-size-small: 480px !default; // 小弹窗宽度
+$modal-size-medium: 640px !default; // 中弹窗宽度
+$modal-size-large: 800px !default; // 大弹窗宽度
+$modal-size-huge: 960px !default; // 超大弹窗宽度
+$modal-mask-bg: $color-bg-mask !default; // 弹窗摭盖层背景
+$modal-border-radius: $border-radius !default; // 弹窗圆角
+$modal-px: $spacing-small !default; // 弹窗内边距
+$modal-header-height: 40px !default; // 标题高度
+$modal-header-font-size: $font-size-medium !default; // 标题字号
+$modal-header-color: #fff !default; // 标题文本色
+$modal-header-bg: #186ed9 !default; // 标题背景
+$modal-header-border-color: $color-border-secondary !default; // 标题边框色
+$modal-header-close-color: #fff !default; // 关闭按钮颜色
+$modal-header-color-weaking: #333 !default; // 弱化标题文本色
+$modal-header-bg-weaking: #fff !default; // 弱化标题背景
+$modal-header-close-color-xweaking: #95a5b6 !default; // 弱化标题关闭按钮颜色
+$modal-body-mh: 520px !default; // 内容区最大高度
+$modal-footer-pt: $spacing-tiny !default; // 底部上边距
+$modal-footer-pb: $spacing-small !default; // 底部下边距
+$modal-footer-bg: #fff !default; // 底部背景
+
+
+// 弹窗:容器
+.tw-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $modal-zindex;
+  display: none;
+  text-align: center;
+  background-color: $modal-mask-bg;
+  @include center-y;
+}
+
+.tw-modal.xopen {
+  display: block;
+}
+
+.tw-modal.xnomask {
+  background-color: transparent;
+}
+
+// 弹窗:窗体
+.tw-modal-window {
+  position: relative;
+  display: inline-block;
+  width: $modal-default-width;
+  max-width: $modal-mw;
+  text-align: left;
+  white-space: normal;
+  vertical-align: middle;
+}
+
+// 弹窗:窗体-超小
+.tw-modal.xtiny > .tw-modal-window {
+  width: $modal-size-tiny;
+}
+
+// 弹窗:窗体-小
+.tw-modal.xsmall > .tw-modal-window {
+  width: $modal-size-small;
+}
+
+// 弹窗:窗体-中
+.tw-modal.xmedium > .tw-modal-window {
+  width: $modal-size-medium;
+}
+
+// 弹窗:窗体-大
+.tw-modal.xlarge > .tw-modal-window {
+  width: $modal-size-large;
+}
+
+// 弹窗:窗体-超大
+.tw-modal.xhuge > .tw-modal-window {
+  width: $modal-size-huge;
+}
+
+
+// 弹窗:窗体-头部
+.tw-modal-window-header {
+  position: relative;
+  height: $modal-header-height;
+  line-height: $modal-header-height;
+  padding: 0 $modal-px;
+  font-size: $modal-header-font-size;
+  font-weight: 700;
+  color: $modal-header-color;
+  text-align: center;
+  cursor: move;
+  background-color: $modal-header-bg;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+.tw-modal-window-header.xnodrag {
+  cursor: default;
+}
+
+.tw-modal-window-header > h4 {
+  font-weight: 700;
+  @include ellipsis;
+}
+
+.tw-modal-window-header.xweaking {
+  color: $modal-header-color-weaking;
+  background-color: $modal-header-bg-weaking;
+}
+
+.tw-modal-window-colose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  line-height: $modal-header-height - 2px;
+  padding: 0 $modal-px / 2 0 $modal-px;
+  font-size: 2em;
+  font-weight: 300;
+  text-align: center;
+  opacity: .85;
+}
+
+.tw-modal-window-colose:hover {
+  opacity: 1;
+}
+
+.tw-modal-window-header.xweaking > .tw-modal-window-colose {
+  color: $modal-header-close-color-xweaking;
+  &:hover{
+    color: $color-main;
+  }
+}
+
+// 弹窗:窗体-主体
+.tw-modal-window-body {
+  max-height: $modal-body-mh;
+  padding: 0 $modal-px $modal-px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+// 弹窗:窗体-主体-无内边距
+.tw-modal.xnopd .tw-modal-window-body {
+  padding: 0;
+}
+
+// 弹窗:窗体-底部
+.tw-modal-window-footer {
+  display: flex;
+  padding: 0 $modal-footer-pt;
+  text-align: center;
+  background-color: $modal-footer-bg;
+  border-top: .5px solid $color-border-main;
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+.tw-modal-window-footer a {
+  flex: 1;
+  line-height: 2rem;
+}
+
+.tw-modal-window-footer a + a {
+  color: $color-main;
+  border-left: .5px solid $color-border-main;
+}
+
+// stylelint-disable
+.tw-modal .mint-cell-wrapper,
+.tw-modal .mint-cell:last-child {
+  background-image: none;
+}

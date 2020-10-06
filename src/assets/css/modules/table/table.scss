@@ -1,0 +1,378 @@
+/* 表格 */
+$table-line-height: 20px !default; // 表格行高
+$table-cell-px: $spacing-tiny !default; // 单元格内边距
+$table-bg: #fff !default; // 表格背景
+$table-th-color: $color-text-main !default; // 表头颜色
+$table-header-bg: #edf2f7 !default; // 表头背景
+$table-header-font-size: $font-size-default !default; // 表头文本大小
+$table-body-font-size: $font-size-default !default; // 主体文本大小
+$table-row-hover-bg: #f6f8fb !default; // 行滑过色
+$table-small-cell-px: 8px !default; // 小型单元格内边距
+$table-large-cell-px: 12px !default; // 大型单元格内边距
+$table-border-color: $color-border-secondary !default; // 边框色
+
+// 表格：包装容器
+.tw-twrapper {
+  overflow: auto;
+}
+
+// 表格：容器
+.tw-table {
+  width: 100%;
+  line-height: $table-line-height;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: $table-bg;
+}
+
+// 表格：主体
+.tw-table > tbody {
+  font-size: $table-body-font-size;
+}
+
+// 表格：主体行
+.tw-table > tbody > tr {
+  &:hover {
+    background: $table-row-hover-bg;
+  }
+}
+
+// 表格：单元格
+// stylelint-disable selector-max-type
+.tw-table > thead > tr > th {
+  padding: $table-cell-px;
+  font-size: $table-header-font-size;
+  font-weight: 700;
+  color: $table-th-color;
+  background: $table-header-bg;
+}
+
+// 表格：主体单元格下边框
+.tw-table > tbody > tr > td {
+  padding: $table-cell-px;
+  border-bottom: 1px solid $table-border-color;
+}
+
+// 表格: 小尺寸
+.tw-table.xsmall > thead > tr > th,
+.tw-table.xsmall > tbody > tr > td {
+  padding: $table-small-cell-px;
+  font-size: $table-header-font-size - 2px;
+}
+
+// 表格: 大尺寸
+.tw-table.xlarge > thead > tr > th,
+.tw-table.xlarge > tbody > tr > td {
+  padding: $table-large-cell-px;
+  font-size: $table-header-font-size;
+}
+
+// 表格: 无边框
+.tw-table.xnoborder > thead > tr > th,
+.tw-table.xnoborder > tbody > tr > td {
+  border: none;
+}
+
+// 表格：全边框
+.tw-table.xborder > thead > tr > th,
+.tw-table.xborder > tbody > tr > td {
+  border: 1px solid $table-border-color;
+}
+
+// 表格：虚线边框
+.tw-table.xdashed > tbody > tr > td {
+  border-bottom-style: dashed;
+}
+
+.tw-table.xborder.xdashed > thead > tr > th,
+.tw-table.xborder.xdashed > tbody > tr > td {
+  border-style: dashed;
+}
+
+/* !------------------------------------------------------------
+* 重置element表格
+* ------------------------------------------------------------ */
+// stylelint-disable
+
+// -------------------- table --------------------
+// table: 表格
+.el-table {
+  line-height: $table-line-height;
+  border: 1px solid $table-border-color;
+  border-bottom: none;
+}
+
+// table: 表格-小尺寸(对应框架的正常尺寸)
+.el-table--small {
+  font-size: $font-size-default;
+}
+
+// table: 表头
+.el-table thead {
+  color: $table-th-color;
+}
+
+.el-table th {
+  background: $table-header-bg;
+}
+
+// table: 表头-小单元格
+.el-table--small th {
+  padding: ($table-cell-px - 2)  $table-cell-px;
+}
+
+// table: 表头-大单元格
+.el-table--medium th {
+  padding: ($table-large-cell-px - 2)  $table-large-cell-px;
+}
+
+// table: 单元素格分隔线
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom-color: $table-border-color;
+}
+
+// table: 表格边框线
+.el-table--border:after,
+.el-table--group:after,
+.el-table:before {
+  background: $table-border-color;
+}
+
+// table: 单元格-小
+.el-table--small td {
+  padding: $table-cell-px;
+}
+
+// table: 单元格-大
+.el-table--medium td {
+  padding: $table-large-cell-px;
+}
+
+// table: 内容单元格
+.el-table .cell {
+  line-height: $table-line-height;
+  padding: 0;
+}
+
+// table: 表格图标-排序图标(隐藏原有)
+.is-sortable .sort-caret.ascending,
+.is-sortable .sort-caret.descending {
+  display: none;
+}
+
+// table: 表格图标-排序图标容器
+.is-sortable .caret-wrapper {
+  display: inline-block;
+  height: auto;
+  margin-left: $spacing-step;
+  vertical-align: top;
+}
+
+// table: 表格图标-排序图标
+// .is-sortable .caret-wrapper:before {
+//   content: "";
+//   @extend %ico-base;
+//   @extend .tw-ico.xsort;
+// }
+
+// table: 表格图标-升序
+// .is-sortable.ascending .caret-wrapper:before {
+//   content: "";
+//   @extend %ico-base;
+//   @extend .tw-ico.xsort.xasc;
+// }
+
+// table: 表格图标-降序
+// .is-sortable.descending .caret-wrapper:before {
+//   content: "";
+//   @extend %ico-base;
+//   @extend .tw-ico.xsort.xdesc;
+// }
+
+// table: 表格图标-筛选图标(隐藏原有)
+.el-table__column-filter-trigger i {
+  display: none;
+}
+
+// table: 表格图标-筛选图标-容器
+.el-table__column-filter-trigger {
+  position: relative;
+  top: -1px;
+  line-height: $table-line-height;
+  height: auto;
+  margin-left: $spacing-step;
+  vertical-align: top;
+}
+
+// table: 表格图标-筛选
+// .el-table__column-filter-trigger:before {
+//   content: "";
+//   @extend %ico-base;
+//   @extend .tw-ico.xfilter;
+// }
+
+// .highlight > .el-table__column-filter-trigger:before {
+//   @extend .tw-ico.xfilter:hover;
+// }
+
+// table: 筛选弹出层
+.el-table-filter {
+  border-color: $popmenu-border-color;
+  box-shadow: none;
+}
+
+// table: 主色
+.el-table-filter__bottom button:hover {
+  color: $color-main;
+}
+
+// 表格checkbox: 半选状态
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background: transparent;
+}
+
+// 表格checkbox: 半选状态-实心点
+.el-checkbox__input.is-indeterminate .el-checkbox__inner:before {
+  top: 50%;
+  left: 50%;;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: $color-main;
+  transform: none;
+}
+
+// 表格: 列提示
+th .tw-ico.xtip {
+  position: relative;
+  top: -1px;
+  transform: scale(.75);
+}
+
+// table: 表格中的链接
+.el-table .text-link + .text-link {
+  margin-left: $spacing-tiny;
+}
+
+// table: 无数据
+.el-table__empty-block {
+  padding-top: 80px;
+  margin: $spacing-large 0;
+  min-height: 120px;
+  background: url("~@images/nodata.png") no-repeat top center;
+}
+
+// -------------------- table: 工具栏 --------------------
+.tw-flex.xtoolbar {
+  margin-bottom: $spacing-tiny;
+}
+
+.tw-flex.xtoolbar .tw-btn + .tw-btn {
+  margin-left: 1px;
+}
+
+.tw-flex.xtoolbar > .xtoolbar-right {
+  text-align: right;
+}
+
+// -------------------- table: 选择列弹出面板 --------------------
+// table: 选择列弹出面板-容器
+.tw-popmenu.xtablecols {
+  min-width: 220px;
+  max-width: 680px;
+  margin-top: $spacing-step;
+}
+
+// table: 选择列弹出面板-复选框
+.tw-popmenu.xtablecols .el-checkbox {
+  max-width: 100%;
+  @include ellipsis;
+}
+
+// -------------------- table: 表格中的输入控件 --------------------
+// table: 表格中的输入控件-容器
+.el-table-controlbox {
+  position: absolute;
+  top: 5px;
+  z-index: 1;
+  left: $table-cell-px;
+  width: 90%;
+}
+
+// table: 表格中的输入控件项容器-取消报错位置
+.el-table-controlbox .el-form-item {
+  margin-bottom: 0 !important;
+}
+
+// table: 表格中的输入控件-报错(默认在控件上面提示)
+.el-table-controlbox .el-form-item__error {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 8px;
+  color: $color-error;
+  margin-top: -$spacing-tiny;
+  background: $color-bg-error;
+  border: 1px solid $color-border-error;
+  box-shadow: 0 5px 10px $color-bg-error;
+  transform: translateY(-100%);
+}
+
+.el-table-controlbox .el-form-item__error:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: $spacing-medium;
+  width: 10px;
+  height: 10px;
+  background: $color-bg-error;
+  border-top: 1px solid $color-border-error;
+  border-left: 1px solid $color-border-error;
+  transform: rotate(-135deg);
+}
+
+// table: 表格中的输入控件-报错(第一行时在控件下面提示)
+.el-table__row:first-child .el-table-controlbox .el-form-item__error {
+  top: auto;
+  bottom: -$spacing-tiny;
+  transform: translateY(100%);
+}
+.el-table__row:first-child .el-table-controlbox .el-form-item__error:before {
+  top: -6px;
+  bottom: auto;
+  transform: rotate(45deg);
+}
+
+// -------------------- table: 可编辑的表格 --------------------
+.tw-table.xeditable > tbody > tr > td {
+  padding: 5px 10px;
+}
+
+.tw-table.xeditable .el-input__inner {
+  padding: 0;
+  border: none;
+}
+
+.tw-table.xeditable .el-input__prefix,
+.tw-table.xeditable .el-input__suffix {
+  display: none;
+}
+
+.tw-table.xeditable .el-input--prefix .el-input__inner {
+  padding-left: 5px;
+}
+
+.tw-table.tw-table.xeditable .el-input {
+  width: 100%;
+}
+
+.tw-table td.xbold .el-input__inner {
+  font-weight: 700;
+}
+
+.tw-table td.xhandle,
+.tw-table .xhandle .el-input__inner {
+  cursor: move !important;
+}

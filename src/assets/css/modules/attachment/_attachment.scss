@@ -1,0 +1,77 @@
+// ========= 附件列表 =========
+.tw-attachlist {
+  margin-bottom: $spacing-tiny;
+}
+
+// 附件列表:附件项
+.tw-attachlist > li {
+  display: flex;
+  align-items: center;
+  padding: $spacing-step;
+  cursor: pointer;
+
+  &:hover {
+    background: #e4edf6;
+  }
+}
+
+// 附件列表:附件图标
+.tw-attachlist-icobox {
+  width: 24px;
+  height: 24px;
+  margin-right: $spacing-step;
+}
+
+// 附件列表:附件图片
+.tw-attachlist-icobox > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// 附件列表:附件名称
+.tw-attachlist-name {
+  flex: 1;
+  @include ellipsis;
+}
+
+// ========= 附件卡片 =========
+.tw-cardattachs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-tiny;
+}
+
+// 附件卡片：附件项
+.tw-cardattachs > li {
+  position: relative;
+  width: 23%;
+  height: 65px;
+  margin: 1%;
+  text-align: center;
+  cursor: pointer;
+  background: #50bbff;
+  background-origin: padding-box;
+  @include center-y;
+}
+
+// 附件卡片：图片附件
+.tw-cardattachs > li > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// 附件卡片：附件名称
+.tw-cardattachs > li > h4 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 $spacing-step;
+  font-size: $font-size-small;
+  color: #fff;
+  background: rgba(0,0,0,.65);
+  @include ellipsis;
+}

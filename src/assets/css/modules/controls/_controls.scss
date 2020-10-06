@@ -1,0 +1,571 @@
+/* 表单控件 */
+$control-width: $ctr-width-default !default; // 默认控件宽度
+$control-width-small: $ctr-width-small !default; // 小控件宽度
+$control-width-medium: $ctr-width-medium !default; // 中控件宽度
+$control-width-large: $ctr-width-large !default; // 大控件宽度
+$control-height: $ctr-height-default !default; // 默认控件高度
+$control-height-small: $ctr-height-small !default; // 小控件高度
+$control-height-medium: $ctr-height-medium !default; // 中控件高度
+$control-height-large: $ctr-height-large !default; // 大控件高度
+$control-padding: $spacing-step !default; // 控件内边距
+$control-font-size: $font-size-default !default; // 控件字体尺寸
+$control-font-size-small: $font-size-small !default; // 小控件字体尺寸
+$control-font-size-medium: $font-size-default !default; // 中控件字体尺寸
+$control-font-size-large: $font-size-large !default; // 大控件字体尺寸
+$control-color: $color-text-main !default; // 控件文本色
+$control-disabled-bg: $color-bg-disabled !default; // 控件文本色
+$control-border-color: $color-border-control !default; // 控件边框颜色
+$control-focus-border-color: $color-main !default; // 控件选中边框色
+$control-error-border-color: $color-error !default; // 控件选中边框色
+$control-radius: 3px !default; // 控件边框圆角
+$control-label-space: $spacing-step !default; // 控件标签右边距
+$control-dropdown-item-active-color: $color-main !default; // 下拉项选中色
+$control-dropdown-item-hover-bg: #f5f5f5 !default; // 下拉项滑过背景
+$optbox-marker-color: $color-border-main !default; // 选项框标记色
+$optbox-marker-checked-color: $color-main !default; // 选项框选中色
+$optbox-checkbox-checked-color: $color-text-inverse !default; // 多选框对勾色
+$optbox-selected-bg: #f6faff !default; // 选项框选中背景
+$optbox-spacing: $spacing-medium !default; // 选项框间距
+
+// 输入框
+.tw-input {
+  width: $control-width;
+  height: $control-height;
+  line-height: $control-height - 2px;
+  padding: 0 $control-padding;
+  font-size: $control-font-size;
+  color: $control-color;
+  border: 1px solid $control-border-color;
+  border-radius: $control-radius;
+}
+
+.tw-input:focus {
+  border-color: $control-focus-border-color;
+}
+
+// 输入框：小尺寸
+.tw-input.xsmall {
+  width: $control-width-small;
+  height: $control-height-small;
+  line-height: $control-height-small - 2px;
+  font-size: $control-font-size-small;
+}
+
+// 输入框：中尺寸
+.tw-input.xmedium {
+  width: $control-width-medium;
+  height: $control-height-medium;
+  line-height: $control-height-medium - 2px;
+  font-size: $control-font-size-medium;
+}
+
+// 输入框：大尺寸
+.tw-input.xlarge {
+  width: $control-width-large;
+  height: $control-height-large;
+  line-height: $control-height-large - 2px;
+  font-size: $control-font-size-large;
+}
+
+// 输入框禁用状态
+.tw-input[disabled] {
+  @include disable(true);
+}
+
+// 控件标签
+.tw-inputlabel {
+  display: inline-block;
+  line-height: $control-height;
+  padding-right: $control-label-space;
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.tw-inputlabel.xsmall {
+  line-height: $control-height-small;
+}
+
+.tw-inputlabel.xmedium {
+  line-height: $control-height-medium;
+}
+
+.tw-inputlabel.xlarge {
+  line-height: $control-height-large;
+}
+
+// 选项框-容器
+.tw-optbox {
+  position: relative;
+  display: inline-block;
+  line-height: $control-height;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+// 选项框-单选或多选框本身
+.tw-optbox > input {
+  position: absolute;
+  left: -9999px;
+}
+
+.tw-optbox > span {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.tw-optbox > span:before,
+.tw-optbox > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+}
+
+.tw-optbox > span:before {
+  left: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border: 1px solid $optbox-marker-color;
+}
+
+.tw-optbox > span:after {
+  display: none;
+}
+
+// 选择状态
+// stylelint-disable no-descending-specificity
+.tw-optbox:hover > input:not(:disabled) + span:before,
+.tw-optbox > input:checked + span:before {
+  border-color: $optbox-marker-checked-color;
+}
+
+.tw-optbox > input:checked + span:after {
+  display: inline-block;
+}
+
+// 禁用状态
+.tw-optbox.xdisabled {
+  cursor: not-allowed;
+}
+
+.tw-optbox > input:disabled + span {
+  @include disable();
+}
+
+// 单选框
+.tw-optbox > input[type="radio"] + span:before {
+  border-radius: 50%;
+}
+
+.tw-optbox > input[type="radio"] + span:after {
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  background: $optbox-marker-checked-color;
+  border-radius: 50%;
+}
+
+// 多选框
+.tw-optbox > input[type="checkbox"] + span:after {
+  left: 5px;
+  width: 6px;
+  height: 9px;
+  margin-top: -6px;
+  border-right: 2px solid $optbox-checkbox-checked-color;
+  border-bottom: 2px solid $optbox-checkbox-checked-color;
+  transform: rotate(45deg);
+}
+
+.tw-optbox > input[type="checkbox"]:checked + span:before {
+  background: $optbox-marker-checked-color;
+}
+
+// 解决移动端click事件触发两次的问题
+.tw-optbox > * {
+  pointer-events: none;
+}
+
+.tw-optbox + .tw-optbox {
+  margin-left: $spacing-small;
+}
+
+/* !------------------------------------------------------------
+* 重置element表单
+* ------------------------------------------------------------ */
+// stylelint-disable
+
+// -------------------- 所有输入框 --------------------
+// 输入框: input元素
+.el-input__inner {
+  padding: 0 $control-padding;
+  color: $control-color;
+  border-color: $control-border-color;
+  border-radius: $control-radius;
+}
+
+// 输入框: 禁用状态
+.el-input.is-disabled .el-input__inner,
+.el-select .el-input.is-disabled .el-input__inner:hover {
+  background: $control-disabled-bg;
+  border-color: $control-border-color;
+}
+
+// 输入框: 焦点状态
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus,
+.el-select .el-input__inner:focus {
+  border-color: $control-focus-border-color;
+}
+
+// 输入框: 小尺寸
+.el-input--small .el-input__inner {
+  height: $control-height;
+}
+
+.el-input--small .el-input__inner,
+.el-input--small .el-input__icon {
+  line-height: $control-height - 2px;
+}
+
+// 输入框: 最小尺寸
+.el-input--mini .el-input__inner {
+  height: $control-height-small;
+  font-size: $control-font-size-small;
+}
+
+.el-input--mini .el-input__inner,
+.el-input--mini .el-input__icon {
+  line-height: $control-height-small - 2px;
+}
+
+// -------------------- select --------------------
+// select: 右侧箭头
+.el-icon-arrow-up:before {
+  content: "";
+  position: relative;
+  top: -3px;
+  @include triangle(up, 5px, $control-border-color);
+}
+
+// select: 下拉项滑过
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover,
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover {
+  background-color: $control-dropdown-item-hover-bg;
+}
+
+// select: 下拉项选中
+.el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+  color: $control-dropdown-item-active-color;
+}
+
+// select: 弹出层
+.el-select-dropdown {
+  margin: 0 !important;
+}
+
+// select: 弹出层箭头
+.el-popper .popper__arrow {
+  display: none;
+}
+
+// -------------------- cascader --------------------
+// cascader: 右侧箭头
+.el-icon-arrow-down:before {
+  content: "";
+  position: relative;
+  top: 3px;
+  @include triangle(down, 5px, $control-border-color);
+}
+
+// cascader: 弹出层
+.el-popper[x-placement^=bottom] {
+  margin-top: 0;
+}
+
+// -------------------- checkbox --------------------
+// checkbox: 间距
+.el-checkbox+.el-checkbox {
+  margin-left: $optbox-spacing;
+}
+
+// checkbox: 边框色
+.el-checkbox__inner {
+  border-color: $control-border-color;
+}
+
+// checkbox: 选中背景
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: $optbox-marker-checked-color;
+  border-color: $optbox-marker-checked-color;
+}
+
+// checkbox: 勾图案
+.el-checkbox__inner:after {
+  border-width: 2px;
+}
+
+// checkbox按钮: 容器
+.el-checkbox-button {
+  vertical-align: top;
+  overflow: hidden;
+}
+
+// checkbox按钮: 边框
+.el-checkbox-button__inner {
+  border: 1px solid $control-border-color;
+  border-radius: $control-radius !important;
+}
+
+// checkbox按钮: 按钮间距
+.el-checkbox-button + .el-checkbox-button {
+  margin-left: $spacing-step;
+}
+
+// checkbox按钮: 选中按钮-选中状态
+.el-checkbox-button.is-checked .el-checkbox-button__inner {
+  color: $optbox-marker-checked-color;
+  background-color: $optbox-selected-bg;
+  border-color: $optbox-marker-checked-color;
+  box-shadow: none;
+}
+
+// checkbox按钮: 选中文本
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: $optbox-marker-checked-color;
+}
+
+// checkbox按钮: 选中时右上角的实心三角形
+.el-checkbox-button.is-checked:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: $optbox-marker-checked-color;
+  transform: rotate(45deg);
+}
+
+// checkbox按钮: 选中按钮-聚焦状态
+.el-checkbox-button.is-focus .el-checkbox-button__inner {
+  border-color: $optbox-marker-checked-color;
+}
+
+// checkbox按钮: 选中时右上角的勾形图案
+.el-checkbox-button.is-checked:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  z-index: 1;
+  width: 6px;
+  height: 3px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: rotate(-45deg);
+}
+
+// -------------------- radio --------------------
+// radio: 间距
+.el-radio + .el-radio {
+  margin-left: $optbox-spacing;
+}
+
+// radio: 独占一行
+.el-radio.xblock {
+  display: block;
+  margin: 0;
+  padding: $spacing-step 0;
+}
+
+// radio: 边框色
+.el-radio__inner {
+  border-color: $control-border-color;
+}
+
+// radio: 选中边框色
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: $optbox-marker-checked-color;
+  background: transparent;
+}
+
+// radio: 选中实心圆点
+.el-radio__inner:after {
+  width: 5px;
+  height: 5px;
+  background: $optbox-marker-checked-color;
+  border-radius: 50%;
+}
+
+// radio: 选中文本
+.el-radio__input.is-checked+.el-radio__label {
+  color: $optbox-marker-checked-color;
+}
+
+// radio按钮
+.el-checkbox-button {
+  vertical-align: top;
+}
+
+// radio按钮: 边框
+.el-radio-button__inner {
+  border-color: $control-border-color;
+}
+
+// radio按钮: 选中状态
+.el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  color: $optbox-marker-checked-color;
+  background-color: $optbox-selected-bg;
+  border-color: $optbox-marker-checked-color;
+}
+
+.el-radio-button:first-child .el-radio-button__inner {
+  border-radius: $control-radius 0 0 $control-radius;
+}
+
+.el-radio-button:last-child .el-radio-button__inner {
+  border-radius: 0 $control-radius $control-radius 0;
+}
+
+// -------------------- date-picker --------------------
+// date-picker: 今天的文字颜色
+.el-date-table td.today span {
+  color: $color-main;
+}
+
+// date-picker: 选中背景色
+.el-date-table td.end-date span,
+.el-date-table td.start-date span,
+.el-date-table td.current:not(.disabled) span {
+  background: $color-main;
+}
+
+// -------------------- slider --------------------
+// slider： 滑动按钮
+.el-slider__button {
+  border-color: $optbox-marker-checked-color;
+}
+
+// slider： 滑动条
+.el-slider__bar {
+  background-color: $optbox-marker-checked-color;
+}
+
+// -------------------- switch --------------------
+// switch: 选中背景
+.el-switch.is-checked .el-switch__core {
+  border-color: $optbox-marker-checked-color;
+  background-color: $optbox-marker-checked-color;
+}
+
+// -------------------- 表单 --------------------
+// 表单: label
+.el-form-item__label {
+  color: $color-text-secondary;
+}
+
+// 表单: 表单项内容
+.el-form-item__content {
+  line-height: 20px;
+}
+
+// 表单: label高度-中
+.el-form-item--medium .el-form-item__label {
+  line-height: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+// 表单: 表单项内容
+.el-form-item .el-form-item__content {
+  line-height: 20px;
+}
+
+// 表单: label高度-小
+.el-form-item--small .el-form-item__label {
+  line-height: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+// 表单: label高度-最小
+.el-form-item--mini .el-form-item__label {
+  line-height: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+// 表单项: 带提示
+.el-form.xtip .el-form-item,
+.el-form .el-form-item.xtip {
+  padding-right: 30px;
+}
+
+.el-form-item.xtip .tw-ico.xtip {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+}
+
+// 表单项: 下拉框
+.el-form-item__content > .el-select,
+.el-form-item__content > .el-cascader {
+  width: 100%;
+}
+
+// 表单项: 成功状态
+.el-form-item.is-success .el-input__inner,
+.el-form-item.is-success .el-input__inner:focus,
+.el-form-item.is-success .el-textarea__inner,
+.el-form-item.is-success .el-textarea__inner:focus {
+  border-color: $control-border-color;
+}
+
+// 表单项: 错误状态
+.el-form-item.is-error .el-input__inner,
+.el-form-item.is-error .el-input__inner:focus,
+.el-form-item.is-error .el-textarea__inner,
+.el-form-item.is-error .el-textarea__inner:focus,
+.el-message-box__input input.invalid,
+.el-message-box__input input.invalid:focus {
+  border-color: $control-error-border-color;
+}
+
+// 表单项: 报错文本
+.tw-form-textarea-props {
+  color: $color-text-weaking;
+  text-align: right;
+}
+
+// 表单项: 报错文本
+.el-form-item__error {
+  color: $control-error-border-color;
+}
+
+// 表单项: 文本域报错提示
+.tw-form-textarea-props + .el-form-item__error {
+  margin-top: -20px;
+}
+
+// -------------------- 只读表单 --------------------
+.tw-table.xform {
+  line-height: 30px;
+}
+
+.tw-table.xform th {
+  padding-right: $spacing-tiny;
+  font-weight: 400;
+  color: $color-text-secondary;
+  text-align: right;
+}
+
+.tw-table.xform td {
+  color: $color-text-main;
+  text-align: left;
+}

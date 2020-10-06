@@ -1,0 +1,40 @@
+/* 时间轴 */
+$timeline-pl: $spacing-medium !default; // 时间线左侧内边距
+$timeline-line-color: #ffe3b2 !default; // 时间线颜色
+$timeline-label-mb: $spacing-small !default; // 时间标签下边距
+$timeline-label-height: 24px !default; // 时间标签高度
+$timeline-label-bg: #ffbb42 !default; // 时间标签背景
+$timeline-label-color: #fff !default; // 时间标签颜色
+
+// 时间轴:主容器
+.tw-timeline {
+  padding-left: $timeline-pl;
+  border-left: 2px solid $timeline-line-color;
+}
+
+// 时间轴:标签容器
+.tw-timeline-labelbox {
+  margin-bottom: $timeline-label-mb;
+}
+
+// 时间轴:标签
+.tw-timeline-label {
+  display: inline-block;
+  height: $timeline-label-height;
+  line-height: $timeline-label-height;
+  padding: 0 10px;
+  margin-left: -$timeline-pl - 10;
+  color: $timeline-label-color;
+  background: $timeline-label-bg;
+  border-radius: $timeline-label-height / 2;
+}
+
+// 时间轴: 取消信息项的上边距
+.tw-timeline .tw-infoitem-body {
+  padding-top: 0;
+}
+
+// 时间轴: 取消信息项的下边框线
+.tw-timeline .tw-infoitem-footer {
+  border-bottom: none;
+}

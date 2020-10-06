@@ -1,0 +1,18 @@
+/* 箭头 */
+$arrow-color:#999 !default; // 箭头颜色
+
+.tw-arrow.xup {
+  @include arrow(up, 8px, 1px, $arrow-color);
+}
+
+.tw-arrow.xright {
+  @include arrow(right, 8px, 1px, $arrow-color);
+}
+
+.tw-arrow.xdown {
+  @include arrow(down, 8px, 1px, $arrow-color);
+}
+
+.tw-arrow.xleft {
+  @include arrow(left, 8px, 1px, $arrow-color);
+}

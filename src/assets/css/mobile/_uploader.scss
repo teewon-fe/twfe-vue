@@ -1,0 +1,146 @@
+/**upload上传样式**/
+$mfile-card-width: 78px !default; // 卡片预览宽度
+$mfilebtn-border-color: #ccc !default; // 上传按钮边框色
+$mfile-card-gap: $spacing-step !default; // 卡片元素边距
+
+//  重置uploader
+//stylelint-disable
+.tw-mupload .van-uploader__preview {
+    margin: $mfile-card-gap;
+}
+
+.tw-mupload .van-uploader__preview-image {
+    width: $mfile-card-width;
+    height: $mfile-card-width;
+}
+
+// 样式去掉uploader自带的input
+.tw-mupload.xself .van-uploader__upload{
+    display: none;
+}
+
+.tw-mupload .van-uploader__preview-delete:before {
+    content: "";
+    @extend %ico-base, .tw-ico, .xdel1 ;
+
+}
+
+.tw-mupload .van-uploader__preview-delete {
+    background: transparent;
+    padding: 0;
+    top:-2px;
+    right: -2px;
+}
+
+// 去掉uploader自带的上传
+.tw-mupload .van-uploader__input {
+    display: none;
+}
+
+// 加上uploader自带的上传
+.tw-mupload.xself .van-uploader__input {
+    display: inline-block;
+}
+
+
+.tw-mupload {
+    margin: -$mfile-card-gap;
+}
+
+// 上传按钮
+.tw-mupload-btn {
+    position: relative;
+    display: inline-block;
+    width: $mfile-card-width;
+    height:$mfile-card-width;
+    margin: $mfile-card-gap;
+    border:1px solid $mfilebtn-border-color;
+    vertical-align: top;
+}
+
+.tw-mupload-btn .tw-ico.xadd{
+    position: absolute;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+// 无上传按钮，纯展示
+.tw-mupload.xdisabled .van-uploader__preview-delete{
+    display: none;
+}
+
+.tw-mupload.xdisabled .tw-mupload-btn{
+    display: none;
+}
+
+// 上传 整行
+.tw-mupload.xfull {
+    margin: 0
+}
+
+.tw-mupload.xfull .van-uploader{
+    display: block;
+    padding-top: 160px;
+}
+
+.tw-mupload.xfull .van-uploader__wrapper{
+  display: block;
+}
+
+.tw-mupload.xfull .van-uploader__input-wrapper{
+    display: block;
+    height: 160px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.tw-mupload.xfull .tw-mupload-btn{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: $spacing-small;
+    border-style: dashed;
+    border-radius: $border-radius-mobile;
+}
+
+.tw-mupload.xfull .tw-mupload-btn-gray {
+  height: 100%;
+  background: #f4f4f4;
+  text-align: center;
+  border-radius: $border-radius-mobile;
+  overflow: hidden;
+}
+
+.tw-mupload.xfull .tw-mupload-btn-gray .tw-ico {
+  display: block;
+  margin: 0 auto;
+  margin-top: $spacing-medium;
+  margin-bottom: $spacing-tiny;
+}
+
+.tw-mupload.xfull .van-uploader__preview{
+  margin: 0;
+  margin-top: $spacing-tiny;
+  height: 260px;
+}
+
+.tw-mupload.xfull .van-uploader__preview-image{
+  width:100%;
+  height: 100%;
+}
+
+.tw-mupload.xfull .van-uploader__preview-delete {
+  top: 0;
+}
+
+.tw-mupload.xfull .van-uploader__preview-delete:before {
+  content: "";
+  @extend %ico-base, .tw-ico, .xwdel3 ;
+
+}

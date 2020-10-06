@@ -1,0 +1,32 @@
+/* 多栏布局 */
+$multicol-content-padding:$spacing-medium;
+
+.tw-multicol {
+  @include clearfix;
+}
+
+.tw-multicol-left {
+  float: left;
+}
+
+.tw-multicol-right {
+  float: right;
+}
+
+.tw-multicol-cell {
+  display: table-cell;
+  width: 10000px;
+}
+
+// 因为table-layout不等于fixed时，单元格text-overflow: ellipsis会无效
+// 所以在使用多栏布局时要加上以下两个class修复此问题
+.tw-multicol-cell-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tw-multicol-cell-cell {
+  display: table-cell;
+  padding: $multicol-content-padding;
+}

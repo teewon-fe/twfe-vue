@@ -1,0 +1,11 @@
+/* 幽灵元素 */
+.tw-ghost {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.tw-ghost.xnops {
+  position: static;
+}

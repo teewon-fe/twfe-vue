@@ -1,0 +1,128 @@
+/* 管理后台分页 */
+$pagination-bg: #eff2f7 !default; // 背景
+
+// 容器
+.tw-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 20px;
+  padding: $spacing-step $spacing-tiny;
+}
+
+// 左侧页码区
+.tw-pagination-left {
+  flex: 1;
+  font-size: $font-size-small;
+}
+
+// 右侧页码区
+.tw-pagination-right {
+  display: flex;
+  align-items: center;
+}
+
+.tw-pagination-right > li {
+  padding: 0 7px;
+}
+
+.tw-pagination-right > li:first-child {
+  border-left: none;
+}
+
+.tw-pagination-pagesize,
+.tw-pagination-currentpage {
+  display: inline-block;
+  height: 20px;
+  vertical-align: top;
+  background: #fff;
+  border: 1px solid $control-border-color;
+}
+
+// 页面尺寸选择框
+.tw-pagination-pagesize {
+  min-width: 40px;
+  padding: 0 5px;
+}
+
+// 当前页输入框
+.tw-pagination-currentpage {
+  width: 30px;
+  text-align: center;
+}
+
+.tw-pagination-pagebtn.xdisabled {
+  @include disable;
+}
+
+// 位于表格之后
+.el-table + .tw-pagination {
+  margin-top: -1px;
+}
+
+.tw-pagination .tw-triangle {
+  border-top-color: #a6afb2;
+}
+
+// -------------------- 分页: 偏后台 --------------------
+// 分页: 偏后台-容器
+.tw-pagination.xadmin {
+  background: $pagination-bg;
+  border: 1px solid $color-border-secondary;
+}
+
+.tw-pagination.xadmin > .tw-pagination-right > li {
+  border-left: 1px solid #ccc;
+}
+
+.tw-pagination.xadmin .tw-pagination-pagesize {
+  border: 1px solid #abadb3;
+}
+
+// 分页: 偏后台-同组图标间距
+.tw-pagination.xadmin .tw-pagination-pagebtn:first-child {
+  margin-right: $spacing-step;
+}
+
+// -------------------- 分页: 偏前台 --------------------
+// 分页: 偏前台-容器
+.tw-pagination.xfront {
+  line-height: 30px;
+  padding-top: 10px;
+  padding-right: 0;
+  background: transparent;
+  border: none;
+}
+
+// 分页: 偏前台-分页项
+.tw-pagination.xfront .tw-pagination-right > li {
+  padding: 0 0 0 10px;
+}
+
+// 分页: 偏前台-左侧容器
+.tw-pagination.xfront .tw-pagination-left {
+  text-align: right;
+}
+
+// 分页: 偏前台-页面尺寸与当前页高度
+.tw-pagination.xfront .tw-pagination-pagesize {
+  border: none;
+}
+
+.tw-pagination.xfront .tw-pagination-pagesize,
+.tw-pagination.xfront .tw-pagination-currentpage {
+  min-width: 36px;
+  height: 30px;
+  font-size: $font-size-small;
+  border-radius: 2px;
+}
+
+.tw-pagination.xfront .tw-pagination-currentpage {
+  position: relative;
+  top: -1px;
+}
+
+// 分页: 偏前台-同组图标间距
+.tw-pagination-pagebtn:first-child {
+
+}

@@ -1,0 +1,85 @@
+/* tab选项卡 */
+$tab-max-width: 8em !default; // 最大宽度
+$tab-padding-y: $spacing-small !default; // 垂直间距
+$tab-padding-x: $spacing-small !default; // 水平间距
+$tab-margin-bottom: $spacing-small !default; // 底部外边距
+$tab-font-size: $font-size-default !default; // 字体大小
+$tab-color: $color-text-secondary !default; // 字体颜色
+$tab-color-active: $color-main !default; // 选中颜色
+$tab-bg: $color-bg-card !default; // 卡片式tab背景色
+$tab-border-color: $color-border-main !default; // 边框色
+$tab-border-radius: 0 !default; // 卡片式tab边框圆角
+
+// tab选项卡
+.tw-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: $tab-margin-bottom;
+  overflow: hidden;
+  font-size: $tab-font-size;
+  border-bottom: 1px solid $tab-border-color;
+}
+
+.tw-tabs > li {
+  padding: 0 $tab-padding-x;
+  margin-bottom: -1px;
+}
+
+.tw-tabs > li:first-child {
+  padding-left: 0;
+}
+
+.tw-tabs > li > a {
+  display: block;
+  max-width: $tab-max-width;
+  padding: $tab-padding-y 0;
+  color: $tab-color;
+  border-bottom: 2px solid transparent;
+  @include ellipsis();
+}
+
+.tw-tabs > .xopen > a {
+  color: $tab-color-active;
+  border-bottom-color: $tab-color-active;
+}
+
+// tab选项卡:卡片式
+.tw-tabs.xcard {
+  background-color: $tab-bg;
+  border: 1px solid $tab-border-color;
+  border-radius: $tab-border-radius;
+}
+
+.tw-tabs.xcard > li {
+  padding: 0;
+  margin-top: -1px;
+}
+
+.tw-tabs.xcard > li:first-child {
+  margin-left: -1px;
+}
+
+.tw-tabs.xcard > li > a {
+  padding: $tab-padding-y $tab-padding-x;
+  border: 1px solid transparent;
+  border-top-width: 2px;
+}
+
+.tw-tabs.xcard > .xopen > a {
+  background-color: #fff;
+  border: 1px solid $tab-border-color;
+  border-top: 2px solid $tab-color-active;
+  border-bottom-color: #fff;
+}
+
+
+// 折叠面板-选项卡
+.tw-collapse.xtabs {
+  opacity: 0;
+  transition-property: opacity;
+}
+
+.tw-collapse.xtabs.xopen {
+  opacity: 1;
+}
+

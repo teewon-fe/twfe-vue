@@ -1,0 +1,144 @@
+/* 边框与背景 */
+
+// stylelint-disable
+// 边框
+.border {
+  border: 1px solid $color-border-main !important;
+}
+
+.border-top {
+  border-top: 1px solid $color-border-main !important;
+}
+
+.border-right {
+  border-right: 1px solid $color-border-main !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $color-border-main !important;
+}
+
+.border-left {
+  border-left: 1px solid $color-border-main !important;
+}
+
+// 取消边框
+.noborder {
+  border: 0 !important;
+}
+
+.noborder-top {
+  border-top: 0 !important;
+}
+.noborder-right {
+  border-right: 0 !important;
+}
+
+.noborder-bottom {
+  border-bottom: 0 !important;
+}
+
+.noborder-left {
+  border-left: 0 !important;
+}
+
+// 边框样式
+.border-solid {
+  border-style: solid !important;
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+
+// 边框颜色
+.border-main {
+  border-color: $color-border-main !important;
+}
+
+.border-secondary {
+  border-color: $color-border-secondary !important;
+}
+
+.border-disabled {
+  border-color: $color-border-disabled !important;
+}
+
+.border-weaking {
+  border-weaking: $color-border-weaking !important;
+}
+
+.border-info {
+  border-color: $color-info !important;
+}
+
+.border-success {
+  border-color: $color-success !important;
+}
+
+.border-warning {
+  border-color: $color-warning !important;
+}
+
+.border-error {
+  border-color: $color-error !important;
+}
+
+.border-white {
+  border-color: #fff !important;
+}
+
+// 边框圆角
+.rounded {
+  border-radius: $border-radius !important;
+}
+
+.rounded-top {
+  border-top-left-radius: $border-radius !important;
+  border-top-right-radius: $border-radius !important;
+}
+
+.rounded-right {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+.rounded-bottom {
+  border-bottom-right-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.rounded-left {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.rounded-0 {
+  border-radius: 0 !important;
+}
+
+// 背景
+.bg-card {
+  background-color: $color-bg-card !important;
+}
+
+.bg-info {
+  background-color: $color-info !important;
+}
+
+.bg-success {
+  background-color: $color-success !important;
+}
+
+.bg-warning {
+  background-color: $color-warning !important;
+}
+
+.bg-error {
+  background-color: $color-error !important;
+}

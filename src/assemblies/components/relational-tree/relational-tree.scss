@@ -1,0 +1,152 @@
+/* -------------------- 关系树 -------------------- */
+$reltree-border-size: 2px !default; // 边框宽度
+$reltree-node-label-width: 120px !default; // 节点label的宽度
+$reltree-node-label-height: 42px !default; // 节点label的宽度
+$reltree-node-item-height: 27px !default; // 节点项高度
+$reltree-node-line-size: 10px !default; // 节点接线的宽度
+
+// 关系树: 主容器
+.tw-relational {
+  position: relative;
+  margin-bottom: $spacing-medium;
+}
+
+// 关系树: 图表容器
+.tw-relational-chart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// 关系树: 关系树容器
+.tw-reltree {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+}
+
+// 关系树: 两边区域
+.tw-reltree-side {
+  flex: 1;
+}
+
+// 关系树: 中间区域
+.tw-reltree-center {
+  width: 30%;
+  text-align: center;
+}
+
+// 关系树: 数据库图标
+.tw-reltree-database {
+  display: inline-block;
+  width: 125px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  background: #0187ff;
+  border-radius: 25px;
+}
+
+// 关系树: 节点
+.tw-reltree-node {
+  display: flex;
+  align-items: center;
+}
+
+// 关系树: 节点-间距
+.tw-reltree-node + .tw-reltree-node {
+  margin-top: 55px;
+}
+
+// 关系树: 节点-位于左边
+.tw-reltree-side.xleft .tw-reltree-node {
+  flex-direction: row-reverse;
+}
+
+// 关系树: 节点-标题
+.tw-reltree-node-label {
+  position: relative;
+  width: $reltree-node-label-width;
+  height: $reltree-node-label-height;
+  line-height: $reltree-node-label-height - 2;
+  font-size: 14px;
+  text-align: center;
+  border: $reltree-border-size solid transparent;
+  border-radius: 3px;
+}
+
+// 关系树: 节点-标题-文本
+.tw-reltree-node-label-text {
+  display: block;
+  padding: 0 $spacing-step;
+  @include ellipsis;
+}
+
+// 关系树: 节点-标题-位于左边
+.tw-reltree-side.xleft .tw-reltree-node-label {
+  margin-left: $reltree-node-line-size;
+}
+
+// 关系树: 节点-标题-位于右边
+.tw-reltree-side.xright .tw-reltree-node-label {
+  margin-right: $reltree-node-line-size;
+}
+
+// 关系树: 节点-连接线
+.tw-reltree-node-line {
+  position: absolute;
+  top: 50%;
+  width: $reltree-node-line-size;
+  height: $reltree-border-size;
+}
+
+// 关系树: 节点-连接线-位于左边
+.tw-reltree-side.xleft .tw-reltree-node-line {
+  left: -$reltree-node-line-size - $reltree-border-size;
+}
+
+// 关系树: 节点-连接线-位于右边
+.tw-reltree-side.xright .tw-reltree-node-line {
+  right: -$reltree-node-line-size - $reltree-border-size;
+}
+
+// 关系树: 节点-列表
+.tw-reltree-node-list {
+  position: relative;
+}
+
+// 关系树: 节点-列表项
+.tw-reltree-node-itemlink {
+  display: inline-block;
+  height: $reltree-node-item-height;
+  line-height: $reltree-node-item-height - 2;
+  padding: 0 $spacing-tiny;
+  font-size: $font-size-small;
+  vertical-align: top;
+  cursor: pointer;
+  border-bottom: $reltree-border-size solid transparent;
+}
+
+// 关系树: 节点-列表项-最后一项
+.tw-reltree-node-item:first-child > .tw-reltree-node-itemlink {
+  border-top: $reltree-border-size solid transparent;
+}
+
+// 关系树: 节点-列表项-位于左边
+.tw-reltree-side.xleft .tw-reltree-node-item {
+  text-align: right;
+}
+
+.tw-reltree-side.xleft .tw-reltree-node-itemlink {
+  border-right: $reltree-border-size solid transparent;
+}
+
+// 关系树: 节点-列表项-位于右边
+.tw-reltree-side.xright .tw-reltree-node-itemlink {
+  border-left: $reltree-border-size solid transparent;
+}

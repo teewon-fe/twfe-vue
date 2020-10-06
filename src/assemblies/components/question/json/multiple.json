@@ -1,0 +1,133 @@
+{
+  "errorId": null,
+  "questionParentId": "0",
+  "itemList": [
+    {
+      "sequenceNo": "0",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/c502de14-1520-41e3-8e10-ba1588c9affd.png?height=72&width=80\" code=\"\" type=\"\" width=\"22\" height=\"20\"/>",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "1",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/cd472137-833c-447d-bfbf-16e938f9dae7.png?height=80&width=95\" code=\"\" type=\"\" width=\"26\" height=\"22\"/>",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "2",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/a4709b09-f5ec-4121-acdd-f6470ceaf20b.png?height=61&width=106\" code=\"\" type=\"\" width=\"29\" height=\"17\"/>",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "3",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/96ab1150-0ff2-421e-b2be-0b0f40d78658.png?height=95&width=80\" code=\"\" type=\"\" width=\"22\" height=\"26\"/>",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "4",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/0ab82bde-b072-496a-8be7-94de0b5e72fd.png?height=84&width=87\" code=\"\" type=\"\" width=\"24\" height=\"23\"/>",
+      "height": "0"
+    },
+    {
+      "sequenceNo": "5",
+      "colNo": null,
+      "rowLable": "1",
+      "width": "0",
+      "content": "<img src=\"CNBJTW0/content/2016/8/16/png/df87ede3-a378-43d5-bfa0-dd5752249ea7.png?height=80&width=87\" code=\"\" type=\"\" width=\"24\" height=\"22\"/>",
+      "height": "0"
+    }
+  ],
+  "note": "初步认识立体图形-长方体、正方体、圆柱体、球体D不是圆柱体 ",
+  "questionType": "2",
+  "typeLevelLabelId": "2",
+  "noteFileList": [],
+  "fileList": [],
+  "itemEmpty": "0",
+  "answerList": [
+    {
+      "sequenceNo": "0",
+      "content": "0,4",
+      "score": "2.0"
+    }
+  ],
+  "defaultScore": "2.0",
+  "typeLevelLabelName": null,
+  "title": "选出圆柱体有（              ） ",
+  "degreeName": "3",
+  "degree": "0.3",
+  "questionTypeName": null,
+  "questionId": "CNBJTW0200002015646",
+  "refertimes": "2",
+  "childQuestionList": null,
+  "statis": {
+    "totalAnswer": 2,
+    "totalRightAnser": 50,
+    "commonMistake": ""
+  },
+  "isSubjective": 0,
+  "creator": "TWPAAS1200000000016"
+}
+
+
+{
+  "questionId": "CNBJTW0200002015646",
+  "publishId": "CJTWBS1S600000257359",
+  "orderNo": "1",
+  "childId": "",
+  "studentId": "E000001P200000135897",
+  "typeLevel": "2",
+  "answerList": [
+    {
+      "questionId": "CNBJTW0200002015646",
+      "sequenceNo": "0",
+      "userAnswer": "0,1,2",
+      "attachList": [
+        {}
+      ]
+    }
+  ],
+  "attachmentList": []
+}
+
+{
+  "childId": "",
+  "result": "1",
+  "questionId": "CNBJTW0200002015646",
+  "orderNo": "1",
+  "isSubjective": 0,
+  "spendTime": null,
+  "errorId": null,
+  "publishId": "CJTWBS1S600000257359",
+  "studentId": "E000001P200000135897",
+  "paperResultId": "CJTWBS1S600015709456",
+  "score": 0,
+  "answer": "0,1,2",
+  "typeLevel": "2",
+  "answerCount": 0,
+  "correctRate": 0,
+  "commonMistakeAnswer": "",
+  "attachmentList": [],
+  "answerList": [
+    {
+      "sequenceNo": 0,
+      "userAnswer": "0,1,2",
+      "score": 0,
+      "result": "1"
+    }
+  ],
+  "answerSource": "0"
+}

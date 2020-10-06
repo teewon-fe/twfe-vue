@@ -1,0 +1,583 @@
+// stylelint-disable
+
+/* 试题 */
+$question-select-color: #218fff !default; // 选中背景色
+$question-right-color: #4ebd65 !default; // 正确背景色
+$question-wrong-color: #f0595f !default; // 错误背景色
+
+// 试题容器
+.tw-question {
+  position: relative;
+  padding: $spacing-medium $spacing-medium 0;
+  border: 1px solid #dcdfe6;
+  border-radius: 5px;
+}
+
+// 试题容器-综合题子试题
+.tw-question .tw-question {
+  padding: 0 0 0 $spacing-tiny;
+  margin-bottom: $spacing-medium;
+  border: none;
+}
+
+.tw-question:hover,
+.tw-question.xactive {
+  border-color: $color-main;
+}
+
+.tw-question.xview{
+  border:none;
+  &:hover{
+    border:none;
+  }
+}
+
+.tw-question + .tw-question {
+  margin-top: $spacing-medium;
+}
+
+// 试题容器-弱化样式
+.tw-question.xweaking:hover {
+  border-color: #dcdfe6;
+}
+
+// 试题: 题干
+.tw-question-title {
+  margin-bottom: $spacing-tiny;
+}
+
+// ========= 试题：选择题 =========
+.tw-question-opts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$spacing-step (-$spacing-large) $spacing-tiny;
+}
+
+.tw-question-optitem {
+  padding: $spacing-step $spacing-large;
+}
+
+// 试题：选择题-选项内部容器
+.tw-question-optitem-inner {
+  display: flex;
+  cursor: pointer;
+  border: 1px solid #cbd8e4;
+}
+
+// 试题：题号
+.tw-question-optitem-no {
+  margin-right: $spacing-step;
+  font-style: normal;
+}
+
+.tw-question-optitem-no > em {
+  font-style: normal;
+}
+
+.tw-question-optitem-inner {
+  .tw-question-optitem-no {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    margin-right: 0;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background: #c9d7e3;
+  }
+
+  // 试题：选择题-选项内容
+  .tw-question-optitem-content {
+    line-height: 20px;
+    padding: 3px $spacing-step;
+  }
+}
+
+// 试题：选择题-选项号-选中
+.tw-question-optitem-inner.xselected {
+  border-color: $question-select-color;
+}
+
+.tw-question-optitem-inner.xselected > .tw-question-optitem-no {
+  background: $question-select-color;
+}
+
+// 试题：选择题-选项号-正确
+.tw-question-optitem-inner.xright {
+  border-color: $question-right-color;
+}
+
+.tw-question-optitem-inner.xright > .tw-question-optitem-no {
+  background: $question-right-color;
+}
+
+// 试题：选择题-选项号-错误
+.tw-question-optitem-inner.xwrong {
+  border-color: $question-wrong-color;
+}
+
+.tw-question-optitem-inner.xwrong > .tw-question-optitem-no {
+  background: $question-wrong-color;
+}
+
+// ========= 试题：填空题 =========
+// 试题：填空题空白区
+.tw-question-bpline {
+  padding: 0 $spacing-step;
+  font-style: normal;
+  text-align: center;
+  vertical-align: text-bottom;
+  border-bottom: .5px solid #999;
+}
+
+.tw-question-bpline + .tw-question-bpline {
+  margin-left: $spacing-tiny;
+}
+
+.tw-question-bpline.xright {
+  color: $question-right-color;
+  border-bottom-color: $question-right-color;
+}
+
+.tw-question-bpline.xwrong {
+  color: $question-wrong-color;
+  border-bottom-color: $question-wrong-color;
+}
+
+// 试题：填空题空白区序号
+.tw-question-blankno {
+  display: inline-block;
+  min-width: 16px;
+  height: 16px;
+  line-height: 14px;
+  padding: 0 2px;
+  font-size: 12px;
+  font-style: normal;
+  color: $color-text-weaking;
+  counter-increment: blank;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 8px;
+  transform: scale(.8);
+  transform-origin: center bottom;
+}
+
+.tw-question-bpline-noanswer {
+  font-size: $font-size-small;
+  color: $color-text-weaking;
+}
+
+// 试题：填空题空白区-查看答案模式
+.tw-question-bpline.xanswer:after {
+  display: none;
+}
+
+.tw-question-blanks {
+  margin-bottom: $spacing-medium;
+}
+
+//  试题：填空题-填空项
+.tw-question-blanks-item {
+  display: flex;
+  align-items: center;
+}
+
+.tw-question-blanks-item + .tw-question-blanks-item {
+  margin-top: $spacing-tiny;
+}
+
+// 试题：填空题-答案输入框
+.tw-question-blankitem-input {
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.tw-question-blankitem-input.xshortanswer {
+  border: 1px solid #ddd;
+}
+
+.tw-question-blankitem-input .el-textarea__inner {
+  resize: none;
+  border: none;
+}
+
+.tw-question-blankitem-input.xcorrecting {
+  margin-right: $spacing-tiny;
+}
+
+// 试题：填空题-标准答案
+.tw-question-blanks.xstd {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$spacing-tiny (-$spacing-small) 0;
+}
+
+.tw-question-blanks.xstd > .tw-question-blanks-item {
+  align-items: flex-start;
+  max-width: 100%;
+  margin-top: 0;
+  padding: $spacing-tiny $spacing-small 0;
+  vertical-align: top;
+}
+
+.tw-question-blanks-item.xstd > .tw-question-blankitem-input.xshortanswer {
+  border: none;
+}
+
+// 试题：填空题-批改输入框
+.tw-question-blankitem-correct {
+  width: 0;
+  overflow: hidden;
+  transition: all $time linear;
+}
+
+.tw-question-blankitem-input.xcorrecting + .tw-question-blankitem-correct {
+  width: 6.5em;
+}
+
+.tw-question-blankitem-correct .van-field__control {
+  font-size: $font-size-default;
+  text-align: center;
+}
+
+// 试题：填空题-填空项-正确
+.tw-question-blankitem-input.xright {
+  border-bottom-color: $question-right-color;
+}
+
+.tw-question-blankitem-input.xshortanswer.xright {
+  border: 1px solid $question-right-color;
+}
+
+.tw-question-blankitem-input.xright .van-field__control {
+  color: $question-right-color;
+}
+
+// 试题：填空题-填空项-错误
+.tw-question-blankitem-input.xwrong {
+  border-bottom-color: $question-wrong-color;
+}
+
+.tw-question-blankitem-input.xshortanswer.xwrong {
+  border: 1px solid $question-wrong-color;
+}
+
+.tw-question-blankitem-input.xwrong .van-field__control {
+  color: $question-wrong-color;
+}
+
+// ========= 试题：工具栏 =========
+.tw-qeustion-toolbar {
+  display: flex;
+  line-height: 30px;
+  padding: ($spacing-tiny - 3) $spacing-medium;
+  margin: 0 (-$spacing-medium);
+  background: #f4f7fe;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+//  试题：工具栏-子试题工具栏
+.tw-question .tw-question > .tw-qeustion-toolbar {
+  margin: 0;
+}
+
+// 试题：工具栏-隐藏
+.tw-question.xhidetoolbar > .tw-qeustion-toolbar {
+  display: none;
+}
+
+// 试题：工具栏-显示
+.tw-question.xhidetoolbar.xactive > .tw-qeustion-toolbar {
+  display: flex;
+}
+
+// 试题：工具栏左半部份
+.tw-question-toolbar-left {
+  flex: 1;
+}
+
+// 试题：工具栏右半部份
+.tw-question-toolbar-right {
+  // margin-left: $spacing-medium;
+  text-align: right;
+}
+
+// 试题：属性
+.tw-question-prop {
+  padding-right: $spacing-large;
+}
+
+.tw-question-prop > label {
+  color: #666;
+}
+
+.tw-question-prop > var {
+  font-style: normal;
+}
+
+@media (max-width:1200px) {
+  .tw-question-prop {
+    padding-right: $spacing-tiny
+  }
+}
+
+// 试题：难度-容易文本颜色
+.tw-question-prop.xeasy,
+.tw-question-prop.xeasy > label  {
+  color: #1cbcb4;
+}
+
+// 试题：难度-中等文本颜色
+.tw-question-prop.xmiddle,
+.tw-question-prop.xmiddle > label {
+  color: #ff9600;
+}
+
+// 试题：难度-困难文本颜色
+.tw-question-prop.xhard,
+.tw-question-prop.xhard > label {
+  color: #f286a0;
+}
+
+// 试题：工具按钮
+.tw-question-toolbtn {
+  position: relative;
+  padding: 0 $spacing-small;
+  color: $color-text-link;
+
+  &:hover {
+    color: $color-main;
+  }
+}
+
+.tw-question-toolbtn.xactive {
+  color: $color-main;
+}
+
+.tw-question-toolbtn.xactive:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 38px;
+  background: #fff;
+  border-top: 1px solid $color-main;
+  border-right: 1px solid $color-main;
+  border-left: 1px solid $color-main;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tw-question.xweaking .tw-question-toolbtn.xactive:before {
+  border-top-color: #dcdfe6;
+  border-right-color: #dcdfe6;
+  border-left-color: #dcdfe6;
+}
+
+.tw-question-toolbtn > .tw-ico {
+  position: relative;
+  margin-right: 3px;
+}
+
+.tw-question-toolbtn > span {
+  position: relative;
+}
+
+// 试题：解析
+.tw-question-analysis {
+  padding: $spacing-tiny $spacing-small;
+  margin: 0 (-$spacing-medium - 1) -1px;
+  border: 1px solid $color-main;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tw-question.xweaking > .tw-question-analysis {
+  border-color: #dcdfe6;
+}
+
+// 试题：子试题解析
+.tw-question .tw-question > .tw-question-analysis {
+  margin: 0 0 -1px;
+  border-radius: 0;
+}
+
+// 试题：解析-自动隐藏
+.tw-question.xhidetoolbar > .tw-question-analysis {
+  display: none;
+}
+
+// 试题：解析-显示
+.tw-question.xhidetoolbar.xactive > .tw-question-analysis {
+  display: block;
+}
+
+.tw-question-analysis > li {
+  display: flex;
+}
+
+.tw-question-analysis > li + li {
+  margin-top: $spacing-tiny;
+}
+
+.tw-question-analysis-label {
+  flex-shrink: 0;
+  width: 6em;
+  word-spacing: .74em;
+  white-space: nowrap;
+}
+
+.tw-question-analysis-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tw-question-analysis-content.xpoint {
+  margin-bottom: -$spacing-tiny;
+}
+
+.tw-question-analysis-content .tw-question-joinline-table {
+  margin-bottom: -$spacing-small;
+}
+
+.tw-question-analysis-content .tw-question-joinline {
+  margin-top: -$spacing-medium;
+}
+
+.tw-question-analysis .tw-question-blankno {
+  margin-top: 3px;
+  margin-right: $spacing-step;
+  color: $color-text-main;
+  border-color: #333;
+  transform: scale(1);
+}
+
+.tw-question-analysis  .tw-question-blankitem-input {
+  border-bottom-color: #333;
+}
+
+// 知识点
+.tw-question-point {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 $spacing-step;
+  margin: 0 $spacing-medium $spacing-tiny 0;
+  font-style: normal;
+  color: #218fff;
+  background: #edf5ff;
+  border-radius: 3px;
+}
+
+// 试题：表格内容独占一行
+%question-html table {
+  width: 100%;
+  margin: $spacing-tiny 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+%question-html table th,
+%question-html table td {
+  padding: $spacing-step $spacing-tiny;
+  font-weight: 400;
+  border: 1px solid $color-border-secondary;
+}
+
+%question-html img {
+  cursor: pointer;
+}
+
+%question-html table th {
+  background: #edf2f7;
+}
+
+.tw-question-title-content,
+.tw-question-optitem-content,
+.tw-question-analysis-content {
+  @extend %question-html;
+}
+
+
+//我引用过的图标
+.tw-quetion-used {
+  position: absolute;
+  right: -8px;
+  top: -14px;
+}
+
+
+// 创建提升练习 样式
+.tw-questionbox {
+  position: relative;
+}
+
+.tw-questionbox + .tw-questionbox {
+  margin-top: $spacing-tiny;
+}
+
+.tw-questionbox-tit {
+  display: flex;
+  align-self: center;
+  padding: $spacing-tiny;
+  border: 1px solid #dcdfe6;
+  border-bottom: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: $color-bg-card;
+}
+
+.tw-questionbox-tit-left {
+  flex: 1;
+}
+
+.tw-questionbox-tit-right {
+  width: 150px;
+  text-align: right;
+}
+.tw-questionbox .tw-question {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+// 批改右上角显示对错区域
+.tw-question-corresult {
+  position: absolute;
+  right: 0;
+  top: -8px;
+  color: #ff6c60;
+}
+
+.tw-question-corresult.xchild {
+  top: -28px;
+}
+
+// 去掉外边框
+.tw-question.xnoborder{
+  border:none;
+}
+
+// 试题无边框情况下去左边距
+.tw-question.xnoborder .tw-qeustion-toolbar,
+.tw-question.xnoborder .tw-question-analysis{
+  margin-left: 0;
+}
+
+// 原题加提升题练习box
+.tw-question-orienbox {
+  padding: $spacing-medium;
+  border: 1px solid #dcdfe6;
+  border-radius: $border-radius;
+}
+
+.tw-question.xhcorrect {
+  padding-bottom: $spacing-medium;
+  border-bottom: 1px dashed $color-border-secondary;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

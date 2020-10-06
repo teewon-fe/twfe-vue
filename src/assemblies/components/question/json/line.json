@@ -1,0 +1,153 @@
+{
+  "errorId": null,
+  "questionParentId": "0",
+  "options": [
+    ["xx1","xx2", "xx3", "xx3"],
+    ["tt1","tt2", "tt3"]
+  ],
+
+  "itemList": [
+    {
+      "sequenceNo": "0",
+      "colNo": "A",
+      "rowLable": "1",
+      "width": "",
+      "content": "马",
+      "height": ""
+    },
+    {
+      "sequenceNo": "0",
+      "colNo": "B",
+      "rowLable": "1",
+      "width": "",
+      "content": "翅膀",
+      "height": ""
+    },
+    {
+      "sequenceNo": "1",
+      "colNo": "A",
+      "rowLable": "1",
+      "width": "",
+      "content": "蒲公英",
+      "height": ""
+    },
+    {
+      "sequenceNo": "1",
+      "colNo": "B",
+      "rowLable": "1",
+      "width": "",
+      "content": "脚",
+      "height": ""
+    },
+    {
+      "sequenceNo": "2",
+      "colNo": "A",
+      "rowLable": "1",
+      "width": "",
+      "content": "鸟",
+      "height": ""
+    },
+    {
+      "sequenceNo": "2",
+      "colNo": "B",
+      "rowLable": "1",
+      "width": "",
+      "content": "太阳晒",
+      "height": ""
+    },
+    {
+      "sequenceNo": "3",
+      "colNo": "A",
+      "rowLable": "1",
+      "width": "",
+      "content": "豌豆",
+      "height": ""
+    },
+    {
+      "sequenceNo": "3",
+      "colNo": "B",
+      "rowLable": "1",
+      "width": "",
+      "content": "风",
+      "height": ""
+    }
+  ],
+  "note": "",
+  "questionType": "8",
+  "typeLevelLabelId": "16",
+  "noteFileList": [],
+  "fileList": [],
+  "itemEmpty": "0",
+  "answerList": [
+    {
+      "sequenceNo": "0",
+      "content": "A0-B1,A1-B3,A2-B0,A3-B2",
+      "score": "5.0"
+    }
+  ],
+  "defaultScore": "5.0",
+  "typeLevelLabelName": null,
+  "title": "把动物和它们的旅行方式连起来。",
+  "degreeName": "5",
+  "degree": "0.5",
+  "questionTypeName": null,
+  "questionId": "CNBJTW0200000690477",
+  "refertimes": "11",
+  "childQuestionList": null,
+  "statis": {
+    "totalAnswer": 3,
+    "totalRightAnser": 33,
+    "commonMistake": ""
+  },
+  "isSubjective": 0,
+  "creator": "TWPAAS1200000000016"
+}
+
+{
+  "questionId": "CNBJTW0200002026924",
+  "publishId": "CJTWBS1S600000257359",
+  "orderNo": "2",
+  "childId": "",
+  "studentId": "E000001P200000135897",
+  "typeLevel": "8",
+  "answerList": [
+    {
+      "questionId": "CNBJTW0200002026924",
+      "sequenceNo": 0,
+      "userAnswer": "A0-B1,A1-B0,A2-B2,A3-B3",
+      "attachList": [
+        {}
+      ]
+    }
+  ],
+  "attachmentList": []
+}
+
+{
+  "childId": "",
+  "result": "1",
+  "questionId": "CNBJTW0200000690477",
+  "orderNo": "1",
+  "isSubjective": 0,
+  "spendTime": null,
+  "errorId": null,
+  "publishId": "CJTWBS1S600000257358",
+  "studentId": "E000001P200000135897",
+  "paperResultId": "CJTWBS1S600015709460",
+  "score": 0,
+  "answer": "A0-B0,A1-B1,A2-B3,A3-B2",
+  "typeLevel": "8",
+  "answerCount": 0,
+  "correctRate": 0,
+  "commonMistakeAnswer": "",
+  "attachmentList": [],
+  "answerList": [
+    {
+      "sequenceNo": 0,
+      "userAnswer": "A0-B0,A1-B1,A2-B3,A3-B2",
+      "score": 0,
+      "result": "1"
+    }
+  ],
+  "answerSource": "0"
+}

@@ -1,0 +1,23 @@
+// 排序按钮
+.tw-sortbtn {
+  position: relative;
+  display: inline-block;
+  padding-left: 10px;
+  color: $color-text-secondary;
+  cursor: pointer;
+
+  &:hover,
+  &.xdesc,
+  &.xasc {
+    color: $color-main;
+  }
+}
+
+// 排序按钮-图标
+.tw-sortbtn > .tw-ico {
+  position: absolute;
+  top: 3px;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}

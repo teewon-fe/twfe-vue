@@ -1,0 +1,583 @@
+/* !------------------------------------------------------------
+* 重置vant-ui中完全独立的样式
+*
+* ------------------------------------------------------------ */
+// stylelint-disable
+
+//-----tag----------
+.van-tag--plain.van-tag--large {
+  padding: 0 10px;
+  height: 30px;
+  line-height: 28px;
+  font-size: 14px;
+}
+
+.van-tag--plain {
+  padding: 0 5px;
+  height: 18px;
+  line-height: 16px;
+  font-size: $font-size-tiny;
+  color: $color-text-secondary;
+}
+
+.van-tag--primary {
+  color: $color-main;
+}
+
+//-----message----------
+.van-dialog {
+  border-radius: $border-radius-mobile;
+}
+
+.van-dialog__message {
+  padding: 40px 30px 30px;
+  color: $color-text-main;
+}
+
+.van-dialog .van-dialog__cancel {
+  color: $color-text-weaking;
+}
+
+// loading弹窗
+.van-dialog.xloading .van-dialog__content{
+  height: 150px;
+  padding-top: 35px;
+  text-align: center;
+} 
+
+.van-dialog.xloading .van-loading--vertical .van-loading__text {
+  margin-top: 10px;
+  color: $color-text-main;
+}
+//-----toast----------
+.van-toast--text {
+  padding: 15px;
+}
+
+.van-toast--middle {
+  width: fit-content;
+}
+
+//-----actionsheet----------
+.van-action-sheet__close {
+  display: none;
+}
+
+//-----分割线divider----------
+.van-divider {
+  border-color: #eee;
+}
+
+//-----输入框----------
+.van-field {
+  padding: 5px 10px;
+  border: 1px solid $color-border-control-mobile;
+  border-radius: $border-radius-mobile;
+}
+
+.van-field__label {
+  width: 2rem;
+}
+
+// textarea 不要底线
+.tw-mtextarea .van-cell:not(:last-child)::after {
+  border-bottom: none;
+}
+
+// 表单输入框
+.van-field.xform {
+  font-size: $font-size-medium;
+}
+
+.van-field.xform  .van-field__control{
+  @include ellipsis;
+}
+
+// 表单输入框 地址链接
+.van-field.xlink .van-field__control {
+  text-align: right;
+  color: $color-text-weaking;
+}
+
+.van-field.xright .van-field__control {
+  text-align: right
+}
+
+// 表单有下拉选择
+.van-field.xselect .van-cell__value {
+  padding-right: $spacing-medium;
+}
+
+.van-field.xselect:after {
+  content: " ";
+  position: absolute;
+  top: $spacing-step;
+  right: $spacing-step;
+  @include arrow(right, 12px,1px, $color-text-weaking);
+}
+
+// 移动端表单
+.tw-mform.xreadonly .van-field.xform .van-field__control{
+  pointer-events: none;
+}
+
+//-------tabs-------------
+// tab 文字颜色样式调整
+.van-tab {
+  font-size: $font-size-medium;
+  color: $color-text-secondary;
+}
+
+.van-tab--active {
+  color: $color-main;
+}
+
+.van-tabs__line {
+  background-color: $color-main;
+}
+
+// tab 高度设置
+.van-tabs--line .van-tabs__wrap {
+  height: 44px;
+}
+
+// tab 底部选中滑块长度固定
+.van-tabs__line {
+  width: 70px !important;
+}
+
+// tab 底线与分割线设置
+.van-tabs [class*='van-hairline']::after {
+  border: 1px solid $color-border-secondary;
+  border-top: 0;
+}
+
+.van-tabs.xmidline .van-tab+  .van-tab .van-ellipsis::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 1px;
+  height: 25px;
+  background-color: $color-border-control-mobile;
+}
+
+.van-tabs.xfillet .van-tab + .van-tab .van-ellipsis::before {
+  content: '';
+  display: none;
+}
+
+// tabs sticky布局刷新bug
+.van-tabs.van-tabs--line.xfix > div:first-child {
+  height: 44px !important;
+}
+// tabs sticky布局只有一个tab隐藏
+.van-tabs.van-tabs--line.xfix.xone > div:first-child {
+  display: none;
+}
+
+// tab圆角样式风格调整
+.van-tabs.xfillet .van-tab {
+  font-size: $font-size-default;
+}
+
+.van-tabs.xfillet .van-tabs__wrap {
+  border-bottom: 1px solid $color-border-control-mobile;
+  height: 65px;
+  background-color: $color-weaking;
+  padding: 20px 60px 0;
+}
+
+.van-tabs.xfillet .van-tabs__nav--card .van-tab.van-tab--active {
+  color: $color-weaking;
+  background-color: $color-main;
+  border-right: 1px solid $color-main;
+}
+
+.van-tabs.xfillet .van-tabs__nav--card .van-tab {
+  color: $color-main;
+  border-right: 1px solid transparent;
+}
+
+.van-tabs.xfillet .van-tabs__nav--card {
+  border: 1px solid $color-main;
+  border-radius: 15px
+}
+
+.van-tabs.xfillet .van-tab:first-of-type {
+  border-right: 1px solid $color-main;
+  border-radius: 15px 0 0 15px;
+}
+
+.van-tabs.xfillet .van-tab:last-of-type {
+  border-left: 1px solid $color-main;
+  border-radius: 0 15px 15px 0;
+}
+
+// 三选项tab样式
+.van-tabs.xfillet.xthree .van-tabs__wrap {
+  padding: 20px 20px 0;
+}
+
+// tab  static布局
+.van-tabs.xstatic{
+  position: static;
+}
+
+// 错题 .van-tabs
+
+.van-tabs.xwrong [class*=van-hairline]::after {
+border: 1px solid  #dee3ee;
+border-right: 0;
+border-left: 0;
+}
+
+.van-tabs.xwrong .van-tabs__line {
+  background-color: transparent;
+}
+
+.van-tabs.xwrong .van-tab--active  .van-ellipsis{
+  font-size: $font-size-medium;
+}
+
+.van-tabs.xwrong .van-tab {
+  font-size: $font-size-default;
+}
+
+.van-tabs.xwrong .van-tabs__nav--line{
+  border: 1px solid transparent;
+}
+//-----swiper-------------------------
+// swiper 自定义指示器
+.van-swipe .custom-indicator {
+  position: absolute;
+  bottom: $spacing-medium;
+  width: 100%;
+  color: $color-text-weaking;
+  text-align: center;
+}
+
+//-----progress----------
+.van-progress.xblue>.van-progress__portion {
+  background: $color-main !important;
+}
+
+.van-progress.xblue {
+  background: #b7d8fa;
+}
+
+.van-progress.xhard>.van-progress__portion {
+  background: #ff7a7a !important;
+}
+
+.van-progress.xhard {
+  background: #fad2d2;
+}
+
+.van-progress.xmiddle>.van-progress__portion {
+  background: #ff9421 !important;
+}
+
+.van-progress.xmiddle {
+  background: #fadab7;
+}
+
+.van-progress.xeasy>.van-progress__portion {
+  background: #52db78 !important;
+}
+
+.van-progress.xeasy {
+  background: #c6efd1;
+}
+
+// 12px的高的元素 半圆角
+.van-progress.xmedium {
+  border-radius: 10px;
+}
+
+//-----popoup----------
+.van-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.van-popup.xround {
+  border-radius: 5px;
+}
+
+// 章节筛选popoup 与页面上面距离
+.tw-multisel-item .van-overlay,
+.tw-multisel-item .van-popup--top,
+.tw-mchaptersel .van-overlay,
+.tw-mchaptersel .van-popup--top {
+  top: 94px;
+}
+
+// 头部的filter popoup与页面上的间距
+.tw-header .van-overlay,
+.tw-header .van-popup--top {
+  top: $header-height;
+}
+
+//-----treeselect----------
+$tree-select-border-color: #ddd !default; // treeselect 边框颜色
+
+.van-tree-select__nav {
+  @include lines(right, $tree-select-border-color, #fafafa);
+}
+
+.van-tree-select__nav-item {
+  position: relative;
+  height: 50px;
+  line-height: 48px;
+  padding: 0 $spacing-tiny;
+  @include ellipsis;
+  @include lines(right bottom, $tree-select-border-color);
+}
+
+.van-tree-select__nav-item:first-child {
+  @include lines(top right bottom, $tree-select-border-color);
+}
+
+.van-sidebar-item__text {
+  width: 100%;
+  color: $color-text-secondary;
+  @include ellipsis;
+}
+
+// 选中左侧nav
+.van-tree-select__nav-item.van-sidebar-item--select {
+  border-left-width: 2px;
+  border-left-color: $color-main;
+  @include lines(bottom, $tree-select-border-color, #fff);
+}
+
+.van-tree-select__nav-item.van-sidebar-item--select .van-sidebar-item__text {
+  color: $color-main;
+}
+
+
+// 右侧内容
+.van-tree-select__content {
+  flex: 1;
+  margin-left: $spacing-small;
+}
+
+.van-tree-select__item {
+  height: 50px;
+  line-height: 48px;
+  padding: 0;
+  padding-right: 23px;
+  color: $color-text-secondary;
+  font-weight: 400;
+  @include lines(bottom, $tree-select-border-color);
+}
+
+.van-tree-select__selected {
+  right: 0;
+  color: $color-main;
+  font-size: $font-size-huge !important;
+}
+
+//-----dropdown-----------
+// 去掉边线
+.tw-mwsubfilter [class*=van-hairline]::after {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+// 基本样式重置
+.van-dropdown-menu__item + .van-dropdown-menu__item{
+  @include lines(left, #eee);
+}
+
+// 同步试题重置
+
+.van-dropdown-menu.xquestion{
+  height:45px;
+  padding: $spacing-tiny;
+}
+
+.van-dropdown-menu.xquestion .van-dropdown-menu__title {
+  font-size: $font-size-default;
+}
+
+.van-dropdown-menu.xquestion .van-dropdown-menu__title--active {
+  color: $color-text-main;
+}
+
+.van-dropdown-menu.xquestion .van-dropdown-menu__title::after {
+  border-color:transparent transparent #ccc #ccc;
+  opacity: 1;
+}
+
+// 错题dropdown样式重置
+.van-dropdown-menu.xwrong {
+  height: 40px;
+}
+
+.van-dropdown-menu.xwrong .van-dropdown-menu__title{
+  padding-right: $spacing-tiny;
+  color: $color-text-main;
+  font-size: $font-size-medium;
+  font-weight: 700;
+}
+
+.van-dropdown-menu.xwrong .van-dropdown-menu__title--active {
+  color: $color-text-main;
+}
+
+.van-dropdown-menu.xwrong .van-dropdown-menu__title::after {
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  opacity: 1;
+}
+
+//--------------checkbox-----------
+.van-checkbox {
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.van-checkbox__icon.van-checkbox__icon--square .van-icon {
+  border-color: #eee;
+}
+
+.van-checkbox__icon--square,
+.van-checkbox__icon--square .van-icon {
+  border-radius: 2px;
+}
+
+.van-checkbox__icon--checked .van-icon {
+  background-color: $color-main;
+  border-color: $color-main;
+}
+
+// 作答统计 .van-checkbox
+.van-checkbox.xanswer {
+  flex:1;
+  display: inherit;
+}
+
+.van-checkbox.xanswer .van-checkbox__label {
+  margin-left: $spacing-step;
+  font-size: $font-size-small;
+  color: $color-text-secondary;
+}
+
+// 错题本 .van-checkbox
+.van-checkbox.xwrong .van-icon  {
+  display: inline-block;
+}
+
+.van-checkbox.xwrong .van-checkbox__icon{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.van-checkbox.xwrong .van-checkbox__label {
+  margin-left: 4px;
+  font-size: $font-size-small;
+}
+
+.van-checkbox.xwrong {
+margin-right: 0;
+}
+
+.van-checkbox.xwrong + .van-checkbox.xwrong {
+  margin-left: 12px;
+}
+
+.van-checkbox-group.xwrong {
+  display: inline-block;
+}
+
+.van-checkbox-group.xwrong + .van-checkbox-group.xwrong{
+  margin-left: 12px;
+}
+
+//-------------------collapse-------------
+// 列表右侧折叠面板样式调整
+.van-collapse.xrevision {
+  font-size: 12px;
+}
+
+.van-collapse.xrevision .van-cell:not(:last-child)::after {
+  border: 0;
+}
+
+.van-collapse.xrevision .van-cell {
+  position: absolute;
+  top: 17px;
+  right: -15px;
+  text-align: right;
+  width: 50%;
+  background-color: transparent;
+  border: 0;
+}
+
+.van-collapse.xrevision .van-hairline--top {
+  position: initial;
+}
+
+.van-collapse.xrevision .van-collapse-item__content {
+  font-size: 12px;
+  color: $color-text-main;
+  background-color: #f5f5f5;
+  margin-top: 5px;
+}
+
+.van-collapse.xrevision [class*=van-hairline]::after {
+  border: none;
+}
+
+// --------------------- ding reset -----------------------
+
+.tw-tab-lists .tw-tab-lists-index.active {
+  color: #fff;
+  background: $color-main;
+}
+
+//-------------------作答统计客观&主观题进度条样式重置-------------
+.tw-tab-lists .van-overlay {
+  position: fixed;
+  top: 45px;
+  left: -65px;
+  width: 100%;
+  height: 100%;
+}
+
+.tw-qlist.xviewresponsestatistics .tw-mwgraybox-label {
+  width: 100px;
+  font-size: 12px;
+}
+
+.tw-qlist.xviewresponsestatistics .tw-mwgraybox-tips span {
+  font-size: 12px;
+  color: rgb(51,51,51);
+}
+
+.tw-qlist.xviewresponsestatistics .xblue.van-progress {
+  height: 10px !important;
+}
+
+.tw-qlist-progressbox .align-items-center {
+  padding-bottom: 15px;
+}
+
+//-------------------搜索框-------------
+.van-search__content{
+  padding-left: 0;
+  border-radius: $border-radius-mobile;
+  background: #fff;
+}
+.van-search {
+  background: $color-bg-body !important;
+}
+.van-search .van-field__left-icon{
+  margin-left: $spacing-tiny;
+}

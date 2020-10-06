@@ -1,0 +1,43 @@
+
+/* ------------------------------ 全局配置 ------------------------------ */
+ /* 主题色{Color+} */
+$color-main: #08f !default; // 主色
+
+ /* 背景色{Color+} */
+$color-bg-body:#e6ebf0 !default; // 页面背景
+$color-bg-footer: #121e36 !default; // 页脚背景
+
+/* ------------------------------ 组件相关 ------------------------------ */
+// stylelint-disable
+/* 头部 */
+$header-height: 50px; // 头部高度
+$header-bg: #0c1833; // 头部背景
+$header-color: #adb9d2; // 文字颜色
+$header-title-font-size: $font-size-large; // logo区标题字体大小
+$header-title-color: #fff; // 标题文本颜色
+$header-navlink-hover-bg: transparent; // 头部导航滑过背景色
+$header-navlink-hover-color: #57a0ff; // 头部导航滑过文字颜色
+$header-navlink-active-bg: transparent; // 头部导航选中背景颜色
+$header-navlink-active-color: #57a0ff; // 头部导航选中文字颜色
+$header-navlink-menu-bg:#17233d !default; // 头部下拉框背景色
+
+/* 侧边栏布局 */
+$sidebar-bg: #17233d; // 侧边栏背景
+$sidebar-collapse-bg: #0c1833; // 侧边栏菜单背景
+$nav-item-color: #fff; // 导航项滑过颜色
+$nav-item-active-bg: transparent; // 导航项选中背景
+$nav-item-left-line-width: 0; // 左侧标识线宽度
+$sidebar-toolbar-color: #fff; // 侧边工具栏文本颜色
+
+/* tabs  */
+$tab-padding-y: 13px;  // tab padding 间距
+$tab-color-active: $color-text-main; // tab选中字体颜色
+$tab-border-active: #0c88f5; // tab选中边框底色
+$tab-border-color: #e1e7eb; // 边框色
+$tab-color:$color-text-main; // 字体颜色
+
+/* 色块图标 */
+$cblock-bg1: #7572fc;
+$cblock-bg2: #00bfec;
+$cblock-bg3: #65cb66;
+$cblock-bg4: #f43c37;

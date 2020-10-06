@@ -1,0 +1,151 @@
+/* 标签 */ 
+$tag-height: 24px !default; // 标签高度 
+$tag-small-height: 12px !default; // 小标签高度 --sync--
+$tag-large-height: 30px !default; // 大标签高度
+$tag-px: $spacing-tiny !default; // 标签内边距
+$tag-font-size: $font-size-small !default; // 字体大小
+$tag-border-color: $color-border-main !default; // 带边框标签边框色
+$tag-tabel-color: #2cb663 !default; // 表格标签文本色
+$tag-tabel-bg: #e9fff2 !default; // 表格标签背景
+$tag-tabel-border: #a1e0ba !default; // 表格标签边框色
+
+// 标签: 容器
+.tw-tag {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  height: $tag-height;
+  line-height: $tag-height;
+  padding: 0 $tag-px;
+  font-style: normal;
+  vertical-align: middle;
+  @include ellipsis;
+}
+
+// 标签: 相邻标签间距
+.tw-tag + .tw-tag {
+  margin-left: 6px;
+}
+
+// 标签: 圆形
+.tw-tag.xround {
+  border-radius: $tag-height / 2;
+}
+
+// 标签: 圆点
+.tw-tag.xdot {
+  min-width: $tag-height;
+  padding: 0 5px;
+  border-radius: $tag-height / 2;
+}
+
+// 标签: 带边框
+.tw-tag.xborder {
+  line-height: $tag-height - 2;
+  border: 1px solid $tag-border-color;
+}
+
+// 标签: 大尺寸
+.tw-tag.xlarge {
+  height: $tag-large-height;
+  line-height: $tag-large-height;
+}
+
+.tw-tag.xround.xlarge {
+  border-radius: $tag-large-height / 2;
+}
+
+.tw-tag.xborder.xlarge {
+  line-height: $tag-large-height - 2;
+}
+
+// 标签: 小尺寸
+.tw-tag.xsmall {
+  min-width: $tag-small-height;
+  height: $tag-small-height;
+  line-height: $tag-small-height;
+}
+
+.tw-tag.xround.xlarge {
+  border-radius: $tag-small-height / 2;
+}
+
+.tw-tag.xborder.xlarge {
+  line-height: $tag-small-height - 2;
+}
+
+// 标签: 带关闭按钮
+.tw-tag.xclosable {
+  padding-right: $spacing-medium;
+}
+
+.tw-tag-closebtn {
+  position: absolute;
+  top: $tag-height / 2;
+  right: 5px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+// 标签: 表格内部
+.tw-tag.xtabel {
+  line-height: $tag-height - 2;
+  color: $tag-tabel-color;
+  background: $tag-tabel-bg;
+  border: 1px solid $tag-tabel-border;
+}
+
+// 标签: banner区用
+.tw-tag.xbanner {
+  height: 27px;
+  line-height: 27px;
+  font-size: $font-size-large;
+  color: #57a0ff;
+  background: #1f3253;
+}
+
+.tw-tag.xbanner + .tw-tag.xbanner {
+  margin-left: 12px;
+}
+
+.en_US .tw-tag.xbanner {
+  font-size: $font-size-small;
+}
+
+// 标签: 正常
+.tw-tag.xrisk {
+  background: $color-error;
+}
+
+// 标签: 类别
+.tw-tag.xfilter {
+  margin: $spacing-step;
+  background: transparent;
+}
+
+.tw-tag.xfilter.xactive,
+.tw-tag.xfilter:hover {
+  color: #fff;
+  background: #08f;
+}
+
+// 标签: 数据列
+.tw-tag.xcolumn {
+  margin: $spacing-step;
+  background: #dbe4f3;
+  border-radius: 3px;
+}
+
+.tw-tag.xcolumn:first-child {
+  margin-left: 0;
+}
+
+.tw-tag.xcolumn.xactive,
+.tw-tag.xcolumn:hover {
+  color: #fff;
+  background: #08f;
+}
+
+.tw-tag.xcolumn .tw-ico {
+  margin-left: $spacing-step;
+}

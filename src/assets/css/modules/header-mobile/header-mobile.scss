@@ -1,0 +1,81 @@
+/* 头部 */
+$header-height: 44px !default;
+$header-bg: #fff !default; // 背景色
+$header-color: $color-text-main !default; // 文字颜色
+$header-px: $spacing-step !default; // 内间距
+$header-left-font-size: $font-size-large !default; // 左侧字号
+$header-body-font-size: $font-size-huge !default; // 标题字号
+
+// 头部：容器
+.tw-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: $header-height;
+  color: $header-color;
+  background: $header-bg;
+  border-bottom: .5px solid #eee;
+}
+
+body.xpreviewer .tw-body {
+  overflow: visible;
+}
+
+// 头部：左侧
+.tw-header-left {
+  display: flex;
+  align-items: center;
+  width: 10%;
+  overflow: hidden;
+  font-size: $header-left-font-size;
+}
+
+.tw-header-backbtn {
+  min-width: $header-height;
+  height: $header-height;
+  line-height: $header-height;
+  padding-left: $header-px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tw-header-backbtn::before {
+  content: "";
+  margin-right: -2px;
+  @include arrow(left, 15px, 1px, $header-color);
+}
+
+// 头部：主体
+.tw-header-body {
+  flex-grow: 1;
+  max-width: 80%;
+  padding: 0 $header-px;
+  font-size: $header-body-font-size;
+  text-align: center;
+}
+.tw-header-body h1 {
+  font-size: 18px;
+  @include ellipsis;
+}
+
+// ---------- 搜索页面 ----------
+// 头部：右侧
+.tw-header-right {
+  width: 10%;
+  padding-right: $header-px;
+  text-align: right;
+  white-space: inherit
+}
+
+.tw-header.xsearch .tw-header-left,
+.tw-header.xsearch .tw-header-right {
+  width: 25%;
+}
+
+.tw-header.xsearch .tw-header-body {
+  max-width: 50%;
+}

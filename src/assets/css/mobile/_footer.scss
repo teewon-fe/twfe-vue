@@ -1,0 +1,69 @@
+/* 页脚 */
+$footer-height: 50px !default; // 高度
+$footer-bg: #fff !default; // 背景色
+$footer-color: #beafaf !default; // 文字颜色
+$footer-active-color: $color-text-link !default; // 激活颜色
+$footer-px: $spacing-small !default; // 内间距
+$footer-font-size: $font-size-default !default; // 字号
+
+// 页脚：容器
+.tw-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: $footer-height;
+  font-size: $footer-font-size;
+  background-color: $footer-bg;
+  border-top: 1px solid #eee;
+ 
+}
+
+// 页脚：页脚元素项
+.tw-footer-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 $footer-px;
+  color: $footer-color;
+  text-align: center;
+
+  &.xcurrent {
+    color: $footer-active-color;
+  }
+}
+
+.tw-footer-item.xbtn {
+  color: #fff;
+  background: $color-main;
+  &:hover {
+    background: $color-main-active;
+  }
+}
+
+.tw-footer-item.xleftborder {
+  border-left: .5px solid $color-border-secondary;
+}
+
+// 页脚：页脚元素项-文本
+.tw-footer-item-text {
+  width: 100%;
+}
+
+// 页脚：页脚元素项-文本-不换行
+.tw-footer-item-text.xnowarp {
+  width: auto;
+}
+
+// 页脚透明
+.tw-footer.xtransparent {
+  bottom: $spacing-tiny;
+  background:transparent;
+  border:none;
+}

@@ -1,0 +1,76 @@
+/* 栅格系统 */
+$grid-columns:12 !default; // 栅格数量
+$grid-gutter-width: $spacing-medium !default; // 栅格间距
+$grid-gutter-tiny-width: $spacing-tiny !default; // 栅格间距-极小
+$grid-gutter-small-width: $spacing-small !default; // 栅格间距-小
+$grid-gutter-large-width: $spacing-large !default; // 栅格间距-大
+
+// 等分栅格
+// stylelint-disable max-nesting-depth
+// stylelint-disable selector-nested-pattern
+
+// 生成栅格
+@mixin make-grid ($breakpoints: $media-breakpoints, $columns: $grid-columns) {
+  @each $key in map-keys($breakpoints) {
+    @include media-down($key) {
+      @for $i from 1 through $columns {
+        .tw-grid.x#{$key}#{$i} {
+          > .tw-grid-col {
+            width: percentage(1 / $i);
+          }
+        }
+      }
+    }
+  }
+}
+
+// 栅格系统
+.tw-grid {
+  @include clearfix;
+  margin: ceil($grid-gutter-width / -2);
+
+  &-col {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding: $grid-gutter-width / 2;
+  }
+}
+
+// 栅格系统: 极小间距
+.tw-grid.xtinygutter {
+  margin: ceil($grid-gutter-tiny-width / -2);
+}
+
+.tw-grid.xtinygutter > .tw-grid-col {
+  padding: $grid-gutter-tiny-width / 2;
+}
+
+
+// 栅格系统: 小间距
+.tw-grid.xsmallgutter {
+  margin: ceil($grid-gutter-small-width / -2);
+}
+
+.tw-grid.xsmallgutter > .tw-grid-col {
+  padding: $grid-gutter-small-width / 2;
+}
+
+// 栅格系统: 大间距
+.tw-grid.xlargegutter {
+  margin: ceil($grid-gutter-large-width / -2);
+}
+
+.tw-grid.xlargegutter > .tw-grid-col {
+  padding: $grid-gutter-large-width / 2;
+}
+
+// 生成响应式栅格
+@include make-grid();
+
+/* 全局容器 */
+.tw-container {
+  padding: $grid-gutter-width / 2;
+  @include make-container();
+}
+

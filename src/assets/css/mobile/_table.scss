@@ -1,0 +1,43 @@
+$table-border-color-mobile: #dbe0e4 !default; // 表格边框颜色
+$table-header-bg-mobile: #eff2f7 !default; // 表格表头背景色
+$table-padding-x-mobile: 8px !default; // 表格上下边距
+$table-padding-y-mobile: 8px !default; // 表格左右边距
+$table-line-height-mobile:21px !default; // 表格行距
+
+// ---------------  table 列表样式 -----------------
+.tw-mtable {
+  width: 100%;
+}
+
+.tw-mtable tbody td,
+.tw-mtable thead th{
+  line-height: $table-line-height-mobile;
+  padding: $table-padding-y-mobile $table-padding-x-mobile;
+  border: 1px solid $table-border-color-mobile;
+}
+
+.tw-mtable thead th {
+  font-size: $font-size-small;
+  text-align: center;
+}
+
+.tw-mtable tbody td {
+  min-width: 60px;
+  text-align: center;
+}
+
+.tw-mtable thead {
+  background: $table-header-bg-mobile;
+}
+
+
+// 两列
+.tw-mtable.xtwo tr td {
+  width: 50%;
+}
+
+// 表格，表头需换行表头间距
+.tw-mtable.xth2 thead th{
+  line-height: 1.2;
+  padding:4px $table-padding-x-mobile;
+}

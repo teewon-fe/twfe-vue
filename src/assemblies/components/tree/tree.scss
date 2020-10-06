@@ -1,0 +1,114 @@
+$node-border-color: #eee !default;
+
+// 树容器
+.tw-tree .tw-tree {
+  border-top: .5px solid $node-border-color;
+}
+
+// 树节点
+.tw-tree-node {
+  line-height: 45px;
+  border-bottom: .5px solid $node-border-color;
+}
+
+.tw-tree > .tw-tree-node:last-child {
+  border-bottom: none;
+}
+
+// 树节点内容
+.tw-tree-content {
+  position: relative;
+  padding: 0 30px;
+  @include ellipsis;
+}
+
+// 树节点-三角形标记
+.tw-tree-expandicon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 45px;
+}
+
+.tw-tree-expandicon:after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 5px;
+  @include triangle(right, 5px, #ccc);
+}
+
+.tw-tree-expandicon.xexpanded:after {
+  top: 21px;
+  right: 8px;
+  transform: rotate(90deg);
+}
+
+// 树节点-选择标记
+.tw-tree-selicon {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid $node-border-color;
+  border-radius: 50%;
+}
+
+.tw-tree-selicon.xmultiple {
+  top: 13px;
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+}
+
+
+// 树节点-选择标记-部份选中
+.tw-tree-node.xportion > .tw-tree-content {
+  color: $color-main;
+}
+
+.tw-tree-node.xportion > .tw-tree-content > .xmultiple:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  background: $color-main;
+}
+
+// 树节点-选择标记-选中
+.tw-tree-node.xselected > .tw-tree-content {
+  color: $color-text-link;
+}
+
+.tw-tree-node.xselected > .tw-tree-content > .tw-tree-selicon {
+  background: $color-main;
+  border-color: $color-main;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    width: 7px;
+    height: 12px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+  }
+}
+
+.tw-tree-node.xselected > .tw-tree-content > .xmultiple:after {
+  left: 6px;
+  width: 6px;
+  height: 10px;
+}
+
+// 树节点-禁用
+.tw-tree-node.xdisabled {
+  color: $color-text-disabled;
+  cursor: not-allowed;
+}

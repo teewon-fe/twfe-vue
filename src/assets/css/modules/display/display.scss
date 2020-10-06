@@ -1,0 +1,18 @@
+/* 盒模型 */
+
+// stylelint-disable
+@each $key in map-keys($media-breakpoints) {
+  $suffix: if($key != pc, -#{$key}, '');
+
+  @include media-down($key, $media-breakpoints) {
+    .d-none#{$suffix}         { display: none !important; }
+    .d-inline#{$suffix}       { display: inline !important; }
+    .d-inline-block#{$suffix} { display: inline-block !important; }
+    .d-block#{$suffix}        { display: block !important; }
+    .d-table#{$suffix}        { display: table !important; }
+    .d-table-row#{$suffix}    { display: table-row !important; }
+    .d-table-cell#{$suffix}   { display: table-cell !important; }
+    .d-flex#{$suffix}         { display: flex !important; }
+    .d-inline-flex#{$suffix}  { display: inline-flex !important; }
+  }
+}

@@ -1,0 +1,46 @@
+/* 滑动内容 */
+.tw-slider {
+  z-index: 1;
+  transition: all 200ms linear;
+}
+
+// 禁用动画
+.tw-slider.xdisabled {
+  transition: none;
+}
+
+// 切换到后一个: 进入
+.tw-slider.xnext.xenter-from {
+  transform: translateX(100%);
+}
+
+.tw-slider.xnext.xenter-to {
+  transform: translateX(0);
+}
+
+// 切换到后一个: 离开
+.tw-slider.xnext.xleave-from {
+  transform: translateX(0);
+}
+
+.tw-slider.xnext.xleave-to {
+  transform: translateX(-100%);
+}
+
+// 切换到前一个: 进入
+.tw-slider.xprev.xenter-from {
+  transform: translateX(-100%);
+}
+
+.tw-slider.xprev.xenter-to {
+  transform: translateX(0);
+}
+
+// 切换到前一个: 离开
+.tw-slider.xprev.xleave-from {
+  transform: translateX(0);
+}
+
+.tw-slider.xprev.xleave-to {
+  transform: translateX(100%);
+}

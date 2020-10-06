@@ -1,0 +1,17 @@
+// 折叠面板-容器
+.tw-collapse {
+  display: none;
+  height: 0;
+  transition: all $time linear;
+}
+
+// 折叠面板-展开
+.tw-collapse.xopen {
+  display: block;
+  height: auto;
+}
+
+// 折叠面板-切换中
+.tw-collapse.xtoggling {
+  overflow: hidden;
+}

@@ -1,0 +1,19 @@
+// ---------- 无数据 ----------
+.tw-nodata {
+  position: relative;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.tw-nodata > img {
+  width: 180px;
+  height: 180px;
+  margin-top: $spacing-medium;
+}
+
+.tw-nodata > div {
+  padding-bottom: $spacing-tiny;
+  margin-top: -30px;
+  font-size: $font-size-medium;
+  color: $color-text-weaking;
+}

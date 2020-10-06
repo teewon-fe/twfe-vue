@@ -1,0 +1,252 @@
+/* 侧边栏布局 */
+$sidebar-width:200px !default; // 侧边栏宽度
+$sidebar-bg:$color-bg-content !default; // 侧边栏背景
+$sidebar-lineheight: 20px !default; // 侧边栏行高
+$sidebar-px:$spacing-small !default; // 侧边栏水平内边距
+$sidebar-py:$spacing-tiny !default; // 侧边栏一级导航垂直内边距
+$sidebar-collapse-py: $spacing-tiny !default; // 侧边栏子菜单垂直内边距
+$sidebar-collapse-bg: #f7f8f9 !default; // 侧边栏菜单背景
+$nav-item-color: $color-text-main !default; // 导航项滑过颜色
+$nav-item-font-size: $font-size-medium !default; // 导航项滑过颜色
+$nav-item-hover-color: #57a0ff !default; // 导航项滑过颜色
+$nav-item-hover-bg: #183564 !default; // 导航项滑过背景
+$nav-item-active-bg: #e7ecf3 !default; // 导航项选中背景
+$nav-item-active-color:#186ed9 !default; // 导航项选中颜色
+$nav-item-divider-color: $color-border-main !default; // 导航分隔线颜色
+$nav-item-left-line-width: 3px !default; // 左侧标识线宽度
+$nav-item-left-line-color: $color-main !default; // 左侧标识线颜色
+$sidebar-icon-spacing: $spacing-small !default; // 图标与文字间距
+$sidebar-icon-size: 20px !default; // 分类图标大小
+$sidebar-icon-font-color: $color-secondary !default; // 分类图标颜色
+$sidebar-toolbar-color: $color-text-main !default; // 侧边工具栏文本颜色
+$sidebar-toolbar-bg: $sidebar-collapse-bg !default; // 侧边工具栏背景
+$sidebar-toolbar-height: 40px !default; // 侧边工具栏高度
+
+// 侧边栏: 容器
+.tw-sidebar {
+  width: $sidebar-width;
+  max-height: 100%;
+  line-height: $sidebar-lineheight;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: $sidebar-bg;
+}
+
+// 侧边栏: 导航项
+.tw-nav.xsidebar > li > a {
+  padding: $sidebar-py $sidebar-px $sidebar-py $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+  font-size: $nav-item-font-size;
+  color: $nav-item-color;
+
+  &:hover {
+    font-weight: 700;
+    color: $nav-item-hover-color;
+  }
+}
+// 侧边栏 导航 系统标题
+.tw-nav-appName{
+  min-height: 50px;
+  padding: $spacing-small $sidebar-px;
+  font-size: $font-size-medium;
+  font-weight: 700;
+  color: #8392a9;
+  border-bottom: 1px solid #2a3754;
+}
+
+.tw-nav-appName .tw-ico.xapp{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $sidebar-px;
+  display: none;
+  margin: auto;
+}
+.tw-body-inner.xcollapse .tw-nav-appName .xapp{
+  display: inline-block;
+}
+.tw-body-inner.xcollapse .tw-nav-appName{
+  padding-left: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+}
+.tw-body-inner > .tw-body-sidebar:hover .tw-nav-appName{
+  padding-left: $sidebar-px;
+}
+.tw-body-inner > .tw-body-sidebar:hover .tw-nav-appName .xapp{
+  display: none;
+}
+
+// 侧边栏: 导航项-激活状态 未含有二级导航
+.tw-nav.xsidebar > li > a.xactive {
+  font-weight: 700;
+  color: $nav-item-active-color;
+  background: $nav-item-active-bg;
+}
+// 侧边栏: 导航项-激活状态 含有二级导航
+.tw-nav.xsidebar > li > a.xactive.xopen{
+  background: transparent;
+
+}
+// 侧边栏: 导航项-激活状态-带标识线
+@if ($nav-item-left-line-width != 0 and $nav-item-left-line-width != "") {
+  .tw-nav.xsidebar > li > a.xactive:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $nav-item-left-line-width;
+    background: $nav-item-left-line-color;
+  }
+  .tw-nav.xsidebar > li > a.xactive.xopen:before {
+    display: none;
+  }
+}
+
+// 侧边栏: 无分隔线
+.tw-nav.xsidebar.xnoborder > li + li:before {
+  display: none;
+}
+
+// 侧边栏: 二级导航项
+.tw-nav.xsidebar .tw-collapse li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+  font-size: $font-size-default;
+  @include ellipsis;
+
+  &.xactive {
+    font-weight: 700;
+    background: $nav-item-active-bg;
+  }
+}
+
+// 侧边栏: 导航-图标
+.tw-nav.xsidebar > li > a > .tw-ico,
+.tw-nav.xsidebar > li > a > .tw-font {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $sidebar-px;
+  margin: auto;
+}
+
+// 侧边栏: 导航-字体图标
+.tw-nav.xsidebar > li > a > .tw-font {
+  width: $sidebar-icon-size;
+  height: $sidebar-icon-size;
+  line-height: 1;
+  font-size: $sidebar-icon-size;
+  color: $sidebar-icon-font-color;
+  white-space: nowrap;
+}
+
+.tw-nav.xsidebar > li > a:hover > .tw-font {
+  color: $nav-item-hover-color;
+}
+
+.tw-nav.xsidebar > li > a.xactive > .tw-font {
+  color: $nav-item-active-color;
+}
+
+// 侧边栏: 导航-箭头
+.tw-nav.xsidebar > li > a > .tw-arrow {
+  right: 15px;
+}
+
+// 侧边栏: 分隔线
+.tw-nav.xsidebar > li + li:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: $sidebar-px;
+  left: $sidebar-px;
+  height: 1px;
+  @if ($nav-item-divider-color != "") {
+    border-top: 1px dashed $nav-item-divider-color;
+  }
+}
+
+// 侧边栏: 折叠面板
+.tw-collapse.xsidebar {
+  background: $sidebar-collapse-bg;
+}
+
+.tw-collapse.xsidebar > .tw-nav.xsidebar > li:before {
+  display: none;
+}
+
+// 主体:侧边栏容器
+.tw-body-sidebar {
+  position: relative;
+  background: $sidebar-bg;
+  box-shadow: 0 3px 9px #999;
+}
+
+// 主体: 内部内容-带fix定位侧边栏
+.tw-body-inner.xfixsidebar {
+  padding-left: $sidebar-width + $spacing-medium;
+  transition: padding $time linear;
+  background: transparent;
+}
+
+.tw-body-inner.xfixsidebar.xnospacing {
+  padding-left: $sidebar-width;
+}
+
+.tw-body-inner.xfixsidebar > .tw-body-sidebar {
+  position: fixed;
+  top: $header-height;
+  bottom: $sidebar-toolbar-height;
+  left: 0;
+  z-index: 1000;
+  width: $sidebar-width;
+  overflow-x: hidden;
+  transition: width $time linear;
+}
+
+// 主体:侧边栏容器-折叠状态
+.tw-body-inner.xfixsidebar.xcollapse {
+  padding-left: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing + 20;
+}
+
+.tw-body-inner.xfixsidebar.xcollapse.xnospacing {
+  padding-left: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+}
+
+.tw-body-inner.xfixsidebar.xcollapse > .tw-body-sidebar {
+  width: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+
+  &:hover {
+    width: $sidebar-width;
+  }
+}
+
+// 主体:侧边栏容器-工具区
+.tw-body-sidebar-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: $sidebar-width;
+  height: $sidebar-toolbar-height;
+  line-height: $sidebar-toolbar-height;
+  color: $sidebar-toolbar-color;
+  text-align: center;
+  background: $sidebar-toolbar-bg;
+  border-top: 1px solid #cad8e6;
+  box-shadow: 0 3px 9px #999;
+  transition: width $time linear;
+}
+
+.tw-body-sidebar-toolbar.xeco {
+  border-top: none;
+  box-shadow: none;
+}
+
+.tw-body-sidebar-toolbar.xcollapse {
+  width: $sidebar-px + $sidebar-icon-size + $sidebar-icon-spacing;
+}
+
+.tw-body-sidebar:hover ~ .tw-body-sidebar-toolbar {
+  width: $sidebar-width;
+}

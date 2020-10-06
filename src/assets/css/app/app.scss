@@ -1,0 +1,25 @@
+﻿/* !------------------------------------------------------------
+* 项目通用css
+* ------------------------------------------------------------ */
+
+// 带灰色背景容器
+.tw-bgbox {
+    padding: $spacing-tiny;
+    margin-top: $spacing-step;
+    background: #edf2f7;
+    border-radius: 3px;
+}
+
+.tw-ico.xsmall {
+    transform: scale(.85);
+}
+
+.tw-ico.xtiny {
+    transform: scale(.65);
+}
+
+.tw-title.xfixed {
+    z-index: 3000;
+    padding: 10px 0;
+    background: #fff;
+}

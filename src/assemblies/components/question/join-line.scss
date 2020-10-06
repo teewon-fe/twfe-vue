@@ -1,0 +1,148 @@
+// ========= 试题：连线题 =========
+.tw-question-joinline {
+  position: relative;
+  margin: -$spacing-small (-$spacing-small) 0;
+}
+
+.tw-question-joinline-table {
+  position: relative;
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: $spacing-small;
+  border-collapse: separate !important;
+}
+
+.tw-question-joinline-table > tr > td {
+  position: relative;
+  z-index: 1;
+  padding: 0 $spacing-tiny !important;
+  // 加透明度的原因为避免连接项的边框线挡住连线本身，产生微小间断区的问题
+  border: 1px solid rgba(0, 0, 0, .25);
+  border-radius: 3px;
+}
+
+.tw-question-joinline-table > tr > td > .tw-question-optitem-content {
+  @if $app-type == mobile {
+    padding: 10px $spacing-step;
+  }
+
+  @if $app-type == web {
+    padding: 5px $spacing-step;
+  }
+}
+
+.tw-question-joinline-point {
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    margin-top: -4px;
+    background: rgba(0, 0, 0, .25);
+    border-radius: 50%;
+  }
+
+.tw-question-joinline-point.xleft {
+  left: 5px;
+}
+
+.tw-question-joinline-point.xright {
+    right: 5px;
+  }
+
+.tw-question-joinline-table > tr > td.xnocontent {
+  border-color: transparent;
+}
+
+.tw-question-joinline-table > tr > td.xnocontent .tw-question-joinline-point.xleft,
+.tw-question-joinline-table > tr > td.xnocontent .tw-question-joinline-point.xright {
+  display: none;
+}
+
+.tw-question-joinline > .tw-svgcanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tw-question-joinline > .tw-svgcanvas > .tw-svgcanvas-line {
+  stroke: $color-text-weaking;
+  stroke-width: 1.65px;
+  stroke-linecap: round;
+}
+
+.tw-question-joinline > .tw-svgcanvas > .tw-svgcanvas-line.xselected {
+  stroke: $question-select-color;
+}
+
+.tw-question-joinline > .tw-svgcanvas > .tw-svgcanvas-line.xwrong {
+  stroke: $question-wrong-color;
+}
+
+.tw-question-joinline > .tw-svgcanvas > .tw-svgcanvas-line.xright {
+  stroke: $question-right-color;
+}
+
+.tw-question-joinline-tools {
+  position: relative;
+  z-index: 2;
+  padding: 0 $spacing-small;
+  margin-top: -$spacing-tiny;
+  margin-bottom: $spacing-small;
+  font-size: 12px;
+  color: $color-text-weaking;
+  text-align: right;
+}
+
+// 试题：连线题-选中时的样式
+.tw-question-joinline-table > tr > td.xactive {
+  border-color: $color-main;
+}
+
+.tw-question-joinline-table > tr > td.xlactive > .tw-question-joinline-point.xleft {
+  background: $color-main;
+}
+
+.tw-question-joinline-table > tr > td.xractive > .tw-question-joinline-point.xright {
+  background: $color-main;
+}
+
+.tw-question-joinline-table > tr > td:first-child {
+  padding-left: 0;
+}
+
+.tw-question-joinline-table > tr > td:first-child > .tw-question-joinline-point.xleft {
+  display: none;
+}
+
+.tw-question-joinline-table > tr > td:last-child {
+  padding-right: 0;
+}
+
+.tw-question-joinline-table > tr > td:last-child > .tw-question-joinline-point.xright {
+  display: none;
+}
+
+.tw-question-joinline-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ========= 试题：解析项-统计 =========
+.tw-question-analysis-statistic {
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 0;
+}
+
+.tw-question-analysis-statistic-progress {
+  padding: 0 $spacing-tiny;
+}
+
+.tw-question-analysis-statistic-detail {
+  flex: 1;
+}

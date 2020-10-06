@@ -1,0 +1,22 @@
+.tw-card {
+  padding: 15px;
+  background: #fff;
+}
+
+.tw-card.xfull {
+  margin: 0 -15px;
+}
+
+.tw-card + .tw-card {
+  margin-top: $spacing-medium;
+}
+
+// card 无间距
+.tw-card.xnopd {
+  padding: 0
+}
+
+// card 圆角
+.tw-card.xradius{
+  border-radius: $border-radius-mobile;
+}

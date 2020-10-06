@@ -1,0 +1,66 @@
+/* 管理后台分页 */
+$admin-pagination-bg: #eff2f7 !default; // 背景
+
+// 容器
+.tw-adminpagination {
+  display: flex;
+  justify-content: space-between;
+  line-height: 20px;
+  padding: $spacing-step $spacing-tiny;
+  font-size: $font-size-small;
+  background: $admin-pagination-bg;
+  border: 1px solid $color-border-secondary;
+}
+
+// 左侧页码区
+.tw-adminpagination-left {
+  flex: 1;
+}
+
+// 右侧页码区
+.tw-adminpagination-right {
+  display: flex;
+}
+
+.tw-adminpagination-right > li {
+  padding: 0 7px;
+  border-left: 1px solid #ccc;
+
+  &:first-child {
+    border-left: none;
+  }
+}
+
+.tw-adminpagination-pagesize,
+.tw-adminpagination-currentpage {
+  display: inline-block;
+  height: 20px;
+  vertical-align: top;
+  background: #fff;
+  border: 1px solid #abadb3;
+}
+
+// 页面尺寸选择框
+.tw-adminpagination-pagesize {
+  min-width: 40px;
+  padding: 0 5px;
+}
+
+// 当前页输入框
+.tw-adminpagination-currentpage {
+  width: 30px;
+  text-align: center;
+}
+
+.tw-adminpagination-pagebtn:first-child {
+  margin-right: $spacing-step;
+}
+
+.tw-adminpagination-pagebtn.xdisabled {
+  @include disable;
+}
+
+// 位于表格之后
+.el-table + .tw-adminpagination {
+  margin-top: -1px;
+}

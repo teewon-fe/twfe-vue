@@ -1,0 +1,59 @@
+/* flex盒子 */
+$flexgrid-gutter-width: $spacing-medium !default; // 栅格间距
+
+// flex容器
+.tw-flex {
+  display: flex;
+}
+
+.tw-flex-body {
+  flex: 1;
+  min-width: 0;
+}
+
+// flex容器-所有项垂直居中对齐
+.tw-flex.xycenter {
+  align-items: center;
+}
+
+// flex容器-过滤区
+.tw-flex.xfilter {
+  margin-top: -25px;
+  margin-right: 0;
+  margin-bottom: $spacing-small;
+}
+
+.tw-crm + .tw-flex.xfilter {
+  margin-top: 0;
+}
+
+// flex容器-过滤区-二级导航下
+.tw-flex.xfilter.xnav2 {
+  margin-top: -5px;
+  margin-bottom: 15px;
+}
+
+// flex删格
+.tw-flexgrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 (-$flexgrid-gutter-width/2);
+}
+
+// flex删格-所有项垂直居中对齐
+.tw-flexgrid.xycenter {
+  align-items: center;
+}
+
+// flex删格-列
+.tw-flexgrid-col {
+  min-width: 0;
+  margin: $flexgrid-gutter-width / 2;
+}
+
+// flex删格-列-独占剩余空间
+.tw-flexgrid-col.xfull {
+  flex: 1;
+}
+

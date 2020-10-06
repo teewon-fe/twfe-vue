@@ -1,0 +1,163 @@
+// === 上传：容器 ===
+.tw-nuploader {
+  display: flex;
+}
+
+// === 上传：文件列表 ===
+.tw-filelist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// 文件列表: 图片容器
+.tw-filelist-item {
+  position: relative;
+  flex-shrink: 0;
+  width: 78px;
+  padding: 0;
+  margin: $spacing-step;
+  font-size: 0;
+}
+
+// 文件列表: 图片本身
+.tw-filelist-thumbnail {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+}
+
+// 文件列表: 图片工具
+.tw-filelist-tools {
+  position: absolute;
+  top: $spacing-tiny / 2;
+  right: $spacing-tiny / 2;
+}
+
+// 文件列表: 工具图标
+.tw-filelist-tools > .tw-ico {
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.tw-filelist-item .tw-addbtn {
+  width: 100%;
+  height: 76px;
+}
+
+.tw-nuploader .tw-filelist-tools {
+  top: 0;
+  right: -1px;
+}
+
+.tw-nuploader.xautosize .tw-filelist-item {
+  width: auto;
+}
+
+// 签字专用
+.tw-nuploader.xsign {
+  flex: 1;
+  align-items: center;
+}
+
+.tw-nuploader-singtext {
+  width: 80px;
+  font-size: $font-size-small;
+  color: $color-text-weaking;
+}
+
+.tw-nuploader-singtext:first-child {
+  text-align: left;
+}
+
+.tw-nuploader-singtext:last-child {
+  flex: 1;
+  text-align: right;
+}
+
+.tw-nuploader.xsign .tw-filelist-thumbnail {
+  width: auto;
+  max-width: 150px;
+  max-height: 36px;
+}
+
+.tw-nuploader.xsign .tw-filelist-tools {
+  right: -20px;
+}
+
+.tw-nuploader .tw-filelist-item > .tw-ico {
+  transform: scale(2.6);
+  transform-origin: top left;
+}
+
+.tw-nuploader-nvpopup {
+  display: flex;
+  padding: $spacing-large;
+  color: $color-text-weaking;
+  text-align: center;
+}
+
+.tw-nuploader-imgcover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .45);
+  transition: all $time linear;
+}
+
+.tw-nuploader-imgtip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-size: $font-size-small;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, .45);
+}
+
+.tw-nuploader-nvpopup > li {
+  flex: 1;
+}
+
+// stylelint-disable
+.van-popup.xuploader {
+  z-index: 3002 !important;
+}
+
+// 行内音频上传控件
+.xinneraudio > .tw-filelist {
+  flex-grow: 1;
+}
+
+.xinneraudio > .tw-filelist > .tw-filelist-item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  width: auto;
+  min-width: 80%;
+  margin-right: 0;
+}
+
+.xinneraudio > .tw-filelist > .tw-filelist-item.xadd {
+  width: 100%;
+}
+
+.xinneraudio > .tw-filelist > .tw-filelist-item > .tw-audio {
+  flex: 1;
+  transform-origin: left center;
+}
+
+.xinneraudio > .tw-filelist > .tw-filelist-item > .tw-filelist-tools {
+  position: relative;
+  align-self: center;
+}
+
+.xinneraudio > .tw-filelist .tw-audio-playbtn {
+  margin-bottom: 0;
+  vertical-align: top;
+}

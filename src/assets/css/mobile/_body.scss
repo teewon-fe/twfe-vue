@@ -1,0 +1,90 @@
+/* 主体 */
+$body-bg: $color-bg-body !default; // 背景色
+
+// 主体及主体内部内容区:容器
+.tw-body,
+.tw-body-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: $body-bg;
+}
+
+// body 白色背景
+.tw-body-inner.xbgwhite{
+  background:#fff;
+}
+
+.tw-body-inner {
+  padding: 0 $spacing-small;
+}
+
+.tw-body.xstatic {
+  position: static;
+}
+
+// 主体及主体内部内容区:可滚动
+.tw-body.xscroll,
+.tw-body-inner.xscroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// 主体:页面有头部时
+.tw-body.xheader {
+  top: $header-height;
+}
+
+.xnoheader .tw-body.xheader {
+  top: 0;
+}
+
+// 主体:页面有页脚时
+.tw-body.xfooter,
+.tw-body-inner.xfooter {
+  bottom: $footer-height;
+}
+
+// 主体:页面有卡片页脚时
+.tw-body.xfooter.xlarge,
+.tw-body-inner.xfooter.xlarge {
+  bottom: $footer-height + 10px;
+}
+
+// 主体及主体内部内容区:无背景
+.tw-body-inner.xnobg {
+  background: transparent;
+}
+
+// 主体及主体内部内容区:白色背景
+.tw-body.xbgwhite {
+  background: #fff;
+}
+
+// 主体:页面头部同时有tab导航时
+.tw-body.xwhite,
+.tw-body-inner.xwhite {
+  background: #fff;
+}
+
+.tw-basepage {
+  background: #fff;
+}
+
+// 带背景的容器
+.tw-body-inner-graybox {
+  padding:0 15px 10px 15px;
+  margin: 0 -15px;
+  background: $body-bg;
+}
+
+.tw-body.xfixconmedium.xheader {
+  top:$header-height + 102
+}
+
+.tw-body.xfixconsmall.xheader {
+  top:$header-height + 60
+}

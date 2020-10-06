@@ -1,0 +1,302 @@
+/* 步骤条 */
+$step-item-font-size: $font-size-small !default; // 文本大小
+$step-item-color: #8ba5c1 !default; // 文本色
+$step-item-border-color: #c4d8ec !default; // 边框色
+$step-no-bg: #fff !default; // 序号背景
+$step-no-done-bg:  $color-main !default; // 序号背景(完成)
+$step-no-active-bg:  $color-main !default; // 序号背景(激活)
+$step-no-size: 20px !default; // 序号大小
+$step-no-font-size: $font-size-small !default; // 序号字体大小
+$step-arrow-px: $spacing-medium !default; // 箭头最小间距
+$step-arrow-color: #8ba5c1 !default; // 箭头颜色
+$step-stripe-size: 24px !default; // 条带高度
+$step-stripe-bg: #d4ebff !default; // 条带背景
+$step-stripe-disabled-bg: #eef7ff !default; // 条带禁用背景
+$step-stripe-border-color: #fff !default; // 头带边框颜色
+$step-stripe-done-bg: #4fa026 !default; // 条带激活背景
+$step-stripe-active-bg: $color-secondary !default; // 条带激活背景
+$step-done-color: $color-main !default; // 完成文本色
+$step-active-bg: $color-main !default; // 激活背景色
+$step-active-color: $color-main !default; // 激活文本色
+$step-reverse: #fff !default; // 激活反转色
+$round-step-px: $spacing-medium !default; // 圆形步骤间距
+$big-round-steps-spacing: 50px !default;  // 大圆步骤条左右两侧空间
+$big-round-size: 100px !default; // 大圆尺寸
+$big-round-bg: #b0cdeb !default; // 大圆背景
+$big-round-color: #fff !default; // 大圆背景
+$big-round-done-bg: #47ca72 !default; // 大圆完成背景
+$big-round-done-color: #fff !default; // 大圆完成文本色
+$big-round-active-bg: $color-main !default; // 大圆激活背景
+$big-round-active-color: #fff !default; // 大圆激活文本色
+$big-round-border-width: 10px !default; // 大圆边框宽度
+$big-round-border-color: #dcedff !default; // 大圆边框颜色
+
+// 步骤条: 容器
+.tw-steps {
+  display: flex;
+  align-items: center;
+}
+
+// 步骤条: 步骤项
+.tw-steps-item {
+  font-size: $step-item-font-size;
+  color: $step-item-color;
+
+  &.xactive {
+    color: $step-active-color;
+  }
+
+  &.xdone {
+    color: $step-done-color;
+  }
+}
+
+// 步骤条: 箭头
+.tw-steps-arrow {
+  flex-grow: 1;
+  padding: 0 $step-arrow-px;
+  text-align: center;
+}
+
+.tw-steps-arrow:after {
+  content: "";
+  @include arrow(right, 10px, 1px, $step-arrow-color);
+}
+
+// 步骤条: 序号
+.tw-steps-no {
+  display: inline-block;
+  width: $step-no-size;
+  height: $step-no-size;
+  line-height: $step-no-size - 2;
+  font-size: $step-no-font-size;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  background: $step-no-bg;
+  border: 1px solid $step-item-border-color;
+  border-radius: 50%;
+}
+
+.tw-steps-item.xdone > .tw-steps-no {
+  border-color: $step-no-done-bg;
+}
+
+.tw-steps-item.xactive > .tw-steps-no {
+  color: $step-reverse;
+  background: $step-no-active-bg;
+  border-color: $step-active-bg;
+}
+
+// ------------------------------ 步骤条: 条带式 ------------------------------
+.tw-steps.xstripe {
+  align-items: stretch;
+  height: $step-stripe-size;
+  line-height: $step-stripe-size;
+  padding-right: $step-stripe-size;
+  overflow: hidden;
+}
+
+// 步骤条: 条带式-步骤项
+.tw-steps.xstripe > .tw-steps-item {
+  position: relative;
+  flex: 1;
+  padding: 0 $step-stripe-size;
+  text-align: center;
+  background: $step-stripe-bg;
+  white-space: nowrap;
+
+  &.xdone {
+    color: $step-reverse;
+    background: $step-stripe-done-bg;
+  }
+
+  &.xactive {
+    color: $step-reverse;
+    background: $step-stripe-active-bg;
+  }
+}
+
+// 步骤条: 条带式-箭头
+.tw-steps.xstripe > .tw-steps-item:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -$step-stripe-size / 2;
+  width: $step-stripe-size;
+  height: $step-stripe-size;
+  text-align: center;
+  background: $step-stripe-bg;
+  border-right: 3px solid $step-stripe-border-color;
+  border-bottom: 3px solid $step-stripe-border-color;
+  border-radius: 5px;
+  transform: rotate(-43deg);
+}
+
+// 步骤条: 条带式-禁用效果
+.tw-steps.xstripe > .tw-steps-item.xdisabled,
+.tw-steps.xstripe > .tw-steps-item.xdisabled:after {
+  color: $color-text-disabled;
+  cursor: not-allowed;
+  background: $step-stripe-disabled-bg;
+}
+
+// 步骤条: 条带式-箭头-最后一个步骤项
+.tw-steps.xstripe > .tw-steps-item:last-child:after {
+  right: -$step-stripe-size / 2;
+  border: none;
+}
+
+// 步骤条: 条带式-箭头-完成
+.tw-steps.xstripe > .tw-steps-item.xdone:after {
+  background: $step-stripe-done-bg;
+}
+
+// 步骤条: 条带式-箭头-激活
+.tw-steps.xstripe > .tw-steps-item.xactive:after {
+  background: $step-stripe-active-bg;
+}
+
+// ------------------------------ 步骤条: 圆形 ------------------------------
+// 步骤条: 圆形-步骤项
+.tw-steps.xround {
+  align-items: flex-start;
+  margin-left: $step-no-size / 2;
+}
+
+.tw-steps.xround > .tw-steps-item {
+  position: relative;
+  flex: 1;
+}
+
+.tw-steps.xround > .tw-steps-item > .tw-steps-no {
+  position: relative;
+  z-index: 1;
+  margin-left: $step-no-size  / -2;
+}
+
+// 步骤条: 圆形-步骤线
+.tw-steps.xround > .tw-steps-item:after {
+  content: "";
+  position: absolute;
+  top: $step-no-size / 2 - 1;
+  right: 0;
+  left: 0;
+  border-top: 2px solid $step-item-border-color;
+}
+
+.tw-steps.xround > .tw-steps-item.xdone:after {
+  border-top-color: $step-active-bg;
+}
+
+// 步骤条: 步骤文本区
+.tw-steps-text {
+  padding-right: $round-step-px;
+}
+
+.tw-steps-text > label {
+  white-space: nowrap;
+}
+
+.tw-steps-text > p {
+  font-size: $step-item-font-size - 2px;
+}
+
+// 步骤条: 圆形-最后一个步骤
+.tw-steps.xround > .tw-steps-item:last-child {
+  flex: 0;
+  flex-basis: $step-no-size / 2;
+  width: $step-no-size;
+  text-align: right;
+}
+
+.tw-steps.xround > .tw-steps-item:last-child:after {
+  clear: both;
+}
+
+.tw-steps.xround > .tw-steps-item:not(:first-child) > .tw-steps-text {
+  padding: 0 $round-step-px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.tw-steps.xround > .tw-steps-item:first-child > .tw-steps-text {
+  width: 50%;
+  margin-left: $step-no-size / -2;
+}
+
+.tw-steps.xround > .tw-steps-item:last-child > .tw-steps-text {
+  float: right;
+  padding: 0;
+  margin-left: $step-no-size / -2;
+  text-align: right;
+  transform: none;
+}
+
+// ------------------------------ 步骤条: 大圆型 ------------------------------
+// stylelint-disable
+// 步骤条：大圆型-容器
+.tw-steps.tw-steps.xround.xlarge {
+  padding: 0 $big-round-steps-spacing;
+  margin-left: $big-round-size / 2;
+}
+
+// 步骤条: 大圆型-序号
+.tw-steps.xround.xlarge .tw-steps-no {
+  width: $big-round-size;
+  height: $big-round-size;
+  line-height: $big-round-size - $big-round-border-width * 2;
+  margin-left: $big-round-size / -2;
+  color: $big-round-color;
+  background: $big-round-bg;
+  border: $big-round-border-width solid $big-round-border-color;
+}
+
+// 步骤条: 大圆型-序号-完成
+.tw-steps.xround.xlarge > .tw-steps-item.xdone > .tw-steps-no {
+  color: $big-round-done-color;
+  background: $big-round-done-bg;
+}
+
+// 步骤条: 大圆型-序号-激活
+.tw-steps.xround.xlarge > .tw-steps-item.xactive > .tw-steps-no {
+  color: $big-round-active-color;
+  background: $big-round-active-bg;
+}
+
+// 步骤条: 大圆型-序号偏移量
+.tw-steps.xround.xlarge > :not(:first-child) > .tw-steps-no {
+  margin-left: $big-round-size  / -2;
+}
+
+// 步骤条: 大圆型-步骤线
+.tw-steps.xround.xlarge > .tw-steps-item:after {
+  top: $big-round-size / 2 - 1;
+  border-top-width: 4px;
+  border-top-style: dotted;
+}
+
+// 步骤条: 大圆型-第1步-步骤线
+.tw-steps.xround.xlarge > .tw-steps-item:first-child:after {
+  left: -$big-round-steps-spacing - $big-round-size / 2;
+}
+
+// 步骤条: 大圆型-收尾文本区调整
+.tw-steps.xround.xlarge > .tw-steps-item:first-child > .tw-steps-text,
+.tw-steps.xround.xlarge > .tw-steps-item:last-child > .tw-steps-text {
+  float: none;
+  width: $big-round-size + $big-round-steps-spacing * 2 !important;
+  padding: 0 !important;
+  margin-left: $big-round-size / -2 - $big-round-steps-spacing;
+  text-align: center !important;
+}
+
+// 步骤条: 大圆型-最后1步-flex计算宽度
+.tw-steps.xround.xlarge > .tw-steps-item:last-child {
+  flex-basis: $big-round-size / 2;
+}
+
+// 步骤条: 大圆型-最后1步-步骤线
+.tw-steps.xround.xlarge > .tw-steps-item:last-child:after {
+  right: -$big-round-steps-spacing;
+}

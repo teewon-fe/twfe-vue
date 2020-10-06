@@ -1,0 +1,174 @@
+@import "../question/question-mobile.scss";
+
+// ========= 试题列表 =========
+.tw-qlist {
+  padding: $spacing-step 0;
+}
+
+// ========= 试题号 =========
+.tw-qno {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  background: #c9d7e3;
+  border-radius: 3px;
+}
+
+// 试题号：完成
+.tw-qno.xdone {
+  background: $question-select-color;
+}
+
+// 试题号：正确
+.tw-qno.xright {
+  background: $question-right-color;
+}
+
+// 试题号：错误
+.tw-qno.xwrong {
+  background: $question-wrong-color;
+}
+
+// ========= 试题号卡片 =========
+// 试题号卡片: 容器
+.tw-qncard {
+  padding: 0 $spacing-tiny;
+}
+
+// 试题号列表: 头部
+.tw-qncard-header {
+  line-height: 45px;
+  color: $color-text-weaking;
+  text-align: center;
+  border-bottom: .5px solid #eee;
+}
+
+// stylelint-disable selector-class-pattern
+.tw-qncard-header .van-radio-group {
+  display: flex;
+  justify-content: center;
+}
+
+.tw-qncard-header .van-radio__label {
+  line-height: 45px;
+}
+
+// 试题号列表: 主体
+.tw-qncard-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 320px;
+  padding: $spacing-tiny 0;
+  margin: 0 (-$spacing-step);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &:after {
+    content: "";
+    flex: 1;
+  }
+}
+
+// 试题号列表: 头部
+.tw-qncard-body > .tw-qno {
+  margin: $spacing-tiny;
+}
+
+// 试题号列表: 文本-激活
+.tw-ancard-activetext {
+  color: $question-select-color;
+}
+
+// 试题号列表: 文本-正确
+.tw-ancard-righttext {
+  color: $question-right-color;
+}
+
+// 试题号列表: 文本-错误
+.tw-ancard-wrongtext {
+  color: $question-wrong-color;
+}
+
+// ========= 试题号列表: 进度条 =========
+.tw-qnprogress {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 100%;
+  height: 13px;
+}
+
+.tw-qnprogress-main,
+.tw-qnprogress-value {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+// 试题号列表: 进度条-主体
+.tw-qnprogress-main {
+  width: 100%;
+  height: 1px;
+  background: #d5dfef;
+}
+
+// 试题号列表: 进度条-值
+.tw-qnprogress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 2.5px;
+  background: #4ebd65;
+}
+
+.tw-qnprogress-value:before,
+.tw-qnprogress-value:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.tw-qnprogress-value:before {
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #4ebd65;
+  opacity: .2;
+}
+
+.tw-qnprogress-value:after {
+  width: 8px;
+  height: 8px;
+  background: #4ebd65;
+}
+
+// stylelint-disable selector-class-pattern
+.tw-footer.xqncard {
+  z-index: 3000;
+  flex-wrap: wrap;
+  border-top: none;
+}
+
+.tw-footer.xqncard > div.xqnprogress {
+  width: 100%;
+}
+
+.tw-footer.xqncard > .tw-footer-item {
+  padding-top: 3px;
+}
+
+.van-popup.xqncard {
+  bottom: 50px;
+}
+

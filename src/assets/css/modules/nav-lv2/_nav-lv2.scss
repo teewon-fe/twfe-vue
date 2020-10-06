@@ -1,0 +1,64 @@
+/* 二级导航 */
+$nav-lv2-mb: $spacing-medium !default; // 二级导航底部间距
+$nav-lv2-bg: #f2f9fe !default; // 二级导航背景
+$nav-lv2-shadow-color: $color-border-secondary !default; // 二级导航投影颜色
+$nav-lv2-line-height: 50px !default; // 二级导航项行高
+$nav-lv2-item-px: $spacing-medium !default; // 二级导航项文本颜色
+$nav-lv2-item-color: $color-text-secondary !default; // 二级导航项文本颜色
+$nav-lv2-item-hover-color: $color-main-hover !default; // 二级导航项滑过颜色
+$nav-lv2-item-active-color: $color-main-hover !default; // 二级导航项激活颜色
+
+// 导航-二级
+.tw-nav.xlv2 {
+  line-height: $nav-lv2-line-height;
+  margin-bottom: $nav-lv2-mb;
+  text-align: center;
+  background-color: $nav-lv2-bg;
+  @if ($nav-lv2-shadow-color != "") {
+    box-shadow: 0 3px 6px $nav-lv2-shadow-color;
+  }
+}
+
+.tw-nav.xlv2 > li {
+  display: inline-block;
+  padding: 0 $nav-lv2-item-px;
+  vertical-align: top;
+}
+
+.tw-nav.xlv2 a {
+  position: relative;
+  padding: 0;
+  color: $nav-lv2-item-color;
+
+  &:hover {
+    color: $nav-lv2-item-hover-color;
+  }
+
+  &.xactive {
+    color: $nav-lv2-item-active-color;
+  }
+}
+
+.tw-nav.xlv2 a.xactive:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: $nav-lv2-item-active-color;
+}
+
+/* 导航-作为collapse控件的开关时 */
+.tw-nav a > .tw-arrow {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  margin: auto;
+  transition: all $time linear;
+}
+
+.tw-nav > li > a.xopen > .tw-arrow {
+  transform: rotate(45deg) translateY(-2px);
+}

@@ -1,0 +1,113 @@
+/* 图片预览 */
+$previewer-bg: rgba(0, 0, 0, .4) !default; // 背景
+$previewer-title-height: 40px !default; // 图片标题高度
+
+body.xpreviewer {
+  overflow: hidden;
+}
+
+.tw-previewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  padding-bottom: $previewer-title-height;
+  background: $previewer-bg;
+}
+
+.tw-previewer-prev {
+  left: 0;
+}
+
+.tw-previewer-next {
+  right: 0;
+}
+
+.tw-previewer-body {
+  width: 100%;
+  height: 100%;
+}
+
+.tw-previewer-imgbox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: $previewer-title-height;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.tw-previewer-dragbox {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  @include center-y;
+}
+
+.tw-previewer-dragbox > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tw-previewer-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $previewer-title-height;
+  line-height: $previewer-title-height;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, .8);
+}
+
+.tw-previewer-tools > a {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 10px;
+  background: rgba(0, 0, 0, .4);
+  opacity: .85;
+
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.tw-previewer-close {
+  right: 0;
+}
+
+.tw-previewer-rotate {
+  right: 60px;
+}
+
+.tw-previewer-zoomup {
+  right: 120px;
+}
+
+.tw-previewer-zoomdown {
+  right: 180px;
+}
+
+.tw-previewer-prev,
+.tw-previewer-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 70px;
+  height: 120px;
+  text-align: center;
+  background: rgba(0, 0, 0, .4);
+  transform: translateY(-50%);
+}
+
+.tw-previewer-prev .tw-ico.xipvprev,
+.tw-previewer-next .tw-ico.xipvnext{
+  margin-top: 27px;
+}

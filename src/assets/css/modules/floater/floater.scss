@@ -1,0 +1,33 @@
+/* 侧边浮动 */
+$floater-width: 82px !default; // 宽度
+$floater-spacing: 10px !default; // 与主内容的距离
+
+// 侧边浮动-容器
+.tw-floater {
+  position: fixed;
+  bottom: 60px;
+  width: $floater-width;
+}
+
+// 侧边浮动-左悬浮
+.tw-floater.xleft {
+  left: $floater-spacing;
+
+  @media (min-width: map-get($map: $media-breakpoints, $key: pc) + ($floater-width + $floater-spacing) * 2) {
+    left: 50%;
+    margin-left: map-get($map: $container-widths, $key: pc) / -2 - $floater-width - $floater-spacing;
+  }
+}
+
+// 侧边浮动-右悬浮
+.tw-floater.xright {
+  right: $floater-spacing;
+
+  @media (min-width: map-get($map: $media-breakpoints, $key: pc) + ($floater-width + $floater-spacing) * 2) {
+    right: auto;
+    left: 50%;
+    margin-left: map-get($map: $container-widths, $key: pc) / 2 + $floater-spacing;
+  }
+}
+
+

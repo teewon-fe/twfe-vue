@@ -1,0 +1,66 @@
+.tw-player {
+  position: relative;
+  display: inline-block;
+}
+
+.tw-player > .tw-ico.xplaudio {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  display: none;
+  margin: auto;
+}
+
+.tw-player-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(0, 0, 0, .9);
+}
+
+.tw-player-cover-inner {
+  height: 50px;
+  color: #409eff;
+  text-align: center;
+  transition: all .2s linear;
+}
+
+.tw-player-cover:hover > .tw-player-cover-inner {
+  transform: scale(1.05);
+}
+
+.tw-player-cover-text {
+  margin-top: 5px;
+}
+
+// stylelint-disable
+.tw-player .video-js .vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  width: 1.6em;
+  height: 1.6em;
+  margin-top: -.8em;
+  margin-left: -.8em;
+  border-radius: 50%;
+}
+
+.vjs-has-started + .tw-ico.tw-ico.xplaudio {
+  display: block;
+}
+
+.vjs-paused .vjs-big-play-button {
+  display: block;
+}
+
+.tw-player.xaudio .vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  opacity: 1 !important;
+}

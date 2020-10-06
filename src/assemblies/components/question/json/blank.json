@@ -1,0 +1,129 @@
+{
+  "errorId": null,
+  "questionParentId": "CNBJTW0200002028401",
+  "itemList": [],
+  "note": "",
+  "questionType": "4",
+  "typeLevelLabelId": "4",
+  "noteFileList": [],
+  "fileList": [],
+  "itemEmpty": "0",
+  "answerList": [
+    {
+      "sequenceNo": "0",
+      "content": "敲醒",
+      "score": "1.000000"
+    },
+    {
+      "sequenceNo": "1",
+      "content": "访问",
+      "score": "1.000000"
+    },
+    {
+      "sequenceNo": "2",
+      "content": "举起",
+      "score": "1.000000"
+    },
+    {
+      "sequenceNo": "3",
+      "content": "网住",
+      "score": "1.000000"
+    }
+  ],
+  "defaultScore": "4.0",
+  "typeLevelLabelName": null,
+  "title": "写出第<font family=\"Times New Roman\">2</font>小节中表示动作的词语，分别是 #BLANK# #BLANK# #BLANK# #BLANK#",
+  "degreeName": null,
+  "degree": null,
+  "questionTypeName": null,
+  "questionId": "CNBJTW0200002032219",
+  "refertimes": null,
+  "childQuestionList": null,
+  "statis": {
+    "totalAnswer": 3,
+    "totalRightAnser": 33,
+    "commonMistake": ""
+  },
+  "isSubjective": 1,
+  "creator": null
+}
+
+{
+  "questionId": "CNBJTW0200002026921",
+  "publishId": "CJTWBS1S600000257359",
+  "orderNo": "3",
+  "childId": "",
+  "studentId": "E000001P200000135897",
+  "typeLevel": "4",
+  "answerList": [
+    {
+      "questionId": "CNBJTW0200002026921",
+      "sequenceNo": 0,
+      "userAnswer": "3a"
+    },
+    {
+      "questionId": "CNBJTW0200002026921",
+      "sequenceNo": 1,
+      "userAnswer": "3b"
+    },
+    {
+      "questionId": "CNBJTW0200002026921",
+      "sequenceNo": 2,
+      "userAnswer": "3d"
+    },
+    {
+      "questionId": "CNBJTW0200002026921",
+      "sequenceNo": 3,
+      "userAnswer": "3c"
+    }
+  ],
+  "attachmentList": []
+}
+
+{
+  "childId": "CNBJTW0200002032219",
+  "result": "2",
+  "questionId": "CNBJTW0200002028401",
+  "orderNo": "1",
+  "isSubjective": 1,
+  "spendTime": null,
+  "errorId": null,
+  "publishId": "CJTWBS1S600000257358",
+  "studentId": "E000001P200000135897",
+  "paperResultId": "CJTWBS1S600015709463",
+  "score": 4,
+  "answer": "1a",
+  "typeLevel": "4",
+  "answerCount": 0,
+  "correctRate": 0,
+  "commonMistakeAnswer": "",
+  "attachmentList": [],
+  "answerList": [
+    {
+      "sequenceNo": 0,
+      "userAnswer": "1a",
+      "score": 1,
+      "result": "2"
+    },
+    {
+      "sequenceNo": 1,
+      "userAnswer": "1b",
+      "score": 1,
+      "result": "2"
+    },
+    {
+      "sequenceNo": 2,
+      "userAnswer": "1c",
+      "score": 1,
+      "result": "2"
+    },
+    {
+      "sequenceNo": 3,
+      "userAnswer": "1d",
+      "score": 1,
+      "result": "2"
+    }
+  ],
+  "answerSource": "0"
+}
+

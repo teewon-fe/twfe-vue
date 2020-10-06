@@ -1,0 +1,72 @@
+/* 普通布局 */
+$body-content-bm: $spacing-large !default; // 主体底部外间距
+$body-content-px: $spacing-medium !default; // 主体左右内间距
+$body-content-py: $spacing-medium !default; // 主体上下内间距
+$body-content-bg: $color-bg-content !default; // 主体背景
+$body-content-radius: 0 !default; // 主体圆角
+$body-sidebar-mr: $spacing-medium !default; // 侧边栏右侧间隙
+
+// 应用容器: 管理后台
+.tw-app.xadmin {
+  background: #e9ecee;
+}
+
+// 主体容器
+.tw-body {
+  margin-bottom: $spacing-large;
+}
+
+.tw-body.xadmin {
+  position: relative;
+  z-index: 1;
+}
+
+// 主体内容区
+.tw-body-inner,
+.tw-body-flexinner {
+  position: relative;
+  min-height: 450px;
+  @if ($body-content-radius != 0) {
+    border-radius: $body-content-radius;
+  }
+
+  @if ($app-type == web) {
+    @include make-container();
+  }
+}
+
+.tw-body-inner {
+  padding: $body-content-py $body-content-px;
+  background: $body-content-bg;
+}
+
+// 主体内容：仅做为容器
+.tw-body-inner.xcontainer {
+  padding: 0;
+  background: transparent;
+}
+
+// 主体内容：flex布局
+.tw-body-flexinner {
+  display: flex;
+}
+
+// 主体容器：全屏
+.tw-body.xfull > .tw-body-inner,
+.tw-body.xfull > .tw-body-flexinner {
+  width: 100%;
+}
+
+// 主体内容区-用flex布局
+.tw-body-content {
+  flex: 1;
+  min-height: 450px;
+  padding: $spacing-medium;
+  background: $body-content-bg;
+  border-radius: 5px;
+}
+
+// 主体内容区：包含的多列布局
+.tw-body-inner > .tw-multicol {
+  margin: -$body-content-px;
+}

@@ -1,0 +1,43 @@
+/* 编辑器 */
+$editor-mb: $spacing-large !default; // 编辑器下边距
+$editor-body-height: 90px !default; // 编辑区高度
+$editor-body-border-color: $color-border-control !default; // 编辑区边框颜色
+$editor-body-focus-border-color: $color-main !default; // 编辑区选中边框色
+$editor-body-padding: $spacing-step !default; // 编辑区内边距
+$editor-body-font-size: $font-size-default !default; // 编辑区字体大小
+$editor-body-mb: $spacing-tiny !default; // 编辑区下边距
+
+// 编辑器: 主容器
+.tw-editor {
+  margin-bottom: $editor-mb;
+}
+
+// 编辑器: 编辑区
+.tw-editor-body {
+  display: block;
+  width: 100%;
+  height: $editor-body-height;
+  padding: $editor-body-padding;
+  margin-bottom: $editor-body-mb;
+  overflow-y: auto;
+  font-size: $editor-body-font-size;
+  border: 1px solid $editor-body-border-color;
+
+  &:focus {
+    border-color: $editor-body-focus-border-color;
+    outline: none;
+  }
+}
+
+// 编辑器: 工具栏
+.tw-editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 编辑器: 字数统计
+.tw-editor-length {
+  margin-right: $spacing-step;
+  font-size: $font-size-small;
+  color: $color-text-secondary;
+}

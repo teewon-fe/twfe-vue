@@ -1,0 +1,38 @@
+// 导航-列表
+.tw-nav > li {
+  position: relative;
+}
+
+// 导航-水平
+.tw-nav.xhorizontal {
+  @include clearfix;
+}
+
+.tw-nav.xhorizontal > li {
+  float: left;
+}
+
+.tw-nav > li > a {
+  position: relative;
+  display: block;
+}
+
+.tw-nav > li > a > .tw-ico,
+.tw-nav > li > a > .tw-font {
+  line-height: 1;
+  margin-right: 3px;
+}
+
+/* 导航-作为collapse控件的开关时 */
+.tw-nav > li > a > .tw-arrow {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  margin: auto;
+  transition: all $time linear;
+}
+
+.tw-nav > li > a.xopen > .tw-arrow {
+  transform: rotate(45deg) translateY(-2px);
+}

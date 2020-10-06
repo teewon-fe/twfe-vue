@@ -1,0 +1,83 @@
+// 搜索框：容器
+.tw-search {
+  display: inline-flex;
+  width: 250px;
+  height: $ctr-height-default;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid $color-border-control;
+  border-radius: $ctr-height-default / 2;
+}
+
+// 搜索框：输入文本框容器
+.tw-search-inputbox {
+  flex: 1;
+}
+
+// 搜索框：输入文本框
+.tw-search-inputbox > input {
+  width: 100%;
+  height: 100%;
+  line-height: $ctr-height-default / 2 - 2;
+  padding: 0 $spacing-tiny;
+  border: none;
+}
+
+// 搜索框：搜索按钮
+.tw-search-btnbox {
+  position: relative;
+  width: 41.5px;
+  text-align: center;
+  cursor: pointer;
+  @include center-y();
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 0;
+    width: 1px;
+    background: $color-border-control;
+  }
+}
+
+.tw-search-btnbox > .tw-ico {
+  transform: scale(.83);
+}
+
+// 搜索框-小
+.tw-search.xsmall {
+  height: $ctr-height-small;
+  border-radius: $ctr-height-small / 2;
+}
+
+.tw-search.xsmall > .tw-search-inputbox > input {
+  line-height: $ctr-height-small / 2 - 2;
+}
+
+.tw-search.xsmall > .tw-search-btnbox {
+  width: 33px;
+}
+
+.tw-search.xsmall > .tw-search-btnbox > .tw-ico {
+  transform: scale(.66);
+}
+
+// 搜索框-中
+.tw-search.xmedium {
+  height: $ctr-height-medium;
+  border-radius: $ctr-height-medium / 2;
+}
+
+.tw-search.xmedium > .tw-search-inputbox > input {
+  line-height: $ctr-height-medium / 2 - 2;
+}
+
+.tw-search.xmedium > .tw-search-btnbox {
+  width: 50px;
+}
+
+.tw-search.xmedium > .tw-search-btnbox > .tw-ico {
+  transform: scale(1);
+}

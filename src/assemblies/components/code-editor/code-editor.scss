@@ -1,0 +1,161 @@
+/* 代码编辑器 */
+
+// 代码编辑器: 容器
+.tw-codeeditor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tw-codeeditor.xborder {
+  border: 1px solid $color-border-main;
+}
+
+.el-form-item__content > .tw-codeeditor {
+  line-height: $line-height-default;
+}
+
+// 代码编辑器: 工具区
+.tw-codeeditor-tools {
+  padding: 0 $spacing-small;
+  border-bottom: 1px solid $color-border-secondary;
+}
+
+.tw-codeeditor-tools > .tw-iconbtn {
+  padding: 12px;
+}
+
+// 代码编辑器: 代码区
+.tw-codeeditor-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tw-codeeditor.xsmall > .tw-codeeditor-body {
+  height: 100px;
+}
+
+// 代码编辑器: 分隔条
+.tw-codeeditor-separator {
+  z-index: 1;
+  height: 6px;
+  margin: -3px 0;
+  cursor: n-resize;
+}
+
+// 代码编辑器: 日志区
+.tw-codeeditor-logo {
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  margin-right: $spacing-large;
+}
+
+.tw-codeeditor-logo-header {
+  height: 30px;
+  background: #fafafa;
+}
+
+.tw-codeeditor-logo-body {
+  flex: 1;
+  padding: $spacing-medium;
+  overflow: auto;
+  @include scroll(8px, transparent, transparent, #d6dde5);
+}
+
+.tw-codeeditor-logo-body .el-table {
+  margin-top: -1px;
+}
+
+.tw-codeeditor-logo.xcollapse {
+  height: 30px !important;
+}
+
+.tw-codeeditor-logo.xcollapse > .tw-codeeditor-logo-body {
+  display: none;
+}
+
+// tab选项卡: 编辑器
+.tw-tabs.xeditor {
+  padding: 0 0 0 $spacing-medium;
+  margin-bottom: 0;
+}
+
+.tw-tabs.xeditor > li {
+  font-size: $font-size-small;
+}
+
+.tw-tabs.xeditor > li > a {
+  padding: 5px $spacing-tiny;
+  border-bottom-width: 2px;
+}
+
+// tab选项卡: 页面内容-非文件夹要空出右侧边栏距离
+.tw-tabs.xcode {
+  margin-right: 30px;
+}
+
+.tw-collapse.xpage.xcode {
+  padding-right: 30px;
+}
+
+// -------------------- 重置codemirror --------------------
+// stylelint-disable
+.tw-codeeditor-body > .CodeMirror {
+  flex: 1;
+}
+
+.CodeMirror-gutters {
+  background: #fafafa;
+}
+
+.CodeMirror-vscrollbar {
+  @include scroll(8px, transparent, transparent, #d6dde5);
+}
+
+.CodeMirror-hscrollbar {
+  @include scroll(8px, transparent, transparent, #d6dde5);
+}
+
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  font-family: Consolas, 'Courier New', monospace;
+}
+
+/* DEFAULT THEME */
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-keyword {color: blue;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+.CodeMirror-composing { border-bottom: 2px solid; }

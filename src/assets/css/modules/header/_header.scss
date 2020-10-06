@@ -1,0 +1,257 @@
+/* 头部 */
+$header-zindex: $zindex-high !default; // 头部图层索引
+$header-height: 60px !default; // 头部高度
+$header-line-height: $header-height !default; // 头部行高
+$header-font-size: $font-size-default !default; // 字体尺寸
+$header-bg: $color-main !default; // 头部背景
+$header-color: $color-text-inverse !default; // 文字颜色
+$header-mb: $spacing-medium !default; // 底部间距
+$header-title-font-size: $font-size-medium !default; // logo区标题字体大小
+$header-title-color: $header-color !default; // 标题文本颜色
+$header-title-pl: $spacing-small !default; // 标题左间距
+$header-left-mr: $spacing-medium !default; // logo区右间距
+$header-navlink-hover-bg: $color-main-hover !default; // 头部导航滑过背景色
+$header-navlink-hover-color: $color-text-inverse !default; // 头部导航滑过文字颜色
+$header-navlink-active-bg: $color-main-active !default; // 头部导航选中背景颜色
+$header-navlink-active-color: $color-text-inverse !default; // 头部导航选中文字颜色
+$header-navlink-px: $spacing-small !default; // 头部导航间距
+$header-nav-link-line-height: $line-height-default !default; // 头部链接行高
+$header-menu-line-height: 36px !default; // 头部下拉菜单行高
+$header-navlink-menu-bg: $header-navlink-hover-bg !default; // 头部下拉框背景色
+
+// 头部-容器
+.tw-header {
+  position: relative;
+  z-index: $header-zindex;
+  height: $header-height;
+  line-height: $header-line-height;
+  margin-bottom: $header-mb;
+  font-size: $header-font-size;
+  color: $header-color;
+  background: $header-bg;
+}
+
+// vue根元素
+.tw-app.xfixheader {
+  padding-top: $header-height;
+}
+
+// 头部: 容器-固定在顶部显示
+.tw-header.xfix,
+.tw-app.xfixheader > .tw-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+// 头部-内部内容区
+.tw-header-inner {
+  display: flex;
+  @if $app-type == web {
+    @include make-container();
+  }
+  @else {
+    @include make-container();
+  }
+}
+
+// 头部: 全尺寸-内部内容区
+.tw-header.xfull > .tw-header-inner {
+  width: 100%;
+  padding-left: $spacing-small;
+}
+
+// 头部-左侧内容区(logo及站点名称等)
+// 头部-主体
+.tw-header-left,
+.tw-header-body {
+  height: $header-height;
+}
+
+.tw-header-left {
+  margin-right: $header-left-mr;
+  font-size: 0;
+  color: $header-color;
+}
+
+.tw-header-body {
+  flex: 1;
+}
+
+.tw-header-left img {
+  max-width: 90px;
+  max-height: 40px;
+}
+
+// 头部-标题
+.tw-header-title {
+  display: inline-block;
+  padding-left: $header-title-pl;
+  font-size: $header-title-font-size;
+  color: $header-title-color;
+  vertical-align: middle;
+}
+
+// 头部-右侧内容区
+.tw-header-right {
+  float: right;
+  height: $header-height;
+}
+
+@if ($app-type == eco) {
+  .tw-header-right > a {
+    display: inline-block;
+    margin-left: $spacing-small;
+  }
+  
+  .tw-header-right-btn {
+    display: inline-block;
+    padding: 0 $spacing-small;
+    color: #fff;
+    background: rgba(58, 142, 252, .8);
+    &:hover {
+      background: rgba(58, 142, 252, 1);
+    }
+  }
+}
+
+// 头部-导航
+.tw-nav.xheader > li {
+  height: $header-height;
+}
+
+.tw-nav.xheader > li > a {
+  height: $header-height;
+  padding: 0 $header-navlink-px;
+  @include center-y();
+
+  &:hover {
+    color: $header-navlink-hover-color;
+    background: $header-navlink-hover-bg;
+  }
+
+  &.xcurrent {
+    color: $header-navlink-active-color;
+    background: $header-navlink-active-bg;
+  }
+}
+
+.tw-nav.xheader a > div {
+  display: inline-block;
+  line-height: $header-nav-link-line-height;
+  vertical-align: middle;
+}
+
+.tw-header + .tw-nav.xlv2 {
+  margin-top: -$header-mb;
+}
+
+// 头部-弹出开关
+.tw-popswitch.xheader {
+  display: block;
+}
+
+.tw-popswitch.xheader,
+.tw-nav.xheader > li > .tw-popswitch.xheader {
+  padding: 0 $header-navlink-px * 2 0 $header-navlink-px;
+}
+
+.tw-popswitch.xheader > .tw-triangle {
+  right: $header-navlink-px;
+}
+
+.tw-popswitch.xheader.xopen {
+  background: $header-navlink-hover-bg;
+}
+
+// 头部: 头像区
+.tw-popswitch.xheader.xavatar {
+  display: inline-block;
+  padding-right: $spacing-small;
+}
+
+// 头部-下拉菜单项
+.tw-header-menu {
+  line-height: $header-menu-line-height;
+  padding: $spacing-tiny 5px;
+  color: $header-color;
+  white-space: nowrap;
+  background: $header-navlink-menu-bg;
+}
+
+.tw-header-menu:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 5px;
+  left: 5px;
+  height: 1px;
+  background: rightDownColor($header-navlink-active-bg, 4%);
+}
+
+// stylelint-disable no-descending-specificity
+.tw-header-menu > li > a {
+  display: block;
+  line-height: 18px;
+  padding: $spacing-step $header-navlink-px;
+  border-radius: 3px;
+
+  &:hover,
+  &.xactive {
+    color: $header-navlink-active-color;
+    background: $header-navlink-active-bg;
+  }
+}
+
+// 头部: 用户信息下拉列表
+.tw-header-menu.xuser {
+  width: 200px;
+  color: #fff;
+}
+
+// 头部: 用户信息下拉列表-头像信息
+.tw-piclr.xuser {
+  padding-bottom: 10px;
+  margin: 0 $spacing-tiny - 2px 5px;
+  border-bottom: 1px solid #424e68;
+}
+
+.tw-piclr.xuser .tw-piclr-text {
+  font-size: 14px;
+}
+
+.tw-piclr.xuser .tw-piclr-des {
+  margin-top: 0;
+  color: #adb9d2;
+  @include ellipsis;
+}
+
+// 头部: 下拉菜单项-标题
+.tw-header-menu-title {
+  padding-bottom: $spacing-small;
+  margin: 0 $header-navlink-px;
+  margin-bottom: $spacing-step;
+  font-size: $font-size-medium;
+  color: $color-text-inverse;
+  border-bottom: 1px solid #424e68;
+}
+
+.tw-header-menu-title:not(:first-child) {
+  margin-top: $spacing-large;
+}
+
+// 头部: 下拉菜单项-副标题
+.tw-header-menu-subtitle {
+  line-height: 18px;
+  padding: $spacing-step 0;
+  margin: 0 $header-navlink-px;
+  margin-top: $spacing-tiny;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tw-header-menu-subtitle:first-child,
+.tw-header-menu-title + .tw-header-menu-subtitle {
+  margin-top: 0;
+}

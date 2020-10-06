@@ -1,0 +1,17 @@
+// 引入变量
+// ------------------------------------------------------------
+@import "variables";
+
+/* ------------------------------ element-ui:主题色 ------------------------------ */
+$--color-primary:$color-main;
+$--color-text-primary: $color-text-main;
+$--color-text-regular: $color-text-secondary;
+$--color-text-placeholder: $color-text-placeholder;
+
+/* ------------------------------ element-ui:控件 ------------------------------ */
+$--checkbox-font-color: $color-text-main;
+$--radio-font-color: $color-text-main;
+
+/* ------------------------------ element-ui: 引用theme-chalk与字体(必须，勿删) ------------------------------ */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+@import "~element-ui/packages/theme-chalk/src/index";

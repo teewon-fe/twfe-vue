@@ -1,0 +1,71 @@
+// 弹窗播放器
+// stylelint-disable selector-class-pattern
+.tw-modal.xplayer > .tw-modal-window {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  // box-shadow: 3px 3px 9px #eee;
+}
+
+// 弹窗播放器-视频
+.tw-modal.xplayer .tw-modal-window-body {
+  max-height: none;
+  padding: $spacing-small;
+}
+
+.tw-modal.xplayer .video-js {
+  max-width: 720px;
+  max-height: 405px;
+}
+
+.tw-modal.xplayer .tw-player {
+  display: block;
+}
+
+// 弹窗播放器-声音
+.tw-modal.xaudio .tw-modal-window-body {
+  padding-bottom: $spacing-medium;
+}
+
+// 移动端
+.van-popup.xplayer .van-popup__close-icon {
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+// 移动端-视频
+.tw-popplayer-video {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.van-popup .tw-player {
+  display: block !important;
+  height: 100%;
+}
+
+.van-popup .video-js {
+  width: 100%;
+  height: 100%;
+}
+
+.van-popup .vjs_video_3-dimensions {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+// 移动端-音频
+.tw-popplayer-audio {
+  padding: ($spacing-small + 30px) $spacing-small $spacing-small;
+  border-top: 1px solid $color-border-weaking;
+}
+
+.van-popup.xhide {
+  transform: translateY(100%);
+}

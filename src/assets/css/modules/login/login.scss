@@ -1,0 +1,122 @@
+/* ------------------------------------------------------------
+* 登录页样式
+* ------------------------------------------------------------ */
+$login-width: 380px !default; // 登录框宽度
+
+// -------------------- 登录页主体 --------------------
+.tw-loginpage {
+  min-height: 500px;
+  background: #1284e5 url("./images/login.png") no-repeat left center;
+}
+
+.tw-loginpage-inner {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: $spacing-medium;
+}
+
+// -------------------- 登录图标 --------------------
+.tw-licon {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  z-index: 1;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("./images/login-icons.png") no-repeat;
+}
+
+// 用户
+.tw-licon.xuser {
+  background-position: -10px -10px;
+}
+
+// 密码
+.tw-licon.xpwd {
+  background-position: -40px -10px;
+}
+
+// 机构
+.tw-licon.xorg {
+  background-position: -10px -40px;
+}
+
+// 错误
+.tw-licon.xerror {
+  background-position: -40px -40px;
+}
+
+// -------------------- 登录框 --------------------
+// 登录框: 容器
+.tw-login {
+  width: $login-width;
+  padding: $spacing-medium $spacing-large $spacing-medium;
+  background: #fff;
+}
+
+// 登录框: 标题
+.tw-login-title {
+  margin-bottom: $spacing-medium;
+  font-size: 18px;
+}
+
+// 登录框: 输入项
+.tw-login .el-form-item {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+// 登录框: 用户、密码、机构选择
+.tw-login-userinput .el-input__inner,
+.tw-login-pwdinput .el-input__inner,
+.tw-login-orgselect .el-input__inner {
+  padding-left: 40px;
+}
+
+.tw-login-orgselect {
+  width: 100%;
+}
+
+// 登录框: 验证输入框
+.tw-login-codeinput {
+  vertical-align: middle;
+}
+
+// 登录框: 验证码
+.tw-login-passcode {
+  height: 40px;
+  margin: 0 6px;
+}
+
+// 登录框: 自动登录项
+.tw-login-rememberme,
+.tw-login-rememberme + .tw-login .tw-btn {
+  margin-top: -10px;
+}
+
+// 登录框: 链接项
+.tw-login-link {
+  font-size: $font-size-small;
+  color: #666;
+
+  &:hover {
+    color: $color-main;
+  }
+}
+
+// 登录框: 错误信息
+.tw-lgoin-error {
+  line-height: 34px;
+  margin-bottom: $spacing-small;
+  color: $color-text-error;
+  background: #fff0ef;
+  border: 1px solid #ffbeb9;
+}
+
+.tw-lgoin-error > .tw-licon {
+  position: relative;
+  top: 5px;
+  margin-right: $spacing-small;
+}

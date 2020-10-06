@@ -1,0 +1,29 @@
+/* 富文本编辑器 */
+
+// 富文本编辑器: 容器
+.tw-richeditor,
+.tw-richeditor * {
+  box-sizing: content-box;
+}
+
+// 富文本编辑器: 底部
+.tw-richeditor-footer {
+  display: flex;
+}
+
+.tw-richeditor-footer-left {
+  flex: 1;
+}
+
+.tw-richeditor-footer-right {
+  color: $color-text-weaking;
+}
+
+.tw-richeditor-footer-right > span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.edui-editor-body img {
+  max-width: 100%;
+}

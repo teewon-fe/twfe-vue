@@ -1,0 +1,62 @@
+
+/* ---------------------------- 响应式mixin -------------------------------- */
+// stylelint-disable block-closing-brace-newline-after
+
+// 向下媒体查询：小于等于媒体关键字所在范围
+@mixin media-down($key, $breakpoints:$media-breakpoints) {
+  $prev: map-prev($breakpoints, $key);
+
+  @if $prev {
+    @media (max-width: $prev - 1) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 向上媒体查询：大于等于媒体关键字所在范围
+@mixin media-up($key, $breakpoints:$media-breakpoints) {
+  $next: map-next($media-breakpoints, $key);
+
+  @if $next {
+    @media (min-width: map-get($breakpoints, $key)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 单一媒体查询：仅包含媒体关键字所在范围
+@mixin media-only($key, $breakpoints:$media-breakpoints) {
+  @include media-up($key, $breakpoints) {
+    @include media-down($key, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// 生成内容包含容器
+@mixin make-container() {
+  @include clearfix;
+
+  $firstKey: nth(map-keys($container-widths), 1);
+
+  @if $app-type == web {
+    @each $key, $width in $container-widths {
+      @if $key != $firstKey {
+        @include media-down($key, $media-breakpoints) {
+          & {
+            width: $width;
+          }
+        }
+      } @else {
+        width: $width;
+      }
+    }
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

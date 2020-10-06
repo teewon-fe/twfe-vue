@@ -1,0 +1,80 @@
+/* 过滤区 */
+.tw-filter {
+  padding: 0 $spacing-medium;
+  margin-right: -$spacing-medium;
+  margin-bottom: $spacing-small;
+  margin-left: -$spacing-medium;
+  border-bottom: 1px solid #e1e7eb;
+}
+
+// 过滤区: 主体
+.tw-filter-body {
+  // margin-bottom: $spacing-step;
+  overflow: hidden;
+}
+
+// 过滤区: 主体(收缩状态)
+.tw-filter-body.xcollapse {
+  height: $control-height + $spacing-small;
+}
+
+// 过滤区: 表格
+.tw-filter-table {
+  width: 80%;
+  table-layout: fixed;
+}
+
+.tw-filter-table th,
+.tw-filter-table td {
+  padding-bottom: $spacing-small;
+  vertical-align: middle;
+}
+
+.tw-filter-table th {
+  width: 25%;
+  padding-right: 5px;
+  padding-left: 0;
+  font-weight: 400;
+  color: $color-text-secondary;
+  text-align: right;
+}
+.tw-filter-table.xone th{
+  width: auto;
+}
+.tw-filter-table.xone td{
+  width: auto;
+}
+
+.tw-filter-table th.xbtnth {
+  text-align: left;
+}
+
+.tw-filter-table td {
+  width: 75%;
+  padding-right: $spacing-small;
+}
+
+.tw-filter-table th:first-child {
+  padding-left: 0;
+}
+
+// stylelint-disable selector-class-pattern
+.tw-filter-table .el-select,
+.tw-filter-table .el-date-editor--daterange.el-input__inner {
+  width: 100%;
+}
+
+// 过滤区: 工具区
+.tw-filter-tools {
+  padding-bottom: $spacing-medium;
+  text-align: center;
+}
+
+.tw-filter-tools > .tw-btn {
+  margin-left: 2px;
+}
+
+.tw-filter-collapsebtn {
+  display: inline-block;
+  margin-left: $spacing-step;
+}

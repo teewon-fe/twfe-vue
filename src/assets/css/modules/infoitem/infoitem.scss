@@ -1,0 +1,87 @@
+/* 信息项 */
+$infoitem-py: $spacing-small !default; // 垂直内边距
+$infoitem-avatarbox-width: 60px !default; // 头像区宽度
+$infoitem-avatar-size: 40px !default; // 头像尺寸
+$infoitem-border-color: $color-border-main !default; // 边框色
+$infoitem-header-mb: $spacing-tiny !default; // 头部底部间距
+$infoitem-header-right-width: 30% !default; // 头部标题宽度
+$infoitem-title-font-size: $font-size-medium !default; //头部标题文本大小
+$infoitem-content-mb: $spacing-tiny !default; // 内容底部间距
+$infoitem-content-font-size: $font-size-default !default; // 内容文本大小
+$infoitem-content-color: $color-text-secondary !default; // 内容文本颜色
+$infoitem-prop-font-size: $font-size-default !default; // 信息项属性文本大小
+$infoitem-prop-color: $color-text-weaking !default; // 信息项属性颜色
+
+// 信息项: 容器
+.tw-infoitem {
+  display: flex;
+}
+
+// 信息项: 头像区
+.tw-infoitem-avatarbox {
+  width: $infoitem-avatarbox-width;
+  padding: $infoitem-py + 5 0;
+}
+
+// 信息项: 头像
+.tw-infoitem-avatar {
+  width: $infoitem-avatar-size;
+  height: $infoitem-avatar-size;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+// 信息项: 主体
+.tw-infoitem-body {
+  flex: 1;
+  min-width: 0;
+  padding-top: $infoitem-py;
+}
+
+// 信息项: 主体头部
+.tw-infoitem-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $infoitem-header-mb;
+}
+
+// 信息项: 主体头部-标题
+.tw-infoitem-header-title {
+  min-width: 0;
+  font-size: $infoitem-title-font-size;
+  @include ellipsis;
+}
+
+// 信息项: 主体头部-右侧内容
+.tw-infoitem-header-right {
+  width: $infoitem-header-right-width;
+  text-align: right;
+}
+
+// 信息项: 主体内容
+.tw-infoitem-content {
+  margin-bottom: $infoitem-content-mb;
+  font-size: $infoitem-content-font-size;
+  color: $infoitem-content-color;
+}
+
+// 信息项: 主体内容-段落
+.tw-infoitem-content > p {
+  margin-bottom: $infoitem-content-mb;
+}
+
+// 信息项: 主体脚注
+.tw-infoitem-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: $infoitem-py;
+  border-bottom: 1px dashed $infoitem-border-color;
+}
+
+// 信息项: 属性项
+.tw-infoitem-prop {
+  font-size: $infoitem-prop-font-size;
+  color: $infoitem-prop-color;
+}
+
+

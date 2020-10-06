@@ -1,0 +1,181 @@
+/* 标签过滤控件 */
+$filter-tag-height: 22px !default; // 标签高度
+$filter-tag-margin: $spacing-step !default; // 标签间距
+$filter-pane-border-color: $color-border-secondary !default; // 面板边框色
+$filter-tag-bg: $color-weaking !default; // 面板底色
+
+$filter-tag-height-mobile: 30px !default; // 标签移动端高度
+$filter-tag-margin-mobile: $spacing-step !default; // 标签间距
+
+.tw-tagfilter {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  height: $filter-tag-margin * 4 + $filter-tag-height;
+  padding: $filter-tag-margin 0;
+  overflow: hidden;
+}
+
+.tw-tagfilter.xopen {
+  height: auto;
+}
+
+.tw-tagfilter-label {
+  width: 5em;
+  line-height: $filter-tag-height;
+  margin: $filter-tag-margin;
+  font-weight: 700;
+  color: $color-text-secondary;
+  text-align: right;
+}
+
+.tw-tagfilter-tags {
+  flex: 1;
+  padding-right: 30px;
+  font-size: 0;
+}
+
+.tw-tagfilter-tags > .tw-tag {
+  font-size: $font-size-default;
+  vertical-align: top;
+}
+
+.tw-tagfilter-tags > .tw-ico.xtftoggle {
+  position: absolute;
+  top: $filter-tag-margin * 2;
+  right: 0;
+}
+
+// 标签: 过滤区
+.tw-tag.xfilter {
+  height: $filter-tag-height;
+  line-height: $filter-tag-height;
+  margin: $filter-tag-margin;
+  border-radius: $border-radius;
+}
+
+.tw-tag.xfilter.xactive {
+  color: #fff;
+  background: $color-main;
+}
+
+
+@if ($app-type == web) {
+  .tw-tag.xfilter:hover {
+    @extend .tw-tag, .xfilter, .xactive;
+  }
+}
+
+@if ($app-type == mobile) {
+  .tw-tagfilter.xmobile {
+    height: auto;
+  }
+
+  .tw-tagfilter.xmobile .tw-tag.xfilter{
+    width:80px;
+    height: $filter-tag-height-mobile;
+    line-height: $filter-tag-height-mobile - 2;
+    margin:5px 4px;
+    font-size: $font-size-small;
+    border-radius: 2px;
+    @include ellipsis;
+  }
+
+  .tw-tagfilter.xmobile .tw-tagfilter-tags {
+    padding-right: 0;
+    margin-right: -4px;
+    margin-left: -4px;
+  }
+
+  // stylelint-disable
+  .tw-tagfilter.xmobile .tw-tag.xfilter.xactive{
+    color: $color-main;
+    border-color:$color-main;
+    background: #fff;
+  }
+
+  .tw-tagfilter.xmobile.xmiddle .tw-tag.xfilter {
+    width: 108px;
+  }
+
+    // 难度
+  .tw-tagfilter.xmobile.xdegree  .tw-tag.xfilter {
+    width:60px;
+    border-radius: $filter-tag-height-mobile /2;
+    font-size: $font-size-default;
+    color: $color-text-main;
+  }
+
+  .tw-tagfilter.xmobile.xdegree  .tw-tag.xfilter.xactive {
+    background: $color-main;
+    color: #fff;
+  }
+}
+
+// tagfilter 突出鲜明（另外一种样式）
+.tw-tagfilter.xobvious .tw-tag.xfilter {
+  color: #aac2d4;
+  border-color:#aac2d4; 
+  font-size: $font-size-default;
+ }
+ 
+ .tw-tagfilter.xobvious .tw-tag.xactive{
+   position: relative;
+   color: $color-main;
+   border-color: $color-main;
+   
+   &:before{
+     content: '';
+     position: absolute;
+     right:0;
+     top:0;
+     width: 0;
+     height: 0;
+     border-top: 18px solid $color-main;
+     border-left: 18px solid transparent;
+   }
+
+   &:after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 3px;
+    width: 5px;
+    height: 8px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+   }
+ } 
+
+// -------------------- 筛选面板 --------------------
+// 筛选面板: 容器
+.tw-filterpane {
+  padding: $spacing-small;
+  border-radius: $border-radius;
+}
+
+// 筛选面板: 容器边框
+.tw-filterpane.xborder{
+  border: 1px solid $filter-pane-border-color;
+}
+
+// 筛选面板: 容器有背景色
+.tw-filterpane.xbg{
+  background: $filter-tag-bg;
+}
+
+// 筛选面板: 筛选组边框线
+.tw-filterpane > .tw-tagfilter {
+  border-bottom: 1px dashed $color-border-weaking;
+}
+
+.tw-filterpane > .tw-tagfilter:last-child {
+  border-bottom: none;
+}
+
+// 筛选面板: 工具栏
+.tw-filterpane-toolbar {
+  padding-top: $spacing-tiny;
+  text-align: center;
+}
