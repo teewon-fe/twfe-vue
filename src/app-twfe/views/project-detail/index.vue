@@ -25,14 +25,14 @@
 
         <div class="tw-grid xpc4 xlpad4 xpad4 text-center">
           <div class="tw-grid-col">
-            <div class="text-large">欧阳娜娜</div>
-            <div class="text-small text-weaking scale-less-medium">13431863008(手机)</div>
+            <div class="text-large">{{leader.user_name || '--'}}</div>
+            <div class="text-small text-weaking scale-less-medium">{{leader.mobile || '--'}}(手机)</div>
             <div class="text-medium"><i class="tw-ico xdev dt-n1 mr-3"></i>项目负责人</div>
           </div>
 
           <div class="tw-grid-col">
-            <div class="text-huge"><span class="text-highlight">5</span>/20</div>
-            <div class="text-small text-weaking scale-less-medium">已投入/总工时(h)</div>
+            <div class="text-huge"><span class="text-highlight">{{project.investedTime}}</span>/{{project.taskTime}}</div>
+            <div class="text-small text-weaking scale-less-medium">已投入/总工时(人天)</div>
             <div class="text-medium"><i class="tw-ico xcmonth dt-n1 mr-3"></i>项目工时</div>
           </div>
 
@@ -57,9 +57,13 @@
           <h3 class="tw-title-left text-default">项目详情</h3>
           <div class="tw-title-right">
             <ul class="tw-steps xstripe">
-              <li class="tw-steps-item xdone" style="z-index:4;">开发(2020-10-06)</li>
-              <li class="tw-steps-item xactive" style="z-index:3;">转测(2020-10-20)</li>
-              <li class="tw-steps-item" style="z-index:1;">步骤四</li>
+              <li v-for="(tn, idx) in project.timeNodes"
+                :key="idx"
+                class="tw-steps-item"
+                :class="{xdone: tn.status === 'done', xactive: tn.status === 'active'}"
+                :style="`z-index:${project.timeNodes.length - idx};`">
+                <span>{{tn.text}}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -111,8 +115,8 @@
                     <th style="width: 300px;">任务名称</th>
                     <th>难度等级</th>
                     <th>工时</th>
-                    <th>开始时间</th>
-                    <th>完成时间</th>
+                    <th>计划开始时间</th>
+                    <th>计划完成时间</th>
                     <th style="width: 150px;">进度</th>
                     <th>开发</th>
                   </tr>
@@ -217,8 +221,11 @@
 
 <script>
 export default {
+  name: 'page-project-detail',
+
   data () {
     return {
+      leader: {},
       chartOption: {
         grid: {
           top: 10,
@@ -231,7 +238,105 @@ export default {
     }
   },
 
+  computed: {
+    project () {
+      if (this.$api.project.getProjects.data.list[0]) {
+        const project = this.$api.project.getProjects.data.list[0]
+        let taskNums = 0
+        let progress = 0
+        let taskTime = 0
+        let investedTime = 0
+        let expectantProgress = 0
+        let nextTimeNode = {
+          start: new Date(),
+          time_node_name: '--'
+        }
+
+        for (const tn of project.timeNodes) {
+          const start = new Date(tn.start_time)
+          if (new Date() <= start) {
+            if (nextTimeNode.time_node_name === '--') {
+              nextTimeNode = {
+                start,
+                time_node_name: tn.time_node_name
+              }
+            }
+          } else {
+            tn.status = 'active'
+          }
+
+          if (tn.done_time) {
+            tn.status = 'done'
+          }
+
+          tn.text = `${tn.time_node_name}(${this.$ui.dateFormat(start, 'yyyy-mm-dd')})`
+        }
+
+        nextTimeNode.text = `${nextTimeNode.time_node_name}(${this.$ui.dateFormat(nextTimeNode.start, 'yyyy-mm-dd')})`
+
+        project.plans.forEach(item => {
+          if (item.task_type === 'normal') {
+            taskNums++
+            progress += item.progress || 0
+            taskTime += parseFloat(item.task_time)
+
+            if (new Date() <= new Date(item.end_time)) {
+              expectantProgress++
+            }
+
+            if (new Date() >= new Date(item.end_time)) {
+              investedTime += parseFloat(item.task_time)
+            }
+          }
+        })
+
+        expectantProgress = expectantProgress / taskNums * 100
+        progress = progress / taskNums * 100
+
+        let status = '正常进行中'
+
+        if (project.project.status === 'done') {
+          status = '已完成'
+        } else if (progress < expectantProgress) {
+          status = '有风险'
+        }
+
+        project.project.status = status
+
+        return {
+          ...project.project,
+          taskTime,
+          investedTime,
+          progress: parseFloat(progress.toFixed(2)),
+          nextTimeNode,
+          timeNodes: project.timeNodes,
+          plans: project.plans
+        }
+      } else {
+        return {
+          project: {},
+          plans: [],
+          timeNodes: []
+        }
+      }
+    }
+  },
+
   methods: {
+    getProject () {
+      this.$api.project.getProjects.send().then(data => {
+        if (data.list && data.list[0]) {
+          this.$api.user.getUser.send({
+            id: data.list[0].project.project_leader_id
+          }).then(data => {
+            if (data.user) {
+              this.leader = data.user
+            }
+          })
+        }
+      })
+    },
+
     /**
     * 功能: 功能描述
     * @param {Type} name 参数描述
@@ -276,6 +381,7 @@ export default {
 
   created () {
     this.getChartData()
+    this.getProject()
   }
 }
 </script>

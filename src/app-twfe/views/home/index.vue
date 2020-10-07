@@ -84,7 +84,7 @@
               </td>
               <td>{{project.taskTime}}</td>
               <td>{{project.status}}</td>
-              <td>{{project.nextTimeNode}}</td>
+              <td>{{project.nextTimeNode.text}}</td>
               <td>{{project.leader}}</td>
               <td>
                 <a v-if="project.status!=='已完成'" class="text-link" @click="$api.project.close.send({id:project.id, status: 'done'}).then(()=>{$api.project.getProjects.send()})">关闭项目</a>
@@ -133,7 +133,24 @@ export default {
         let progress = 0
         let taskTime = 0
         let expectantProgress = 0
-        let nextTimeNode = ''
+        let nextTimeNode = {
+          start: new Date(),
+          time_node_name: '超出里程碑范围'
+        }
+
+        for (const tn of item.timeNodes) {
+          const start = new Date(tn.start_time)
+          if (new Date() <= start) {
+            nextTimeNode = {
+              start,
+              time_node_name: tn.time_node_name,
+              text: `${tn.time_node_name}(${this.$ui.dateFormat(start, 'yyyy-mm-dd')})`
+            }
+            break
+          }
+        }
+
+        nextTimeNode.text = `${nextTimeNode.time_node_name}(${this.$ui.dateFormat(nextTimeNode.start, 'yyyy-mm-dd')})`
 
         item.plans.forEach(item => {
           if (item.task_type === 'normal') {
@@ -156,14 +173,6 @@ export default {
           status = '已完成'
         } else if (progress < expectantProgress) {
           status = '有风险'
-        }
-
-        for (const tn of item.timeNodes) {
-          const start = new Date(tn.start_time)
-          if (new Date() <= start) {
-            nextTimeNode = `${tn.time_node_name}(${this.$ui.dateFormat(start, 'yyyy-mm-dd')})`
-            break
-          }
         }
 
         return {
