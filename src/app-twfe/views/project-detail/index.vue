@@ -17,7 +17,7 @@
           </div>
           <div class="tw-title-right">
             <a class="tw-icobtn"><i class="tw-ico xsync"></i>同步进度</a>
-            <router-link class="tw-icobtn" to="/new-project?type=edit"><i class="tw-ico xedit"></i>编辑</router-link>
+            <router-link class="tw-icobtn" :to="`/new-project?id=${$route.query.id}`"><i class="tw-ico xedit"></i>编辑</router-link>
             <a class="tw-icobtn"><i class="tw-ico xdel"></i>删除</a>
           </div>
         </div>

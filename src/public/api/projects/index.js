@@ -1,2 +1,2 @@
 export * from './types'
-export * from './add-project'
+export * from './project'

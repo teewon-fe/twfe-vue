@@ -50,7 +50,7 @@ export class Workday {
     this.taskTime = option.taskTime
     this.vacationDays = option.vacation || []
     this.overtimeDays = option.overtime || []
-    this.taskMaxDays = option.taskMaxDays || 3
+    this.taskMaxDays = option.taskMaxDays || 30
     this.format = option.format || 'yyyy-mm-dd HH:MM'
 
     Object.defineProperties(this, {

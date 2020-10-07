@@ -5,8 +5,9 @@ export const getProjects = {
 
   request: {
     params: {
+      id: '',
       pageNo: 1,
-      pageSize: 2
+      pageSize: 10
     }
   },
 
@@ -25,23 +26,24 @@ export const update = {
 
   request: {
     params: {
-      projectId: '',
+      id: '',
 
       project: {
-        projectName: '',
-        projectVersion: '',
-        projectType: '',
-        groupId: '',
-        developerIds: [],
-        developerNames: [],
-        projectLeaderId: -1,
-        projectLeaderName: '',
-        projectSvn: '',
-        projectPrdUrl: '',
-        projectDesignSvn: '',
-        projectPsdSvn: '',
-        projectApiSvn: '',
-        projectTestCaseSvn: ''
+        project_name: '',
+        project_version: '',
+        project_type: '',
+        dev_group: '',
+        developer_ids: [],
+        developer_names: [],
+        project_leader_id: -1,
+        project_leader_name: '',
+        project_svn: '',
+        project_prd_url: '',
+        project_design_svn: '',
+        project_psd_svn: '',
+        project_api_svn: '',
+        project_test_case_svn: '',
+        status
       },
 
       timeNodes: [],

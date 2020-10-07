@@ -24,26 +24,26 @@
               <el-row :gutter="20">
                 <el-col class="pl-0" :span="12">
                   <el-form-item
-                    prop="project.projectName"
+                    prop="project.project_name"
                     label="项目名称:">
-                    <el-input v-model="params.project.projectName"></el-input>
+                    <el-input v-model="params.project.project_name"></el-input>
                   </el-form-item>
                 </el-col>
 
                 <el-col :span="12">
                   <el-form-item
-                    prop="project.projectVersion"
+                    prop="project.project_version"
                     label="项目版本号:">
-                    <el-input v-model="params.project.projectVersion"></el-input>
+                    <el-input v-model="params.project.project_version"></el-input>
                   </el-form-item>
                 </el-col>
 
                 <el-col class="pl-0" :span="12">
                   <el-form-item
-                    prop="project.projectType"
+                    prop="project.project_type"
                     label="项目类型:">
                     <tw-api-select
-                      v-model="params.project.projectType"
+                      v-model="params.project.project_type"
                       :api="$api.project.getTypes"
                       option-value-key="id">
                     </tw-api-select>
@@ -52,13 +52,13 @@
 
                 <el-col :span="12">
                   <el-form-item
-                    prop="project.groupId"
+                    prop="project.dev_group"
                     label="开发组:">
                     <tw-api-select
-                      v-model="params.project.groupId"
+                      v-model="params.project.dev_group"
                       :api="$api.user.getGroups"
                       option-value-key="id"
-                      @change="$api.user.getUsers.send({groupId:params.project.groupId})">
+                      @change="$api.user.getUsers.send({groupId:params.project.dev_group})">
                     </tw-api-select>
                   </el-form-item>
                 </el-col>
@@ -67,14 +67,14 @@
                   <div>
                     <el-form-item
                       style="clear:both;"
-                      prop="project.developerIds"
+                      prop="project.developer_ids"
                       label="开发人员:">
                       <el-checkbox-group class="pt-tiny xorderly"
-                        v-model="params.project.developerIds"
+                        v-model="params.project.developer_ids"
                         @change="changeDevlopers">
                         <el-checkbox v-for="item in $api.user.getUsers.data.list" :label="item.id" :key="item.id">
                           <span>{{item.name}}</span>
-                          <i class="tw-ico xleader xsmall pl-step" :class="{xactive:params.project.projectLeaderId===item.id}" @click.prevent="[params.project.projectLeaderId, params.project.projectLeaderName]=[item.id,item.name]" title="点亮图标设为项目负责"></i>
+                          <i class="tw-ico xleader xsmall pl-step" :class="{xactive:params.project.project_leader_id===item.id}" @click.prevent="[params.project.project_leader_id, params.project.project_leader_name]=[item.id,item.name]" title="点亮图标设为项目负责"></i>
                         </el-checkbox>
                       </el-checkbox-group>
                     </el-form-item>
@@ -83,39 +83,39 @@
 
                 <el-form-item
                   style="clear:both;"
-                  prop="project.projectSvn"
+                  prop="project.project_svn"
                   label="项目SVN目录:">
-                  <el-input v-model="params.project.projectSvn"></el-input>
+                  <el-input v-model="params.project.project_svn"></el-input>
                 </el-form-item>
 
                 <el-form-item
-                  prop="project.projectPrdUrl"
+                  prop="project.project_prd_url"
                   label="需求文档地址:">
-                  <el-input v-model="params.project.projectPrdUrl"></el-input>
+                  <el-input v-model="params.project.project_prd_url"></el-input>
                 </el-form-item>
 
                 <el-form-item
-                  prop="project.projectDesignSvn"
+                  prop="project.project_design_svn"
                   label="高保真SVN:">
-                  <el-input v-model="params.project.projectDesignSvn"></el-input>
+                  <el-input v-model="params.project.project_design_svn"></el-input>
                 </el-form-item>
 
                 <el-form-item
-                  prop="project.projectPsdSvn"
+                  prop="project.project_psd_svn"
                   label="设计源文件SVN:">
-                  <el-input v-model="params.project.projectPsdSvn"></el-input>
+                  <el-input v-model="params.project.project_psd_svn"></el-input>
                 </el-form-item>
 
                 <el-form-item
-                  prop="project.projectApiSvn"
+                  prop="project.project_api_svn"
                   label="接口文档地址:">
-                  <el-input v-model="params.project.projectApiSvn"></el-input>
+                  <el-input v-model="params.project.project_api_svn"></el-input>
                 </el-form-item>
 
                 <el-form-item
-                  prop="project.projectTestCaseSvn"
+                  prop="project.project_test_case_svn"
                   label="测试用例地址:">
-                  <el-input v-model="params.project.projectTestCaseSvn"></el-input>
+                  <el-input v-model="params.project.project_test_case_svn"></el-input>
                 </el-form-item>
               </el-row>
             </div>
@@ -150,18 +150,18 @@
                       <td>
                         <el-form-item
                           label-width="0"
-                          :prop="`timeNodes.${idx}.timeNodeName`"
+                          :prop="`timeNodes.${idx}.time_node_name`"
                           :rules="[{ required: true, message: '请输入里程碑名称', trigger: 'blur' }]">
-                          <el-input v-model="timeNode.timeNodeName" size="small" />
+                          <el-input v-model="timeNode.time_node_name" size="small" />
                         </el-form-item>
                       </td>
                       <td>
                         <el-form-item
                           label-width="0"
-                          :prop="`timeNodes.${idx}.startTime`"
+                          :prop="`timeNodes.${idx}.start_time`"
                           :rules="[{ required: true, message: '请输入开始时间', trigger: 'blur' }]">
                           <el-date-picker
-                            v-model="timeNode.startTime"
+                            v-model="timeNode.start_time"
                             value-format="yyyy-MM-dd"
                             format="yyyy-MM-dd"
                             size="small"
@@ -180,7 +180,7 @@
             <!-- /项目里程碑 -->
 
             <!-- 项目计划 -->
-            <div v-if="params.project.developerIds.length>0" class="tw-card px-medium" style="padding-bottom: 1000px;">
+            <div v-if="params.project.developer_ids.length>0" class="tw-card px-medium" style="padding-bottom: 1000px;">
               <div class="tw-title" v-fix>
                 <h3 class="tw-title-left text-default">
                   <span>项目计划</span>
@@ -215,39 +215,39 @@
                   </thead>
                   <draggable v-model="params.plans" handle=".jx-handle" tag="tbody">
                     <template v-for="(plan,idx) in params.plans">
-                      <tr v-if="plan.taskType==='group'"
+                      <tr v-if="plan.task_type==='group'"
                         :key="idx"
                         @dblclick="params.plans.splice(idx+1, 0, $ui.cloneJson($cnt.projectTemplate.planGroup))"
-                        @mouseup.right="params.plans.filter(item=>item.taskType==='group').length>1 && (params.plans.splice(idx, 1))">
+                        @mouseup.right="params.plans.filter(item=>item.task_type==='group').length>1 && (params.plans.splice(idx, 1))">
                         <td class="xbold xhandle jx-handle" colspan="7">
                           <el-form-item
                             label-width="0"
-                            :prop="`plans.${idx}.taskName`"
+                            :prop="`plans.${idx}.task_name`"
                             :rules="[{ required: true, message: '请输入任务组名称', trigger: 'blur' }]">
-                              <el-input class="xhandle" v-model="plan.taskName" size="small" />
+                              <el-input class="xhandle" v-model="plan.task_name" size="small" />
                           </el-form-item>
                         </td>
                       </tr>
                       <tr v-else
                         :key="idx"
                         @dblclick="params.plans.splice(idx+1, 0, $ui.cloneJson($cnt.projectTemplate.plan))"
-                        @mouseup.right="params.plans.filter(item=>item.taskType==='normal').length>1 && (params.plans.splice(idx, 1))"
+                        @mouseup.right="params.plans.filter(item=>item.task_type==='normal').length>1 && (params.plans.splice(idx, 1))"
                         @click="currentTaskIndex=idx">
                         <td class="xhandle jx-handle" :class="[idx===currentTaskIndex?'text-link text-bold text-medium':'']">{{idx - getOffsetIdx(idx)}}</td>
                         <td>
                           <el-form-item
                             label-width="0"
-                            :prop="`plans.${idx}.taskName`"
+                            :prop="`plans.${idx}.task_name`"
                             :rules="[{ required: true, message: '请输入任务名称', trigger: 'blur' }]">
-                              <el-input v-model="plan.taskName" size="small" />
+                              <el-input v-model="plan.task_name" size="small" />
                           </el-form-item>
                         </td>
                         <td>
                           <el-form-item
                             label-width="0"
-                            :prop="`plans.${idx}.developerId`"
+                            :prop="`plans.${idx}.developer_id`"
                             :rules="[{ required: true, message: '请选择开发', trigger: 'change' }]">
-                            <el-select v-model="plan.developerId" @change="(val)=>{params.plans[idx].developerName=params.project.developerNames[params.project.developerIds.indexOf(val)]}">
+                            <el-select v-model="plan.developer_id" @change="(val)=>{params.plans[idx].developer_name=params.project.developer_names[params.project.developer_ids.indexOf(val)]}">
                               <el-option v-for="item in developers"
                                 :key="item.id"
                                 :label="item.name"
@@ -266,24 +266,32 @@
                               :api="$api.dic.degreens"
                               option-value-key="id"
                               option-label-key="degreen_name"
-                              @change="plan.taskTime=$dic.select($api.dic.degreens.data.list, plan.degreen, 'task_time')">
+                              @change="plan.task_time=$dic.select($api.dic.degreens.data.list, plan.degreen, 'task_time')">
                             </tw-api-select>
                           </el-form-item>
                         </td>
                         <td>
-                          <div>{{plan.taskTime || '--'}}</div>
+                          <el-form-item
+                            v-if="plan.degreen===9"
+                            label-width="0"
+                            :prop="`plans.${idx}.task_time`"
+                            :rules="[{ required: true, message: '请输入任务工时', trigger: 'blur' }]">
+                              <el-input v-model="plan.task_time" size="small" />
+                          </el-form-item>
+
+                          <div v-else>{{plan.task_time || '--'}}</div>
                         </td>
                         <td>
                           <el-form-item
                             label-width="0"
-                            :prop="`plans.${idx}.startTime`"
+                            :prop="`plans.${idx}.start_time`"
                             :rules="[{ required: true, message: '请输入开始时间', trigger: 'change' }]">
                             <el-date-picker
                               type="datetime"
-                              v-model="plan.startTime"
-                              :disabled="!plan.degreen"
+                              v-model="plan.start_time"
+                              :disabled="!(plan.degreen+'')"
                               size="small"
-                              :placeholder="plan.degreen ? '请输入开始时间':'请先选择难度'"
+                              :placeholder="plan.degreen+'' ? '请输入开始时间':'请先选择难度'"
                               default-time="9:00:00"
                               value-format="yyyy-MM-dd HH:mm"
                               format="yyyy-MM-dd HH:mm"
@@ -293,7 +301,7 @@
                           </el-form-item>
                         </td>
                         <td>
-                          {{plan.endTime || '--'}}
+                          {{plan.end_time || '--'}}
                         </td>
                       </tr>
                     </template>
@@ -308,7 +316,7 @@
                   :key="item.id">
                   {{`${item.degreen_name}(${item.task_time.toString()}人天) ：${item.remark}`}}
                 </p>
-                <p class="text-small">单任务最长排期为3天，超过3天的任务，请拆解后再排期</p>
+                <p class="text-small">普通任务最长排期为3天，攻关任务最长排期为30天，如有超出，请拆解后再排期</p>
                 <p class="text-small">任务不能多选开发人员，如同一任务需要多个开发人员，请将任务拆解后再排期</p>
               </div>
             </div>
@@ -342,11 +350,15 @@ export default {
   },
 
   computed: {
+    projectParams () {
+      return this.$api.project.update.params
+    },
+
     planGroupIndexes () {
       const result = []
 
       this.$api.project.update.params.plans.forEach((item, idx) => {
-        if (item.taskType === 'group') {
+        if (item.task_type === 'group') {
           result.push(idx)
         }
       })
@@ -357,13 +369,13 @@ export default {
     developers () {
       const project = this.$api.project.update.params.project
 
-      return this.$api.project.update.params.project.developerIds.map((item, idx) => ({
-        id: item, name: project.developerNames[idx]
+      return this.$api.project.update.params.project.developer_ids.map((item, idx) => ({
+        id: item, name: project.developer_names[idx]
       }))
     },
 
     groupTaskCount () {
-      return this.$api.project.update.params.plans.filter(item => item.taskType === 'group').length
+      return this.$api.project.update.params.plans.filter(item => item.task_type === 'group').length
     },
 
     currentPlan () {
@@ -373,26 +385,52 @@ export default {
 
   methods: {
     init () {
-      let projectDraft = window.localStorage.getItem('projectDraft')
-
-      if (projectDraft) {
-        projectDraft = JSON.parse(projectDraft)
-        Object.assign(this.$api.project.update.params, projectDraft)
+      if (this.$route.query.id) {
+        this.$api.project.update.reset()
+        this.getProject(this.$route.query.id)
       } else {
-        Object.assign(this.$api.project.update.params, {
-          plans: this.$cnt.projectTemplate.plans,
-          timeNodes: this.$cnt.projectTemplate.timeNodes
-        })
+        let projectDraft = window.localStorage.getItem('projectDraft')
+
+        if (projectDraft) {
+          projectDraft = JSON.parse(projectDraft)
+          Object.assign(this.$api.project.update.params, projectDraft)
+        } else {
+          Object.assign(this.$api.project.update.params, {
+            plans: this.$cnt.projectTemplate.plans,
+            timeNodes: this.$cnt.projectTemplate.timeNodes
+          })
+        }
       }
     },
 
+    getProject (id) {
+      this.$api.project.getProjects.send({ id }).then(data => {
+        if (data.list && data.list[0]) {
+          const result = data.list[0]
+
+          result.plans = result.plans.map(item => {
+            item.start_time = this.$ui.dateFormat(item.start_time, 'yyyy-mm-dd HH:MM')
+            item.end_time = this.$ui.dateFormat(item.end_time, 'yyyy-mm-dd HH:MM')
+            return item
+          })
+
+          Object.assign(this.$api.project.update.params, {
+            id: result.project.id,
+            ...result
+          })
+
+          this.$api.user.getUsers.send({ groupId: result.project.dev_group })
+        }
+      })
+    },
+
     changeDevlopers (val) {
-      this.$api.project.update.params.project.developerNames = this.$dic.select(this.$api.user.getUsers.data.list, val)
+      this.$api.project.update.params.project.developer_names = this.$dic.select(this.$api.user.getUsers.data.list, val)
 
       const params = this.$api.project.update.params
 
       if (!params.projectLeaderId) {
-        [params.project.projectLeaderId, params.project.projectLeaderName] = [params.project.developerIds[0], params.project.developerNames[0]]
+        [params.project.project_leader_id, params.project.project_leader_name] = [params.project.developer_ids[0], params.project.developer_names[0]]
       }
     },
 
@@ -424,7 +462,7 @@ export default {
       const hourString = startTime.match(/\s(.+)/)[1]
 
       if (this.$ui.timeOptions.includes(hourString)) {
-        this.currentPlan.endTime = this.computeTime(startTime + ':00', this.currentPlan.taskTime).endTime
+        this.currentPlan.end_time = this.computeTime(startTime + ':00', this.currentPlan.task_time).endTime
       } else {
         this.$ui.msgBox({
           type: 'info',
@@ -435,22 +473,22 @@ export default {
 
     setPlanForDeveloper (developerId) {
       const plans = this.$api.project.update.params.plans
-      let startTime = this.currentPlan.startTime
+      let startTime = this.currentPlan.start_time
 
       for (let i = this.currentTaskIndex; i < plans.length; i++) {
-        if (plans[i].developerId === developerId) {
-          if (!plans[i].degreen) {
+        if (plans[i].developer_id === developerId) {
+          if (!(plans[i].degreen + '')) {
             this.$ui.msgBox({
               type: 'info',
-              message: `请为任务【${plans[i].taskName}】选择难度等级`
+              message: `请为任务【${plans[i].task_name}】选择难度等级`
             })
 
             return
           }
 
-          plans[i].startTime = startTime
-          const wd = new this.$ui.Workday({ currentTime: startTime + ':00', taskTime: plans[i].taskTime })
-          plans[i].endTime = wd.computedTime.endTime
+          plans[i].start_time = startTime
+          const wd = new this.$ui.Workday({ currentTime: startTime + ':00', taskTime: plans[i].task_time })
+          plans[i].end_time = wd.computedTime.endTime
           startTime = wd.computedTime.nextStartTime
         }
       }
@@ -466,7 +504,7 @@ export default {
         return
       }
 
-      if (!this.currentPlan.developerId) {
+      if (!this.currentPlan.developer_id) {
         this.$ui.msgBox({
           type: 'info',
           message: '请先选择当前行的的开发'
@@ -475,7 +513,7 @@ export default {
         return
       }
 
-      if (!this.currentPlan.endTime) {
+      if (!this.currentPlan.end_time) {
         this.$ui.msgBox({
           type: 'info',
           message: '请先选择当前行的开始时间与结束时间'
@@ -487,9 +525,9 @@ export default {
       let developerId = ''
 
       if (type === 'one') {
-        this.setPlanForDeveloper(this.currentPlan.developerId)
+        this.setPlanForDeveloper(this.currentPlan.developer_id)
       } else {
-        for (developerId of this.$api.project.update.params.project.developerIds) {
+        for (developerId of this.$api.project.update.params.project.developer_ids) {
           this.setPlanForDeveloper(developerId)
         }
       }
@@ -498,7 +536,10 @@ export default {
     submit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$api.project.update.send()
+          this.$api.project.update.send().then(() => {
+            window.localStorage.removeItem('projectDraft')
+            this.$router.push('/')
+          })
         }
       })
     }
@@ -509,7 +550,14 @@ export default {
   },
 
   watch: {
-
+    projectParams: {
+      deep: true,
+      handler (val) {
+        if (!this.$route.query.id) {
+          window.localStorage.setItem('projectDraft', JSON.stringify(val))
+        }
+      }
+    }
   }
 }
 </script>

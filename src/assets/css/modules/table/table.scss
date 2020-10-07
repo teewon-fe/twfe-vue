@@ -5,7 +5,7 @@ $table-bg: #fff !default; // 表格背景
 $table-th-color: $color-text-main !default; // 表头颜色
 $table-header-bg: #edf2f7 !default; // 表头背景
 $table-header-font-size: $font-size-default !default; // 表头文本大小
-$table-body-font-size: $font-size-default !default; // 主体文本大小
+$table-body-font-size: 13px !default; // 主体文本大小
 $table-row-hover-bg: #f6f8fb !default; // 行滑过色
 $table-small-cell-px: 8px !default; // 小型单元格内边距
 $table-large-cell-px: 12px !default; // 大型单元格内边距

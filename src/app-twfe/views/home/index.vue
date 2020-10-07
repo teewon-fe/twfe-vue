@@ -10,7 +10,7 @@
         </div>
 
         <div>
-          <router-link class="tw-btn xsecondary xmedium" to="/new-project?type=create">创建项目</router-link>
+          <router-link class="tw-btn xsecondary xmedium" to="/new-project">创建项目</router-link>
         </div>
       </div>
 
@@ -77,7 +77,7 @@
               :key="project.id">
               <td>{{idx+1}}</td>
               <td>
-                <router-link to="/project-detail?q=id" class="text-link">{{project.projectName}}</router-link>
+                <router-link :to="`/project-detail?id=${project.id}`" class="text-link">{{project.projectName}}</router-link>
               </td>
               <td class="pr-huge">
                 <el-progress :percentage="project.progress" :format="format" :color="project.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
