@@ -113,6 +113,11 @@ $tag-tabel-border: #a1e0ba !default; // 表格标签边框色
 }
 
 // 标签: 正常
+.tw-tag.xnormal {
+  background: #218fff;
+}
+
+// 标签: 有风险
 .tw-tag.xrisk {
   background: $color-error;
 }

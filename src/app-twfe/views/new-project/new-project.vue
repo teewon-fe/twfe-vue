@@ -536,10 +536,17 @@ export default {
     submit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$api.project.update.send().then(() => {
-            window.localStorage.removeItem('projectDraft')
-            this.$router.push('/')
-          })
+          if (this.$route.query.id) {
+            this.$api.project.update.send().then(() => {
+              window.localStorage.removeItem('projectDraft')
+              this.$router.push(`/project-detail?id=${this.$route.query.id}`)
+            })
+          } else {
+            this.$api.project.add.send(this.$api.project.update.params).then(() => {
+              window.localStorage.removeItem('projectDraft')
+              this.$router.push('/')
+            })
+          }
         }
       })
     }

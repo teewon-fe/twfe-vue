@@ -20,7 +20,7 @@ export const getProjects = {
 }
 
 // 更新项目
-export const update = {
+export const add = {
   url: '/project',
   method: 'post',
 
@@ -69,6 +69,10 @@ export const update = {
     }
   }
 }
+
+export const update = window.$ui.cloneApiOption(add, {
+  method: 'put'
+})
 
 // 关闭项目
 export const close = {

@@ -4,7 +4,7 @@
       <div class="tw-crm">
         <router-link class="tw-crm-link" to="/">项目</router-link>
         <i class="tw-crm-arrow"></i>
-        <span class="tw-crm-self ml-step">ECO数据开放平台</span>
+        <span class="tw-crm-self ml-step">{{project.project_name}}</span>
       </div>
 
       <!-- 概要 -->
@@ -13,10 +13,9 @@
         <div class="tw-title xnomark xico">
           <div class="tw-title-left">
             <i class="tw-ico xeco xsmall"></i>
-            <span class="text-default">ECO数据开放平台</span>
+            <span class="text-default">{{project.project_name}}</span>
           </div>
           <div class="tw-title-right">
-            <a class="tw-icobtn"><i class="tw-ico xsync"></i>同步进度</a>
             <router-link class="tw-icobtn" :to="`/new-project?id=${$route.query.id}`"><i class="tw-ico xedit"></i>编辑</router-link>
             <a class="tw-icobtn"><i class="tw-ico xdel"></i>删除</a>
           </div>
@@ -37,13 +36,13 @@
           </div>
 
           <div class="tw-grid-col">
-            <div class="text-huge"><span class="text-highlight">1.2</span>/1.5</div>
+            <div class="text-huge"><span class="text-highlight">--</span>/1.5</div>
             <div class="text-small text-weaking scale-less-medium">当前/目标(页/人天)</div>
             <div class="text-medium"><i class="tw-ico xspeed dt-n1 mr-3"></i>项目效率</div>
           </div>
 
           <div class="tw-grid-col">
-            <div class="text-huge"><span class="text-highlight">5</span>/20</div>
+            <div class="text-huge"><span class="text-highlight">--</span>/--</div>
             <div class="text-small text-weaking scale-less-medium">本月/总数(个)</div>
             <div class="text-medium"><i class="tw-ico xbug dt-n1 mr-3"></i>项目缺陷</div>
           </div>
@@ -70,25 +69,27 @@
 
         <!-- 项目:进度图表 -->
         <div class="text-small">
-          <a class="tw-tag xsmall p-0 xrisk mr-step"></a>
-          <span class="text-secondary">有风险, 进度延期20%</span>
+          <a class="tw-tag xsmall dt-n1 p-0 mr-step" :class="{xrisk: project.status==='有风险', xnormal: project.status!=='有风险'}"></a>
+          <span v-if="project.status==='有风险'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectantProgress - project.progress)}}%</span>
+          <span v-else>{{project.status}}</span>
         </div>
 
         <div class="tw-flex align-items-center text-center">
           <div style="width: 30%;">
-            <el-progress type="circle" :width="150" :percentage="25" :stroke-width="8"></el-progress>
+            <el-progress type="circle" :width="150" :percentage="project.progress" :stroke-width="8" :color="project.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
             <!-- <div class="text-weaking">总体进度</div> -->
           </div>
           <div class="tw-flex-body">
             <!-- http://echartsjs.com/option.html#yAxis -->
             <tw-chart
-              height="200px"
-              categoryKey="student"
-              :option="chartOption"
-              :dataMaps="chartDataMaps">
+              height="240px"
+              categoryKey="name"
+              :option="{legend: {show:false},tooltip:{formatter:'{b}<br />完成：{c}%'}}"
+              :dataMaps="project.chartDataMaps">
             </tw-chart>
           </div>
         </div>
+
         <!-- /项目:进度图表 -->
 
         <tw-collapse-group>
@@ -122,45 +123,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-bold" colspan="8">通用流程</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>需求评审</td>
-                    <td>中等</td>
-                    <td>1.5</td>
-                    <td>2020-02-20</td>
-                    <td>2020-02-21</td>
-                    <td>
-                      <el-progress :percentage="50" :format="format"></el-progress>
-                    </td>
-                    <td>陈今斌</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>高保真评审</td>
-                    <td>中等</td>
-                    <td>1.5</td>
-                    <td>2020-02-20</td>
-                    <td>2020-02-21</td>
-                    <td>
-                      <el-progress :percentage="50" :format="format"></el-progress>
-                    </td>
-                    <td>陈今斌</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>框架搭建(框架、公用样式、公用逻辑等)</td>
-                    <td>中等</td>
-                    <td>1.5</td>
-                    <td>2020-02-20</td>
-                    <td>2020-02-21</td>
-                    <td>
-                      <el-progress :percentage="50" :format="format"></el-progress>
-                    </td>
-                    <td>陈今斌</td>
-                  </tr>
+                  <template v-for="(plan,idx) in project.plans">
+                    <tr v-if="plan.task_type==='group'" :key="plan.id">
+                      <td class="text-bold" colspan="8">{{plan.task_name}}</td>
+                    </tr>
+                    <tr v-else :key="plan.id">
+                      <td>{{idx - getOffsetIdx(idx)}}</td>
+                      <td>{{plan.task_name}}</td>
+                      <td>{{$dic.select($api.dic.degreens.data.list, plan.degreen, 'degreen_name')}}</td>
+                      <td>{{plan.task_time}}</td>
+                      <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd HH:MM')}}</td>
+                      <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd HH:MM')}}</td>
+                      <td>
+                        <el-progress :percentage="plan.progress*100" :format="format" :color="plan.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
+                      </td>
+                      <td>{{plan.developer_name}}</td>
+                    </tr>
+                  </template>
                 </tbody>
               </table>
             </div>
@@ -225,20 +204,23 @@ export default {
 
   data () {
     return {
-      leader: {},
-      chartOption: {
-        grid: {
-          top: 10,
-          bottom: 20
-        }
-      },
-      searchWord: '',
-      chartData: [],
-      chartDataMaps: []
+      leader: {}
     }
   },
 
   computed: {
+    planGroupIndexes () {
+      const result = []
+
+      this.project.plans.forEach((item, idx) => {
+        if (item.task_type === 'group') {
+          result.push(idx)
+        }
+      })
+
+      return result
+    },
+
     project () {
       if (this.$api.project.getProjects.data.list[0]) {
         const project = this.$api.project.getProjects.data.list[0]
@@ -274,21 +256,84 @@ export default {
 
         nextTimeNode.text = `${nextTimeNode.time_node_name}(${this.$ui.dateFormat(nextTimeNode.start, 'yyyy-mm-dd')})`
 
+        const developers = {}
+
         project.plans.forEach(item => {
           if (item.task_type === 'normal') {
             taskNums++
             progress += item.progress || 0
             taskTime += parseFloat(item.task_time)
 
-            if (new Date() <= new Date(item.end_time)) {
+            if (!developers[item.developer_name]) {
+              developers[item.developer_name] = {
+                taskNums: 0,
+                progress: 0,
+                expectantProgress: 0
+              }
+            }
+
+            if (new Date() >= new Date(item.end_time)) {
               expectantProgress++
+              developers[item.developer_name].expectantProgress++
             }
 
             if (new Date() >= new Date(item.end_time)) {
               investedTime += parseFloat(item.task_time)
             }
+
+            developers[item.developer_name].taskNums++
+            developers[item.developer_name].progress += item.progress
           }
         })
+
+        let chartData = []
+        let colors = []
+        for (const [key, value] of Object.entries(developers)) {
+          const progress = parseFloat((value.progress / value.taskNums * 100).toFixed(2))
+
+          if (value.progress < value.expectantProgress) {
+            colors.push('#fb6c84')
+          } else {
+            colors.push('#218fff')
+          }
+
+          chartData.push({
+            name: key,
+            progress,
+            total: 100
+          })
+        }
+
+        const chartDataMaps = [
+          {
+            name: '百分比',
+            type: 'bar',
+            dataset: chartData,
+            dataKey: 'total',
+            barWidth: 30,
+            barGap: '-100%',
+            itemStyle: {
+              normal: {
+                color: '#ebeef5'
+              },
+              barBorderRadius: 0
+            },
+            tooltip: {
+              show: false
+            }
+          },
+          {
+            name: '已完成',
+            type: 'bar',
+            dataset: chartData,
+            dataKey: 'progress',
+            barWidth: 30,
+            itemStyle: {
+              barBorderRadius: 0
+            },
+            colors
+          }
+        ]
 
         expectantProgress = expectantProgress / taskNums * 100
         progress = progress / taskNums * 100
@@ -307,7 +352,10 @@ export default {
           ...project.project,
           taskTime,
           investedTime,
+          chartData,
+          chartDataMaps,
           progress: parseFloat(progress.toFixed(2)),
+          expectantProgress: parseFloat(expectantProgress.toFixed(2)),
           nextTimeNode,
           timeNodes: project.timeNodes,
           plans: project.plans
@@ -316,15 +364,21 @@ export default {
         return {
           project: {},
           plans: [],
-          timeNodes: []
+          timeNodes: [],
+          chartData: [],
+          chartDataMaps: []
         }
       }
     }
   },
 
   methods: {
+    format (percentage) {
+      return `${percentage}%`
+    },
+
     getProject () {
-      this.$api.project.getProjects.send().then(data => {
+      this.$api.project.getProjects.send({ id: this.$route.query.id }).then(data => {
         if (data.list && data.list[0]) {
           this.$api.user.getUser.send({
             id: data.list[0].project.project_leader_id
@@ -337,51 +391,20 @@ export default {
       })
     },
 
-    /**
-    * 功能: 功能描述
-    * @param {Type} name 参数描述
-    */
-    format (percentage) {
-      return `${percentage}%`
-    },
-
-    /**
-    * 功能: 获取图表数据
-    */
-    getChartData () {
-      const vm = this
-
-      // 设置图表数据
-      vm.chartData = [
-        {
-          student: '学生1',
-          score: 90
-        },
-        {
-          student: '学生2',
-          score: 148
+    getOffsetIdx (index) {
+      for (var i = 0; i < this.planGroupIndexes.length; i++) {
+        if (index < this.planGroupIndexes[i]) {
+          break
         }
-      ]
+      }
 
-      // 映射图表数据 http://echartsjs.com/option.html#series-bar.data
-      vm.chartDataMaps = [
-        {
-          name: '分数',
-          type: 'bar',
-          dataset: vm.chartData,
-          dataKey: 'score',
-          barWidth: 30,
-          // 用主题的默认颜色请删除此colors值, 建议不指定该值，同一系列的柱状图本应该是同一颜色(echarts默认)
-          // 但当设计稿在同一系列的每一个柱条指定了不同的颜色时，需要指定此colors参数
-          colors: ['#657df5', '#43a2ff', '#4ac7ff', '#2bd3bd', '#96e388', '#fecd63']
-        }
-      ]
+      return i - 1
     }
   },
 
   created () {
-    this.getChartData()
     this.getProject()
+    this.$api.dic.degreens.send()
   }
 }
 </script>
