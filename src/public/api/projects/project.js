@@ -85,3 +85,30 @@ export const close = {
     }
   }
 }
+
+// 项目数量
+export const count = {
+  url: '/project/count',
+  method: 'get',
+
+  response: {
+    data: {
+      total: 0,
+      doing: 0
+    }
+  }
+}
+
+// 删除项目
+export const del = {
+  url: '/project/{id}/{pwd}',
+  method: 'delete',
+
+  request: {
+    mode: 'path',
+    params: {
+      id: '',
+      pwd: ''
+    }
+  }
+}

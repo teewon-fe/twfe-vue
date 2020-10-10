@@ -17,7 +17,7 @@
           </div>
           <div class="tw-title-right">
             <router-link class="tw-icobtn" :to="`/new-project?id=${$route.query.id}`"><i class="tw-ico xedit"></i>编辑</router-link>
-            <a class="tw-icobtn" @click="delProject"><i class="tw-ico xdel"></i>删除</a>
+            <a class="tw-icobtn"><i class="tw-ico xdel"></i>删除</a>
           </div>
         </div>
         <!-- /项目:标题 -->
@@ -30,7 +30,7 @@
           </div>
 
           <div class="tw-grid-col">
-            <div class="text-huge"><span class="text-highlight">{{project.invested_time}}</span>/{{project.task_time}}</div>
+            <div class="text-huge"><span class="text-highlight">{{project.investedTime}}</span>/{{project.taskTime}}</div>
             <div class="text-small text-weaking scale-less-medium">已投入/总工时(人天)</div>
             <div class="text-medium"><i class="tw-ico xcmonth dt-n1 mr-3"></i>项目工时</div>
           </div>
@@ -70,7 +70,7 @@
         <!-- 项目:进度图表 -->
         <div class="text-small">
           <a class="tw-tag xsmall dt-n1 p-0 mr-step" :class="{xrisk: project.status==='有风险', xnormal: project.status!=='有风险'}"></a>
-          <span v-if="project.status==='有风险'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectant_progress - project.progress)}}%</span>
+          <span v-if="project.status==='有风险'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectantProgress - project.progress)}}%</span>
           <span v-else>{{project.status}}</span>
         </div>
 
@@ -83,7 +83,7 @@
             <!-- http://echartsjs.com/option.html#yAxis -->
             <tw-chart
               height="240px"
-              categoryKey="developer_name"
+              categoryKey="name"
               :option="{legend: {show:false},tooltip:{formatter:'{b}<br />完成：{c}%'}}"
               :dataMaps="project.chartDataMaps">
             </tw-chart>
@@ -153,34 +153,38 @@
               <table class="tw-table">
                 <thead>
                   <tr>
-                    <th style="width: 200px;">项目相关url</th>
-                    <th>url</th>
+                    <th style="width: 200px;">项目</th>
+                    <th>URL地址</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-if="project.project_svn">
+                  <tr>
+                    <td>项目名称</td>
+                    <td class="text-secondary">ECO数据开放平台</td>
+                  </tr>
+                  <tr>
+                    <td>项目类型</td>
+                    <td class="text-secondary">门户类前台项目</td>
+                  </tr>
+                  <tr>
                     <td>项目SVN目录</td>
-                    <td><a class="text-link" :href="project.project_svn" target="_blank">{{project.project_svn}}</a></td>
+                    <td><a class="text-link">http://192.168.102.222:9888/pages/viewpage.action?pageId=39826770</a></td>
                   </tr>
-                  <tr v-if="project.project_prd_url">
+                  <tr>
                     <td>需求文档地址</td>
-                    <td><a class="text-link" :href="project.project_prd_url" target="_blank">{{project.project_prd_url}}</a></td>
+                    <td><a class="text-link">http://192.168.102.222:9888/pages/viewpage.action?pageId=39826770</a></td>
                   </tr>
-                  <tr v-if="project.project_design_svn">
+                  <tr>
                     <td>高保真SVN</td>
-                    <td><a class="text-link" :href="project.project_design_svn" target="_blank">{{project.project_design_svn}}</a></td>
+                    <td><a class="text-link">http://192.168.102.222:9888/pages/viewpage.action?pageId=39826770</a></td>
                   </tr>
-                  <tr v-if="project.project_psd_svn">
+                  <tr>
                     <td>设计源文件SVN</td>
-                    <td><a class="text-link" :href="project.project_psd_svn" target="_blank">{{project.project_psd_svn}}</a></td>
+                    <td><a class="text-link">http://192.168.102.222:9888/pages/viewpage.action?pageId=39826770</a></td>
                   </tr>
-                  <tr v-if="project.project_api_svn">
+                  <tr>
                     <td>接口文档地址</td>
-                    <td><a class="text-link" :href="project.project_api_svn" target="_blank">{{project.project_api_svn}}</a></td>
-                  </tr>
-                  <tr v-if="project.project_test_case_svn">
-                    <td>测试用例地址</td>
-                    <td><a class="text-link" :href="project.project_test_case_svn" target="_blank">{{project.project_test_case_svn}}</a></td>
+                    <td><a class="text-link">http://192.168.102.222:9888/pages/viewpage.action?pageId=39826770</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -220,52 +224,147 @@ export default {
     project () {
       if (this.$api.project.getProjects.data.list[0]) {
         const project = this.$api.project.getProjects.data.list[0]
-
-        let colors = []
-
-        for (const developer of project.developers) {
-          colors.push(developer.progress < developer.expectant_progress ? '#fb6c84' : '#218fff')
+        let taskNums = 0
+        let progress = 0
+        let taskTime = 0
+        let investedTime = 0
+        let expectantProgress = 0
+        let nextTimeNode = {
+          start: new Date(),
+          time_node_name: '--'
         }
 
-        project.developers.forEach(item => (item.total = 100))
+        for (const tn of project.timeNodes) {
+          const start = new Date(tn.start_time)
+          if (new Date() <= start) {
+            if (nextTimeNode.time_node_name === '--') {
+              nextTimeNode = {
+                start,
+                time_node_name: tn.time_node_name
+              }
+            }
+          } else {
+            tn.status = 'active'
+          }
+
+          if (tn.done_time) {
+            tn.status = 'done'
+          }
+
+          tn.text = `${tn.time_node_name}(${this.$ui.dateFormat(start, 'yyyy-mm-dd')})`
+        }
+
+        nextTimeNode.text = `${nextTimeNode.time_node_name}(${this.$ui.dateFormat(nextTimeNode.start, 'yyyy-mm-dd')})`
+
+        const developers = {}
+
+        project.plans.forEach(plan => {
+          if (plan.task_type === 'normal') {
+            taskNums++
+            progress += plan.progress || 0
+            taskTime += parseFloat(plan.task_time)
+
+            if (!developers[plan.developer_name]) {
+              developers[plan.developer_name] = {
+                taskNums: 0,
+                progress: 0,
+                expectantProgress: 0,
+                developerId: plan.developer_id,
+                developerName: plan.developer_name
+              }
+            }
+
+            if (new Date() >= new Date(plan.end_time)) {
+              expectantProgress++
+              developers[plan.developer_name].expectantProgress++
+            }
+
+            if (new Date() >= new Date(plan.end_time)) {
+              investedTime += parseFloat(plan.task_time)
+            }
+
+            developers[plan.developer_name].taskNums++
+            developers[plan.developer_name].progress += plan.progress
+          }
+        })
+
+        let chartData = []
+        let colors = []
+        for (const [key, value] of Object.entries(developers)) {
+          const progress = parseFloat((value.progress / value.taskNums * 100).toFixed(2))
+
+          if (value.progress < value.expectantProgress) {
+            colors.push('#fb6c84')
+          } else {
+            colors.push('#218fff')
+          }
+
+          chartData.push({
+            name: key,
+            progress,
+            total: 100
+          })
+        }
+
+        const chartDataMaps = [
+          {
+            name: '百分比',
+            type: 'bar',
+            dataset: chartData,
+            dataKey: 'total',
+            barWidth: 30,
+            barGap: '-100%',
+            itemStyle: {
+              normal: {
+                color: '#ebeef5'
+              },
+              barBorderRadius: 0
+            },
+            tooltip: {
+              show: false
+            }
+          },
+          {
+            name: '已完成',
+            type: 'bar',
+            dataset: chartData,
+            dataKey: 'progress',
+            barWidth: 30,
+            itemStyle: {
+              barBorderRadius: 0
+            },
+            colors
+          }
+        ]
+
+        expectantProgress = expectantProgress / taskNums * 100
+        progress = progress / taskNums * 100
+
+        let status = '正常进行中'
+
+        if (project.project.status === 'done') {
+          status = '已完成'
+        } else if (progress < expectantProgress) {
+          status = '有风险'
+        }
+
+        project.project.status = status
 
         return {
           ...project.project,
+          taskTime,
+          investedTime,
+          chartData,
+          chartDataMaps,
+          progress: parseFloat(progress.toFixed(2)),
+          expectantProgress: parseFloat(expectantProgress.toFixed(2)),
+          nextTimeNode,
           timeNodes: project.timeNodes,
-          plans: project.plans,
-          chartDataMaps: [
-            {
-              name: '百分比',
-              type: 'bar',
-              dataset: project.developers,
-              dataKey: 'total',
-              barWidth: 30,
-              barGap: '-100%',
-              itemStyle: {
-                normal: {
-                  color: '#ebeef5'
-                },
-                barBorderRadius: 0
-              },
-              tooltip: {
-                show: false
-              }
-            },
-            {
-              name: '已完成',
-              type: 'bar',
-              dataset: project.developers,
-              dataKey: 'progress',
-              barWidth: 30,
-              itemStyle: {
-                barBorderRadius: 0
-              },
-              colors
-            }
-          ]
+          plans: project.plans
         }
       } else {
         return {
+          project: {},
           plans: [],
           timeNodes: [],
           chartData: [],
@@ -302,41 +401,12 @@ export default {
       }
 
       return i - 1
-    },
-
-    delProject () {
-      this.$prompt('该删除为物理删除，不可恢复，请输入登录密码继续：', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        inputPattern: /.{6}/,
-        inputErrorMessage: '请输入密码',
-        inputPlaceholder: '请输入您的登录密码'
-      }).then(({ value }) => {
-        this.$api.project.del.send({
-          pwd: btoa(value).replace(/=+$/g, ''),
-          id: this.$route.query.id
-        }).then(data => {
-          this.$ui.msg('删除成功')
-          this.$router.push('/')
-        }).catch(e => {
-          this.$ui.msg({
-            type: 'error',
-            message: '删除失败'
-          })
-        })
-      }).catch(() => {
-        // noop
-      })
     }
   },
 
   created () {
-    if (this.$route.query.id) {
-      this.getProject()
-      this.$api.dic.degreens.send()
-    } else {
-      this.$router.push('/')
-    }
+    this.getProject()
+    this.$api.dic.degreens.send()
   }
 }
 </script>

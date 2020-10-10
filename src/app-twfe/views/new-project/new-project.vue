@@ -4,7 +4,7 @@
         <div class="tw-crm">
           <router-link class="tw-crm-link" to="/">项目</router-link>
           <i class="tw-crm-arrow"></i>
-          <span class="tw-crm-self ml-step">新建项目</span>
+          <span class="tw-crm-self ml-step">{{$route.query.id ? '修改':'新建'}}项目</span>
         </div>
 
       <!-- 基本信息 -->
@@ -145,13 +145,13 @@
                       v-for="(timeNode,idx) in params.timeNodes"
                       :key="idx"
                        @dblclick="params.timeNodes.splice(idx+1, 0, $ui.cloneJson($cnt.projectTemplate.timeNode))"
-                       @mouseup.right="params.timeNodes.length>1 && (params.timeNodes.splice(idx, 1))">
+                       @mouseup.right="params.timeNodes.length>1 && (params.timeNodes.splice(idx, 1)) && delTimeNodeIds.push(timeNode.id)">
                       <td class="xhandle jx-handle">{{idx+1}}</td>
                       <td>
                         <el-form-item
                           label-width="0"
                           :prop="`timeNodes.${idx}.time_node_name`"
-                          :rules="[{ required: true, message: '请输入里程碑名称', trigger: 'blur' }]">
+                          :rules="[{ required: true, message: '请输入里程碑名称', trigger: 'change' }]">
                           <el-input v-model="timeNode.time_node_name" size="small" />
                         </el-form-item>
                       </td>
@@ -159,7 +159,7 @@
                         <el-form-item
                           label-width="0"
                           :prop="`timeNodes.${idx}.start_time`"
-                          :rules="[{ required: true, message: '请输入开始时间', trigger: 'blur' }]">
+                          :rules="[{ required: true, message: '请输入开始时间', trigger: 'change' }]">
                           <el-date-picker
                             v-model="timeNode.start_time"
                             value-format="yyyy-MM-dd"
@@ -218,12 +218,12 @@
                       <tr v-if="plan.task_type==='group'"
                         :key="idx"
                         @dblclick="params.plans.splice(idx+1, 0, $ui.cloneJson($cnt.projectTemplate.planGroup))"
-                        @mouseup.right="params.plans.filter(item=>item.task_type==='group').length>1 && (params.plans.splice(idx, 1))">
+                        @mouseup.right="params.plans.filter(item=>item.task_type==='group').length>1 && (params.plans.splice(idx, 1)) && delPlanIds.push(plan.id)">
                         <td class="xbold xhandle jx-handle" colspan="7">
                           <el-form-item
                             label-width="0"
                             :prop="`plans.${idx}.task_name`"
-                            :rules="[{ required: true, message: '请输入任务组名称', trigger: 'blur' }]">
+                            :rules="[{ required: true, message: '请输入任务组名称', trigger: 'change' }]">
                               <el-input class="xhandle" v-model="plan.task_name" size="small" />
                           </el-form-item>
                         </td>
@@ -231,14 +231,14 @@
                       <tr v-else
                         :key="idx"
                         @dblclick="params.plans.splice(idx+1, 0, $ui.cloneJson($cnt.projectTemplate.plan))"
-                        @mouseup.right="params.plans.filter(item=>item.task_type==='normal').length>1 && (params.plans.splice(idx, 1))"
+                        @mouseup.right="params.plans.filter(item=>item.task_type==='normal').length>1 && (params.plans.splice(idx, 1)) && delPlanIds.push(plan.id)"
                         @click="currentTaskIndex=idx">
                         <td class="xhandle jx-handle" :class="[idx===currentTaskIndex?'text-link text-bold text-medium':'']">{{idx - getOffsetIdx(idx)}}</td>
                         <td>
                           <el-form-item
                             label-width="0"
                             :prop="`plans.${idx}.task_name`"
-                            :rules="[{ required: true, message: '请输入任务名称', trigger: 'blur' }]">
+                            :rules="[{ required: true, message: '请输入任务名称', trigger: 'change' }]">
                               <el-input v-model="plan.task_name" size="small" />
                           </el-form-item>
                         </td>
@@ -327,7 +327,7 @@
 
       <div v-fix:bottom class="tw-fixbtns">
         <a class="tw-btn xmedium xmain" @click="submit">保存</a>
-        <a class="tw-btn xmedium xweaking">取消</a>
+        <a class="tw-btn xmedium xweaking" @click="$router.back()">返回</a>
       </div>
     </div>
   </main>
@@ -345,7 +345,9 @@ export default {
 
   data () {
     return {
-      currentTaskIndex: ''
+      currentTaskIndex: '',
+      delPlanIds: [],
+      delTimeNodeIds: []
     }
   },
 
@@ -536,8 +538,19 @@ export default {
     submit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
+          this.$api.project.update.params.plans.forEach((item, idx) => (item.no = idx))
+
           if (this.$route.query.id) {
-            this.$api.project.update.send().then(() => {
+            const { id, project, plans, timeNodes } = this.$api.project.update.params
+
+            this.$api.project.update.send({
+              id,
+              project,
+              plans,
+              timeNodes,
+              delTimeNodeIds: this.delTimeNodeIds,
+              delPlanIds: this.delPlanIds
+            }).then(() => {
               window.localStorage.removeItem('projectDraft')
               this.$router.push(`/project-detail?id=${this.$route.query.id}`)
             })
