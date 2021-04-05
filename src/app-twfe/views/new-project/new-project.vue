@@ -26,7 +26,7 @@
                   <el-form-item
                     prop="project.project_name"
                     label="项目名称:">
-                    <el-input v-model="params.project.project_name"></el-input>
+                    <el-input v-model="params.project.project_name" placeholder="【版本号简写】需求名称，如：【ECOC05】智慧课堂积分分析"></el-input>
                   </el-form-item>
                 </el-col>
 
@@ -53,31 +53,44 @@
                 <el-col :span="12">
                   <el-form-item
                     prop="project.dev_group"
-                    label="开发组:">
+                    label="项目组:">
                     <tw-api-select
                       v-model="params.project.dev_group"
                       :api="$api.user.getGroups"
-                      option-value-key="id"
-                      @change="$api.user.getUsers.send({groupId:params.project.dev_group})">
+                      multiple
+                      option-value-key="id">
                     </tw-api-select>
                   </el-form-item>
                 </el-col>
 
                 <template v-if="$api.user.getUsers.data.list.length>0">
-                  <div>
-                    <el-form-item
-                      style="clear:both;"
-                      prop="project.developer_ids"
-                      label="开发人员:">
-                      <el-checkbox-group class="pt-tiny xorderly"
-                        v-model="params.project.developer_ids"
-                        @change="changeDevlopers">
-                        <el-checkbox v-for="item in $api.user.getUsers.data.list" :label="item.id" :key="item.id">
-                          <span>{{item.name}}</span>
-                          <i class="tw-ico xleader xsmall pl-step" :class="{xactive:params.project.project_leader_id===item.id}" @click.prevent="[params.project.project_leader_id, params.project.project_leader_name]=[item.id,item.name]" title="点亮图标设为项目负责"></i>
-                        </el-checkbox>
-                      </el-checkbox-group>
-                    </el-form-item>
+                  <div v-for="group in groups"
+                    :key="group.name">
+                    <el-checkbox-group class="pt-tiny xorderly"
+                      v-model="params.project.developer_ids"
+                      @change="changeDevlopers">
+                      <el-form-item
+                        style="clear:both;"
+                        prop="project.developer_ids"
+                        :label="group.name+':'">
+                          <el-checkbox v-for="item in $api.user.getUsers.data.list.filter(item=>item.group_name === group.name)" :label="item.id" :key="item.id">
+                            <span>{{item.name}}</span>
+                            <i v-if="params.project.developer_ids.includes(item.id)"
+                              class="tw-ico xleader xsmall pl-step"
+                              :class="{xactive:params.project.project_leader_id===item.id}"
+                              @click.prevent="[params.project.project_leader_id, params.project.project_leader_name]=[item.id,item.name]"
+                              title="点亮图标设为项目开发负责人：负责项目全流程拉通，前后端打包归档，转测等">
+                            </i>
+                            <i v-if="!$app.testVersion.includes('twfe') && params.project.developer_ids.includes(item.id)"
+                              class="tw-ico xfeleader xsmall pl-step"
+                              :class="{xactive:params.project.project_fe_leader_id===item.id}"
+                              style="margin-left: -5px;"
+                              @click.prevent="[params.project.project_fe_leader_id, params.project.project_fe_leader_name]=[item.id,item.name]"
+                              title="H5图标点亮为前端负责人：负责前端打包，转测，版本基线等">
+                            </i>
+                          </el-checkbox>
+                      </el-form-item>
+                    </el-checkbox-group>
                   </div>
                 </template>
 
@@ -117,6 +130,12 @@
                   label="测试用例地址:">
                   <el-input v-model="params.project.project_test_case_svn"></el-input>
                 </el-form-item>
+
+                <el-form-item
+                  prop="project.remark"
+                  label="备注:">
+                  <el-input v-model="params.project.remark" type="textarea"></el-input>
+                </el-form-item>
               </el-row>
             </div>
             <!-- /基本信息 -->
@@ -152,7 +171,15 @@
                           label-width="0"
                           :prop="`timeNodes.${idx}.time_node_name`"
                           :rules="[{ required: true, message: '请输入里程碑名称', trigger: 'change' }]">
-                          <el-input v-model="timeNode.time_node_name" size="small" />
+                          <!-- <el-input v-model="timeNode.time_node_name" size="small" /> -->
+                          <el-select v-model="timeNode.time_node_name" filterable allow-create placeholder="选择或输入里程碑名称">
+                            <el-option
+                              v-for="item in $cnt.timeNodeTypes"
+                              :key="item"
+                              :label="item"
+                              :value="item">
+                            </el-option>
+                          </el-select>
                         </el-form-item>
                       </td>
                       <td>
@@ -201,7 +228,7 @@
               </div>
 
               <div class="tw-twrapper mt-medium">
-                <table class="tw-table xeditable">
+                <table class="tw-table xeditable xnowrap">
                   <thead>
                     <tr>
                       <th style="width: 4em;">序号</th>
@@ -247,7 +274,7 @@
                             label-width="0"
                             :prop="`plans.${idx}.developer_id`"
                             :rules="[{ required: true, message: '请选择开发', trigger: 'change' }]">
-                            <el-select v-model="plan.developer_id" @change="(val)=>{params.plans[idx].developer_name=params.project.developer_names[params.project.developer_ids.indexOf(val)]}">
+                            <el-select v-model="plan.developer_id">
                               <el-option v-for="item in developers"
                                 :key="item.id"
                                 :label="item.name"
@@ -266,17 +293,18 @@
                               :api="$api.dic.degreens"
                               option-value-key="id"
                               option-label-key="degreen_name"
-                              @change="plan.task_time=$dic.select($api.dic.degreens.data.list, plan.degreen, 'task_time')">
+                              @change="changeDegreen(plan)">
                             </tw-api-select>
                           </el-form-item>
                         </td>
                         <td>
                           <el-form-item
-                            v-if="plan.degreen===9"
+                            v-if="plan.degreen >= 9"
                             label-width="0"
                             :prop="`plans.${idx}.task_time`"
                             :rules="[{ required: true, message: '请输入任务工时', trigger: 'blur' }]">
-                              <el-input v-model="plan.task_time" size="small" />
+                              <input class="el-input__inner" v-model="plan.task_time" size="small" @blur="valideDegreen(plan)" />
+                              <!-- <el-input v-model="plan.task_time" size="small" @blur="valideDegreen(plan)" /> -->
                           </el-form-item>
 
                           <div v-else>{{plan.task_time || '--'}}</div>
@@ -316,7 +344,9 @@
                   :key="item.id">
                   {{`${item.degreen_name}(${item.task_time.toString()}人天) ：${item.remark}`}}
                 </p>
-                <p class="text-small">普通任务最长排期为3天，攻关任务最长排期为30天，如有超出，请拆解后再排期</p>
+                <p class="text-small">普通任务最长排期为3天，如有超出，请拆解后再排期</p>
+                <p class="text-small">攻关任务与自定义工时任务，最长排期为30天，如有超出，请拆解后再排期</p>
+                <p class="text-small">修改问题单任务，默认为项目所有任务工时的{{$cnt.ISSUE_TASK_TIME_RATE*100}}%，任务特殊时可自行修改</p>
                 <p class="text-small">任务不能多选开发人员，如同一任务需要多个开发人员，请将任务拆解后再排期</p>
               </div>
             </div>
@@ -347,7 +377,9 @@ export default {
     return {
       currentTaskIndex: '',
       delPlanIds: [],
-      delTimeNodeIds: []
+      delTimeNodeIds: [],
+      overtimeDays: [],
+      vacationDays: []
     }
   },
 
@@ -369,11 +401,7 @@ export default {
     },
 
     developers () {
-      const project = this.$api.project.update.params.project
-
-      return this.$api.project.update.params.project.developer_ids.map((item, idx) => ({
-        id: item, name: project.developer_names[idx]
-      }))
+      return this.$api.user.getUsers.data.list.filter(item => this.$api.project.update.params.project.developer_ids.includes(item.id))
     },
 
     groupTaskCount () {
@@ -382,6 +410,12 @@ export default {
 
     currentPlan () {
       return this.$api.project.update.params.plans[this.currentTaskIndex]
+    },
+
+    groups () {
+      return this.$api.user.getGroups.data.list.filter(item => this.$api.project.update.params.project.dev_group.includes(item.id))
+
+      // return [...(new Set(this.$api.user.getUsers.data.list.map(item => item.group_name)))]
     }
   },
 
@@ -391,17 +425,10 @@ export default {
         this.$api.project.update.reset()
         this.getProject(this.$route.query.id)
       } else {
-        let projectDraft = window.localStorage.getItem('projectDraft')
-
-        if (projectDraft) {
-          projectDraft = JSON.parse(projectDraft)
-          Object.assign(this.$api.project.update.params, projectDraft)
-        } else {
-          Object.assign(this.$api.project.update.params, {
-            plans: this.$cnt.projectTemplate.plans,
-            timeNodes: this.$cnt.projectTemplate.timeNodes
-          })
-        }
+        Object.assign(this.$api.project.update.params, {
+          plans: this.$cnt.projectTemplate.plans,
+          timeNodes: this.$cnt.projectTemplate.timeNodes
+        })
       }
     },
 
@@ -421,7 +448,7 @@ export default {
             ...result
           })
 
-          this.$api.user.getUsers.send({ groupId: result.project.dev_group })
+          // this.$api.user.getUsers.send({ groupIds: result.project.dev_group.join() })
         }
       })
     },
@@ -431,7 +458,7 @@ export default {
 
       const params = this.$api.project.update.params
 
-      if (!params.projectLeaderId) {
+      if (!params.project.project_leader_id) {
         [params.project.project_leader_id, params.project.project_leader_name] = [params.project.developer_ids[0], params.project.developer_names[0]]
       }
     },
@@ -454,7 +481,9 @@ export default {
     computeTime (currentTime, taskTime) {
       const workday = new this.$ui.Workday({
         taskTime,
-        currentTime
+        currentTime,
+        vacation: this.vacationDays,
+        overtime: this.overtimeDays
       })
 
       return workday.computedTime
@@ -489,10 +518,40 @@ export default {
           }
 
           plans[i].start_time = startTime
-          const wd = new this.$ui.Workday({ currentTime: startTime + ':00', taskTime: plans[i].task_time })
+
+          const wd = new this.$ui.Workday({
+            currentTime: startTime + ':00',
+            taskTime: plans[i].task_time,
+            vacation: this.vacationDays,
+            overtime: this.overtimeDays
+          })
+
           plans[i].end_time = wd.computedTime.endTime
           startTime = wd.computedTime.nextStartTime
         }
+      }
+    },
+
+    valideDegreen (plan) {
+      if (plan.task_time && parseInt(plan.task_time) > this.$cnt.TASK_MAX_DAYS) {
+        plan.task_time = '30.00'
+
+        this.$ui.msg({
+          type: 'warning',
+          message: `工时不能超${this.$cnt.TASK_MAX_DAYS}天`
+        })
+      }
+    },
+
+    getDeveloperTaskTime (id) {
+      return this.$api.project.update.params.plans.reduce((r, item) => (r += item.developer_id === id && item.degreen !== 9 ? parseFloat(item.task_time) || 0 : 0), 0)
+    },
+
+    changeDegreen (plan) {
+      if (plan.degreen === 9) {
+        plan.task_time = Math.round((this.getDeveloperTaskTime(plan.developer_id) * this.$cnt.ISSUE_TASK_TIME_RATE)).toFixed(2)
+      } else {
+        plan.task_time = this.$dic.select(this.$api.dic.degreens.data.list, plan.degreen, 'task_time')
       }
     },
 
@@ -538,10 +597,23 @@ export default {
     submit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$api.project.update.params.plans.forEach((item, idx) => (item.no = idx))
+          // @change="(val)=>{params.plans[idx].developer_name=params.project.developer_names[params.project.developer_ids.indexOf(val)]}"
+          const developers = this.developers
+
+          this.$api.project.update.params.plans.forEach((item, idx) => {
+            item.no = idx
+
+            if (item.task_type === 'normal') {
+              item.developer_name = this.$dic.select(developers, item.developer_id)
+            }
+          })
 
           if (this.$route.query.id) {
             const { id, project, plans, timeNodes } = this.$api.project.update.params
+
+            if (this.$api.project.update.params.project.status === 'risky') {
+              this.$api.project.update.params.project.status = 'doing'
+            }
 
             this.$api.project.update.send({
               id,
@@ -551,12 +623,10 @@ export default {
               delTimeNodeIds: this.delTimeNodeIds,
               delPlanIds: this.delPlanIds
             }).then(() => {
-              window.localStorage.removeItem('projectDraft')
               this.$router.push(`/project-detail?id=${this.$route.query.id}`)
             })
           } else {
             this.$api.project.add.send(this.$api.project.update.params).then(() => {
-              window.localStorage.removeItem('projectDraft')
               this.$router.push('/')
             })
           }
@@ -566,18 +636,14 @@ export default {
   },
 
   created () {
-    this.init()
-  },
+    this.$api.dic.specialDates.send().then((data) => {
+      this.vacationDays = data.list.filter(item => item.type === 'holiday').map(item => item.value)
+      this.overtimeDays = data.list.filter(item => item.type === 'overtime').map(item => item.value)
+    })
 
-  watch: {
-    projectParams: {
-      deep: true,
-      handler (val) {
-        if (!this.$route.query.id) {
-          window.localStorage.setItem('projectDraft', JSON.stringify(val))
-        }
-      }
-    }
+    this.$api.user.getUsers.send().then(() => {
+      this.init()
+    })
   }
 }
 </script>

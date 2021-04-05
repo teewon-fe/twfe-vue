@@ -17,3 +17,77 @@ export const projectTypes = [
     name: '前端项目'
   }
 ]
+
+export const projectStatus = [
+  {
+    id: cnt.PROJECT_STATUS_DOING,
+    name: '进行中'
+  },
+  {
+    id: cnt.PROJECT_STATUS_DONE,
+    name: '已完成'
+  },
+  {
+    id: cnt.PROJECT_STATUS_RISKY,
+    name: '有风险'
+  }
+]
+
+export const issueStatus = [
+  { id: 'doing', name: '进行中' },
+  { id: 'done', name: '已完成' }
+]
+
+export const issueType = [
+  { id: 'issue', name: '项目协作问题' },
+  { id: 'bug', name: '组内项目Bug' }
+]
+
+// 进度百分比列表
+export const progressList = (() => {
+  const result = []
+
+  for (let i = 0; i <= 100; i += 10) {
+    result.push({
+      id: parseFloat((i / 100).toFixed(2)),
+      name: i + '%'
+    })
+  }
+
+  return result
+})()
+
+// 统计年份值，默认从2020年开始统计
+export const statisticsYearList = (() => {
+  const result = []
+  let year = 2020
+  const currentYear = new Date().getFullYear()
+
+  while (year <= currentYear) {
+    result.push({
+      id: year,
+      name: year + '年'
+    })
+
+    year++
+  }
+
+  return result
+})()
+
+// 统计月份值
+export const statisticsMonthList = (() => {
+  const result = []
+  let month = 1
+
+  while (month <= 12) {
+    result.push({
+      id: month,
+      name: month + '月'
+    })
+
+    month++
+  }
+
+  return result
+})()

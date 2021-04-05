@@ -13,6 +13,7 @@ import InitConfig from '@/assemblies/plugins/init-config'
 import publicInit from '../../public/config/public-init'
 
 Vue.use(InitConfig, {
+  testVersion: 'tw2fe0.1',
   appName: 'web-app-name',
   ...publicInit
 })

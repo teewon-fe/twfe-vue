@@ -6,8 +6,10 @@ export const getProjects = {
   request: {
     params: {
       id: '',
+      developer_id: '',
+      status: '',
       pageNo: 1,
-      pageSize: 10
+      pageSize: 20
     }
   },
 
@@ -29,10 +31,10 @@ export const add = {
       id: '',
 
       project: {
-        project_name: '',
+        project_name: '【ECOV0R0C00】[AIREQ-0000]需求名称',
         project_version: '',
         project_type: '',
-        dev_group: '',
+        dev_group: [],
         developer_ids: [],
         developer_names: [],
         project_leader_id: -1,
@@ -43,7 +45,10 @@ export const add = {
         project_psd_svn: '',
         project_api_svn: '',
         project_test_case_svn: '',
-        status
+        status: '',
+        remark: '',
+        project_fe_leader_id: '',
+        project_fe_leader_name: ''
       },
 
       timeNodes: [],
@@ -73,6 +78,19 @@ export const add = {
 export const update = window.$ui.cloneApiOption(add, {
   method: 'put'
 })
+
+// 更新单个计划进度
+export const updatePlan = {
+  url: '/project/plan',
+  method: 'put',
+
+  request: {
+    params: {
+      id: '',
+      progress: 0
+    }
+  }
+}
 
 // 关闭项目
 export const close = {
@@ -109,6 +127,54 @@ export const del = {
     params: {
       id: '',
       pwd: ''
+    }
+  }
+}
+
+// 获取月度任务时间
+export const mounthTaskTime = {
+  url: '/project/month-task-time',
+  method: 'get',
+
+  request: {
+    params: {
+      ym: ''
+    }
+  },
+
+  response: {
+    data: {
+      totalTime: 0
+    }
+  }
+}
+
+// 获取月度总进度
+export const mounthProgress = {
+  url: '/project/month-progress',
+  method: 'get',
+
+  request: {
+    params: {
+      ym: ''
+    }
+  },
+
+  response: {
+    data: {
+      totalProgress: 0
+    }
+  }
+}
+
+// 获取进行中的项目列表
+export const getDoingProjects = {
+  url: '/project/doing-projects',
+  method: 'get',
+
+  response: {
+    data: {
+      list: []
     }
   }
 }

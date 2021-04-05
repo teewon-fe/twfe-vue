@@ -9,5 +9,41 @@
  * http://192.168.102.233:83/#/doc/guid/const
  */
 
+// 用户角色
+export const ROLE_TEAM_LEADER = 1
+
 // 项目类型
 export const PROJECT_TYPE_H5 = '1'
+
+// 项目状态
+export const PROJECT_STATUS_DOING = 'doing'
+export const PROJECT_STATUS_DONE = 'done'
+export const PROJECT_STATUS_RISKY = 'risky'
+
+// 任务时间
+export const TASK_MAX_DAYS = 30
+export const ISSUE_TASK_TIME_RATE = 0.4
+
+// 时间节点类型
+export const timeNodeTypes = [
+  '需求评审',
+  '高保真评审',
+  '启动开发',
+  '转测SDV1',
+  '转测SDV2',
+  '转测SDV3',
+  '转测SDV4',
+  '转测SDV5',
+  '转测SDV6',
+  '转测SDV7',
+  '转测SDV8',
+  '转测SDV9',
+  '转测SDV10',
+  '版本发布'
+]
+
+// 当前年份
+export const TIME_CUR_YEAR = new Date().getFullYear()
+
+// 当前月份
+export const TIME_CUR_MONTH = new Date().getMonth() + 1

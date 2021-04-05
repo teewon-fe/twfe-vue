@@ -20,7 +20,7 @@
 
 // 过滤区: 表格
 .tw-filter-table {
-  width: 80%;
+  width: 100%;
   table-layout: fixed;
 }
 
@@ -38,9 +38,11 @@
   color: $color-text-secondary;
   text-align: right;
 }
+
 .tw-filter-table.xone th{
   width: auto;
 }
+
 .tw-filter-table.xone td{
   width: auto;
 }

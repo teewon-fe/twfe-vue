@@ -18,7 +18,7 @@ export const CONST_NAME2 = '2'
 export const projectTemplate = {
   timeNodes: [
     {
-      time_node_name: '项目开发',
+      time_node_name: '启动开发',
       start_time: new Date(),
       remark: ''
     },
@@ -58,7 +58,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: '需求评审(开发A)',
+      task_name: '需求评审',
       task_type: 'normal',
       degreen: '',
       priority: 0,
@@ -87,7 +87,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: '高保真评审(开发A)',
+      task_name: '高保真评审',
       task_type: 'normal',
       degreen: '',
       priority: 0,
@@ -101,7 +101,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: '任务分组名称',
+      task_name: '页面与功能开发',
       task_type: 'group',
       degreen: '',
       priority: 0,
@@ -144,7 +144,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: '一级用例自验(开发A)',
+      task_name: '一级用例自验',
       task_type: 'normal',
       degreen: '',
       priority: 0,
@@ -173,7 +173,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: 'UI验收意见修改(开发A)',
+      task_name: 'UI验收意见修改',
       task_type: 'normal',
       degreen: '',
       priority: 0,
@@ -202,7 +202,7 @@ export const projectTemplate = {
     },
     {
       project_id: '',
-      task_name: '转测改单(开发A)',
+      task_name: '转测改单',
       task_type: 'normal',
       degreen: '',
       priority: 0,

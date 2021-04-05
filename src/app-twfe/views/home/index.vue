@@ -3,13 +3,9 @@
     <div class="tw-body-inner xcontainer">
       <div class="tw-flex mb-small">
         <div class="tw-flex-body">
-          <tw-search class="xmedium"
-            placeholder="请输入项目名称"
-            v-model="searchWord">
-          </tw-search>
         </div>
 
-        <div>
+        <div v-if="$app.user.role === $cnt.ROLE_TEAM_LEADER">
           <router-link class="tw-btn xsecondary xmedium" to="/new-project">创建项目</router-link>
         </div>
       </div>
@@ -57,6 +53,20 @@
       <div class="tw-body-content" v-bottom="70">
         <div class="tw-title">
           <h3 class="tw-title-left text-default">项目列表</h3>
+          <div class="tw-title-right">
+            <tw-api-select
+              v-model="$api.project.getProjects.params.developer_id"
+              :api="$api.user.getUsernames"
+              size="small"
+              clearable
+              filterable
+              option-value-key="id"
+              placeholder="按开发人员过滤"
+              @change="$api.project.getProjects.send()">
+            </tw-api-select>
+
+            <!-- <el-checkbox v-model="$api.project.getProjects.params.isSelf" class="text-link" @change="$api.project.getProjects.send()">仅查看我参与的项目</el-checkbox> -->
+          </div>
         </div>
 
         <table class="tw-table">
@@ -64,12 +74,12 @@
             <tr>
               <th style="width: 5em;">序号</th>
               <th>项目名称</th>
-              <th style="width: 6em;">负责人</th>
+              <th style="width: 10em;">开发负责人</th>
               <th style="width: 180px;">进度</th>
-              <th style="width: 9em;">总工时(人/天)</th>
-              <th style="width: 7em;">项目状态</th>
-              <th>下一里程碑</th>
-              <th style="width: 6em;">操作</th>
+              <th style="width: 10em;">总工时(人/天)</th>
+              <!-- <th style="width: 7em;">项目状态</th> -->
+              <th style="width: 15em;">下一里程碑</th>
+              <!-- <th style="width: 6em;">操作</th> -->
             </tr>
           </thead>
           <tbody>
@@ -81,15 +91,15 @@
               </td>
               <td>{{project.project_leader_name}}</td>
               <td class="pr-huge">
-                <el-progress :percentage="project.progress" :format="format" :color="project.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
+                <el-progress :percentage="project.progress" :format="format" :color="project.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
               </td>
               <td>{{project.task_time}}</td>
-              <td>{{project.status}}</td>
+              <!-- <td>{{project.status}}</td> -->
               <td>{{project.next_time_node.text}}</td>
-              <td>
+              <!-- <td>
                 <a v-if="project.status!=='已完成'" class="text-link" @click="$api.project.close.send({id:project.id, status: 'done'}).then(()=>{$api.project.getProjects.send()})">关闭项目</a>
                 <a v-else class="text-link" @click="$api.project.close.send({id:project.id, status: 'doing'}).then(()=>{$api.project.getProjects.send()})">开启项目</a>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>
@@ -114,6 +124,7 @@ export default {
 
   data () {
     return {
+      currentGroupId: '',
       searchWord: ''
     }
   },

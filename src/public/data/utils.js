@@ -12,6 +12,8 @@
  * http://192.168.102.233:83/#/doc/guid/utils
  */
 
+import * as cnt from './const'
+
 export const pattern = {
   phone: /^1[3456789]\d{9}$/,
   chinese: /^[\u0391-\uFFE5]+$/,
@@ -50,7 +52,7 @@ export class Workday {
     this.taskTime = option.taskTime
     this.vacationDays = option.vacation || []
     this.overtimeDays = option.overtime || []
-    this.taskMaxDays = option.taskMaxDays || 30
+    this.taskMaxDays = option.taskMaxDays || cnt.TASK_MAX_DAYS
     this.format = option.format || 'yyyy-mm-dd HH:MM'
 
     Object.defineProperties(this, {

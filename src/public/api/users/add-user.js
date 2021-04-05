@@ -15,7 +15,7 @@ export const addUser = {
   response: {
     data: {
       userId: '',
-      sessionid: ''
+      token: ''
     }
   }
 }

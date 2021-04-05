@@ -2,7 +2,7 @@
   <main class="tw-body">
     <div class="tw-body-inner xcontainer">
       <div class="tw-crm">
-        <router-link class="tw-crm-link" to="/">项目</router-link>
+        <router-link class="tw-crm-link" to="/home">项目列表</router-link>
         <i class="tw-crm-arrow"></i>
         <span class="tw-crm-self ml-step">{{project.project_name}}</span>
       </div>
@@ -16,17 +16,25 @@
             <span class="text-default">{{project.project_name}}</span>
           </div>
           <div class="tw-title-right">
-            <router-link class="tw-icobtn" :to="`/new-project?id=${$route.query.id}`"><i class="tw-ico xedit"></i>编辑</router-link>
-            <a class="tw-icobtn" @click="delProject"><i class="tw-ico xdel"></i>删除</a>
+            <template v-if="$app.user.role === $cnt.ROLE_TEAM_LEADER">
+              <router-link class="tw-icobtn" :to="`/new-project?id=${$route.query.id}`"><i class="tw-ico xedit"></i>编辑</router-link>
+              <a class="tw-icobtn" @click="delProject"><i class="tw-ico xdel"></i>删除</a>
+            </template>
           </div>
         </div>
         <!-- /项目:标题 -->
 
         <div class="tw-grid xpc4 xlpad4 xpad4 text-center">
-          <div class="tw-grid-col">
-            <div class="text-large">{{leader.user_name || '--'}}</div>
+          <div v-if="leader" class="tw-grid-col">
+            <div class="text-large">{{leader.name || '--'}}</div>
             <div class="text-small text-weaking scale-less-medium">{{leader.mobile || '--'}}(手机)</div>
-            <div class="text-medium"><i class="tw-ico xdev dt-n1 mr-3"></i>项目负责人</div>
+            <div class="text-medium"><i class="tw-ico xdev dt-n1 mr-3"></i>开发负责人</div>
+          </div>
+
+          <div v-if="!$app.testVersion.includes('twfe') && feLeader" class="tw-grid-col">
+            <div class="text-large">{{feLeader.name || '--'}}</div>
+            <div class="text-small text-weaking scale-less-medium">{{feLeader.mobile || '--'}}(手机)</div>
+            <div class="text-medium"><i class="tw-ico xfe dt-n1 mr-3" style="margin-right: -3px;"></i>前端负责人</div>
           </div>
 
           <div class="tw-grid-col">
@@ -35,7 +43,7 @@
             <div class="text-medium"><i class="tw-ico xcmonth dt-n1 mr-3"></i>项目工时</div>
           </div>
 
-          <div class="tw-grid-col">
+          <div v-if="$app.testVersion.includes('twfe')" class="tw-grid-col">
             <div class="text-huge"><span class="text-highlight">--</span>/1.5</div>
             <div class="text-small text-weaking scale-less-medium">当前/目标(页/人天)</div>
             <div class="text-medium"><i class="tw-ico xspeed dt-n1 mr-3"></i>项目效率</div>
@@ -59,9 +67,10 @@
               <li v-for="(tn, idx) in project.timeNodes"
                 :key="idx"
                 class="tw-steps-item"
-                :class="{xdone: tn.status === 'done', xactive: tn.status === 'active'}"
+                :class="{xdone: tn.status === 'done', xactive: tn.status === 'active', xrisk: tn.status === 'risk'}"
                 :style="`z-index:${project.timeNodes.length - idx};`">
                 <span>{{tn.text}}</span>
+                <a v-if="(!tn.status || tn.status === 'risk') && tn.time_node_name.includes('转测')" class="text-link" style="margin-right: -5px; padding-left: 5px;">转测</a>
               </li>
             </ul>
           </div>
@@ -69,14 +78,14 @@
 
         <!-- 项目:进度图表 -->
         <div class="text-small">
-          <a class="tw-tag xsmall dt-n1 p-0 mr-step" :class="{xrisk: project.status==='有风险', xnormal: project.status!=='有风险'}"></a>
-          <span v-if="project.status==='有风险'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectant_progress - project.progress)}}%</span>
-          <span v-else>{{project.status}}</span>
+          <a class="tw-tag xsmall dt-n1 p-0 mr-step" :class="{xrisk: project.status==='risky', xnormal: project.status!=='risky'}"></a>
+          <span v-if="project.status==='risky'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectant_progress - project.progress)}}%</span>
+          <span v-else>{{$dic.select($dic.projectStatus, project.status)}}</span>
         </div>
 
         <div class="tw-flex align-items-center text-center">
           <div style="width: 30%;">
-            <el-progress type="circle" :width="150" :percentage="project.progress" :stroke-width="8" :color="project.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
+            <el-progress type="circle" :width="150" :percentage="project.progress" :stroke-width="8" :color="project.status==='risky'?'#666':'#f56c6c'"></el-progress>
             <!-- <div class="text-weaking">总体进度</div> -->
           </div>
           <div class="tw-flex-body">
@@ -104,12 +113,17 @@
             </ul>
           </div>
 
+          <div v-if="[$cnt.ROLE_TEAM_LEADER].includes($app.user.role) || (project && project.developer_ids && project.developer_ids.includes($app.user.userId))" class="text-right">
+            <a v-if="progressInputVisibal" class="text-link" @click="closeModify">修改完成</a>
+            <a v-else class="text-link" @click="progressInputVisibal = true">修改进度</a>
+          </div>
+
           <!-- 项目:计划详情 -->
           <tw-collapse
             default-open
             switch=".js-project1-schedule">
-            <div class="tw-twrapper mt-medium">
-              <table class="tw-table">
+            <div class="tw-twrapper mt-step">
+              <table class="tw-table xnowrap xprogress">
                 <thead>
                   <tr>
                     <th style="width: 4em;">序号</th>
@@ -117,9 +131,9 @@
                     <th>开发</th>
                     <th style="width: 150px;">进度</th>
                     <th>难度等级</th>
-                    <th>工时</th>
-                    <th>计划开始时间</th>
-                    <th>计划完成时间</th>
+                    <th style="width: 70px;">工时</th>
+                    <th style="width: 130px;">计划开始时间</th>
+                    <th style="width: 130px;">计划完成时间</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,12 +141,25 @@
                     <tr v-if="plan.task_type==='group'" :key="plan.id">
                       <td class="text-bold" colspan="8">{{plan.task_name}}</td>
                     </tr>
-                    <tr v-else :key="plan.id">
+                    <tr v-else
+                      :key="plan.id">
                       <td>{{idx - getOffsetIdx(idx)}}</td>
                       <td>{{plan.task_name}}</td>
                       <td>{{plan.developer_name}}</td>
                       <td>
-                        <el-progress :percentage="plan.progress*100" :format="format" :color="plan.status==='有风险'?'#fb6c84':'#218fff'"></el-progress>
+                        <el-select
+                          v-if="progressInputVisibal && (plan.developer_id === $app.user.userId || [$cnt.ROLE_TEAM_LEADER].includes($app.user.role))"
+                          v-model="plan.progress"
+                          size="mini"
+                          @change="$api.project.updatePlan.send({id: plan.id, progress: plan.progress})">
+                          <el-option
+                            v-for="item in $dic.progressList"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                          </el-option>
+                        </el-select>
+                        <el-progress v-else :percentage="plan.progress*100" :format="format" :color="plan.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
                       </td>
                       <td>{{$dic.select($api.dic.degreens.data.list, plan.degreen, 'degreen_name')}}</td>
                       <td>{{plan.task_time}}</td>
@@ -182,6 +209,10 @@
                     <td>测试用例地址</td>
                     <td><a class="text-link" :href="project.project_test_case_svn" target="_blank">{{project.project_test_case_svn}}</a></td>
                   </tr>
+                  <tr v-if="project.remark">
+                    <td>备注</td>
+                    <td><pre>{{project.remark}}</pre></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -200,7 +231,7 @@ export default {
 
   data () {
     return {
-      leader: {}
+      progressInputVisibal: false
     }
   },
 
@@ -272,6 +303,22 @@ export default {
           chartDataMaps: []
         }
       }
+    },
+
+    leader () {
+      if (this.$api.user.getUsers.data.list.length > 0) {
+        return this.$ui.arr.findMode(this.$api.user.getUsers.data.list, { id: this.project.project_leader_id })[0]
+      } else {
+        return {}
+      }
+    },
+
+    feLeader () {
+      if (this.$api.user.getUsers.data.list.length > 0) {
+        return this.$ui.arr.findMode(this.$api.user.getUsers.data.list, { id: this.project.project_fe_leader_id })[0]
+      } else {
+        return {}
+      }
     }
   },
 
@@ -281,15 +328,15 @@ export default {
     },
 
     getProject () {
-      this.$api.project.getProjects.send({ id: this.$route.query.id }).then(data => {
+      this.$api.project.getProjects.reset().send({
+        id: this.$route.query.id
+      }).then(data => {
         if (data.list && data.list[0]) {
-          this.$api.user.getUser.send({
-            id: data.list[0].project.project_leader_id
-          }).then(data => {
-            if (data.user) {
-              this.leader = data.user
-            }
-          })
+          let project = data.list[0].project
+
+          if (project.dev_group) {
+            this.$api.user.getUsers.send({ groupIds: project.dev_group.join(',') })
+          }
         }
       })
     },
@@ -327,6 +374,11 @@ export default {
       }).catch(() => {
         // noop
       })
+    },
+
+    closeModify () {
+      this.progressInputVisibal = false
+      this.getProject()
     }
   },
 
@@ -342,5 +394,11 @@ export default {
 </script>
 
 <style lang="scss">
+  .tw-steps-item.xrisk .text-link {
+    color: #6ec940 !important;
 
+    &:hover {
+      color: #5dbe2d !important;
+    }
+  }
 </style>

@@ -15,3 +15,21 @@ export const degreens = {
     }
   }
 }
+
+// 获取节假日与加班日期
+export const specialDates = {
+  url: '/dic/specialDates',
+  method: 'get',
+  once: true,
+
+  debounce: {
+    enable: true,
+    message: ''
+  },
+
+  response: {
+    data: {
+      list: []
+    }
+  }
+}

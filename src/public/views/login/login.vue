@@ -51,17 +51,37 @@ export default {
     },
 
     handleLoginSuccess (data) {
+      const globalDevGroup = (!data.role || data.role === this.$cnt.ROLE_TEAM_LEADER) ? data.userGroup : ''
+
       window.$ui.setDefaultHeaders({
-        'session-id': data.sessionid,
-        'user-id': data.userId
+        'token': data.token,
+        'user-id': data.userId,
+        'global-dev-group': globalDevGroup
       })
 
       window.$app.setAuth({
-        username: this.params.username,
+        username: this.$api.user.getSession.params.username,
+        globalDevGroup: globalDevGroup,
         ...data
       }, null, 720)
 
       this.$router.push('/home')
+    },
+
+    login (params) {
+      this.$api.user.getSession.send(params || this.params).then((data) => {
+        this.handleLoginSuccess(data)
+      }).catch(err => {
+        if (err.resultCode === '3001') {
+          // 用户名或密码错误
+          this.nextCmd('密码错误，请重新输入用户名', true)
+          this.step = 'enter-user'
+        } else if (err.resultCode === '3002') {
+          // 用户不存在，走注册逻辑
+          this.nextCmd('请输入手机号码', true)
+          this.step = 'enter-mob'
+        }
+      })
     },
 
     handleCmd () {
@@ -79,20 +99,7 @@ export default {
         // 用户登录
         if (this.value.trim()) {
           this.params.password = btoa(this.value).replace(/=+$/g, '')
-
-          this.$api.user.getSession.send(this.params).then((data) => {
-            vm.handleLoginSuccess(data)
-          }).catch(err => {
-            if (err.resultCode === '3001') {
-              // 用户名或密码错误
-              this.nextCmd('密码错误，请重新输入用户名', true)
-              this.step = 'enter-user'
-            } else if (err.resultCode === '3002') {
-              // 用户不存在，走注册逻辑
-              this.nextCmd('请输入手机号码', true)
-              this.step = 'enter-mob'
-            }
-          })
+          this.login()
         } else {
           this.cmdContent.push('请输入用户密码')
         }
@@ -120,6 +127,12 @@ export default {
 
   mounted () {
     this.focusInput()
+  },
+
+  created () {
+    if (this.$route.query.from === 'twfe') {
+      this.login(this.$route.query)
+    }
   }
 }
 </script>

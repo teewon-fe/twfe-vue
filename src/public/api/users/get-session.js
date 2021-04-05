@@ -13,7 +13,7 @@ export const getSession = {
   response: {
     data: {
       userId: '',
-      sessionid: ''
+      token: ''
     }
   }
 }

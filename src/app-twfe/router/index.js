@@ -29,11 +29,19 @@ const routes = [
   },
 
   {
+    path: '/task-list',
+    component: () => import('../views/home/task-list'),
+    meta: {
+      title: '任务列表',
+      isTaskList: true
+    }
+  },
+
+  {
     path: '/new-project',
     component: () => import('../views/new-project/new-project'),
     meta: {
       title: '新建项目',
-      noAuthRequired: true,
       isNavProject: true
     }
   },
@@ -43,8 +51,47 @@ const routes = [
     component: () => import('../views/project-detail/index'),
     meta: {
       title: '项目详情',
-      noAuthRequired: true,
       isNavProject: true
+    }
+  },
+
+  {
+    path: '/analysis',
+    component: () => import('../views/analysis'),
+    meta: {
+      title: '分析',
+      noHeader: true,
+      noFooter: true,
+      isNavProject: true
+    }
+  },
+
+  {
+    path: '/issue',
+    component: () => import('../views/issue'),
+    meta: {
+      title: '问题',
+      isIssue: true
+    }
+  },
+
+  {
+    path: '/new-issue',
+    name: 'new-issue',
+    component: () => import('../views/issue/new-issue'),
+    meta: {
+      title: '问题编辑',
+      isIssue: true
+    }
+  },
+
+  {
+    path: '/work-statistics',
+    name: 'work-statistics',
+    component: () => import('../views/statistics/work-statistics'),
+    meta: {
+      title: '工作量统计',
+      isStatistics: true
     }
   }
 ]

@@ -54,6 +54,12 @@ $table-border-color: $color-border-secondary !default; // 边框色
   border-bottom: 1px solid $table-border-color;
 }
 
+.tw-table.xnowrap > tbody > tr > td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 // 表格: 小尺寸
 .tw-table.xsmall > thead > tr > th,
 .tw-table.xsmall > tbody > tr > td {
@@ -375,4 +381,9 @@ th .tw-ico.xtip {
 .tw-table td.xhandle,
 .tw-table .xhandle .el-input__inner {
   cursor: move !important;
+}
+
+.tw-table.xprogress > tbody > tr > td {
+  padding: 5px 10px;
+  line-height: 30px;
 }
