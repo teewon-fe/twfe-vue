@@ -17,13 +17,13 @@
              </router-link>
            </li>
 
-          <!-- <li>
+          <li>
             <router-link
             to="/task-list"
             :class="{xcurrent:$route.meta.isTaskList}">
               <span>任务看板</span>
             </router-link>
-          </li> -->
+          </li>
 
            <li>
              <router-link

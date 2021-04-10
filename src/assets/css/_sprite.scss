@@ -309,14 +309,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xadmin.xsmall {
   width: 20px;
   height: 20px; 
-  background-position: -120px -570px;
+  background-position: -150px -570px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xbug {
   width: 18px;
   height: 18px; 
-  background-position: -378px -570px;
+  background-position: -210px -570px;
   background-size: 622px 616px;
 }
 
@@ -348,45 +348,66 @@ a:hover > .tw-ico.xsync {
   background-size: 622px 616px;
 }
 
-.tw-ico.xleader {
-  width: 18px;
-  height: 18px; 
-  background-position: -210px -570px;
+.tw-ico.xfe {
+  width: 26px;
+  height: 20px; 
+  background-position: -362px -520px;
   background-size: 622px 616px;
 }
 
-.tw-ico.xleader.xactive {
+.tw-ico.xfeleader {
+  width: 18px;
+  height: 18px; 
+  background-position: -378px -570px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xfeleader.xactive {
   width: 18px;
   height: 18px; 
   background-position: -238px -570px;
   background-size: 622px 616px;
 }
 
+.tw-ico.xleader {
+  width: 18px;
+  height: 18px; 
+  background-position: -294px -570px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xleader.xactive {
+  width: 18px;
+  height: 18px; 
+  background-position: -406px -570px;
+  background-size: 622px 616px;
+}
+
 .tw-ico.xmobile {
-  width: 32px;
-  height: 32px; 
-  background-position: -590px 0px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xmobile.xsmall {
-  width: 20px;
-  height: 20px; 
-  background-position: -60px -570px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xmultiple {
   width: 32px;
   height: 32px; 
   background-position: -590px -126px;
   background-size: 622px 616px;
 }
 
+.tw-ico.xmobile.xsmall {
+  width: 20px;
+  height: 20px; 
+  background-position: -120px -570px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xmultiple {
+  width: 32px;
+  height: 32px; 
+  background-position: -590px -42px;
+  background-size: 622px 616px;
+}
+
 .tw-ico.xmultiple.xsmall {
   width: 20px;
   height: 20px; 
-  background-position: -30px -570px;
+  background-position: -90px -570px;
   background-size: 622px 616px;
 }
 
@@ -400,7 +421,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xproject {
   width: 18px;
   height: 18px; 
-  background-position: -406px -570px;
+  background-position: -462px -570px;
   background-size: 622px 616px;
 }
 
@@ -414,42 +435,21 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xsummary {
   width: 18px;
   height: 18px; 
-  background-position: -294px -570px;
+  background-position: -266px -570px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xweb {
   width: 32px;
   height: 32px; 
-  background-position: -590px -42px;
+  background-position: -590px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xweb.xsmall {
   width: 20px;
   height: 20px; 
-  background-position: 0px -570px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xfeleader {
-  width: 18px;
-  height: 18px; 
-  background-position: -462px -570px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xfeleader.xactive {
-  width: 18px;
-  height: 18px; 
-  background-position: -266px -570px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xfe {
-  width: 26px;
-  height: 20px; 
-  background-position: -362px -520px;
+  background-position: -180px -570px;
   background-size: 622px 616px;
 }
 
@@ -589,7 +589,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x40.xrppt {
   width: 40px;
   height: 40px; 
-  background-position: -250px -420px;
+  background-position: -420px -350px;
   background-size: 622px 616px;
 }
 
@@ -638,98 +638,98 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x40.xrxml {
   width: 40px;
   height: 40px; 
-  background-position: -400px -420px;
+  background-position: -50px -520px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrzip {
   width: 40px;
   height: 40px; 
-  background-position: -100px -420px;
+  background-position: -490px -100px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtdiscuss {
   width: 40px;
   height: 40px; 
-  background-position: 0px -420px;
+  background-position: -150px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtdrawing {
   width: 40px;
   height: 40px; 
-  background-position: -490px -50px;
+  background-position: -400px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtgame {
   width: 40px;
   height: 40px; 
-  background-position: -200px -420px;
+  background-position: -100px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xthomework {
   width: 40px;
   height: 40px; 
-  background-position: -150px -420px;
+  background-position: -50px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtmicroclass {
   width: 40px;
   height: 40px; 
-  background-position: -50px -420px;
+  background-position: 0px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtmind {
   width: 40px;
   height: 40px; 
-  background-position: -420px -350px;
+  background-position: -490px -150px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtother {
   width: 40px;
   height: 40px; 
-  background-position: -490px -150px;
+  background-position: -490px -50px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtpractise {
   width: 40px;
   height: 40px; 
-  background-position: -490px -100px;
+  background-position: -490px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtpreparation {
   width: 40px;
   height: 40px; 
-  background-position: -490px 0px;
+  background-position: -350px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtresource {
   width: 40px;
   height: 40px; 
-  background-position: -350px -420px;
+  background-position: -300px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xttest {
   width: 40px;
   height: 40px; 
-  background-position: -300px -420px;
+  background-position: -250px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtvote {
   width: 40px;
   height: 40px; 
-  background-position: -50px -520px;
+  background-position: -200px -420px;
   background-size: 622px 616px;
 }
 
@@ -743,49 +743,49 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x60.xraudio {
   width: 60px;
   height: 60px; 
-  background-position: -420px -280px;
+  background-position: -70px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrcourseware {
   width: 60px;
   height: 60px; 
-  background-position: -420px -210px;
+  background-position: -420px -280px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrdir {
   width: 60px;
   height: 60px; 
-  background-position: -420px -140px;
+  background-position: -420px -210px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xredue {
   width: 60px;
   height: 60px; 
-  background-position: -420px -70px;
+  background-position: -420px -140px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrepub {
   width: 60px;
   height: 60px; 
-  background-position: -420px 0px;
+  background-position: -420px -70px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrepub2 {
   width: 60px;
   height: 60px; 
-  background-position: -350px -350px;
+  background-position: -420px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrepub3 {
   width: 60px;
   height: 60px; 
-  background-position: -70px 0px;
+  background-position: -280px -350px;
   background-size: 622px 616px;
 }
 
@@ -876,14 +876,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x60.xrppt {
   width: 60px;
   height: 60px; 
-  background-position: -70px -280px;
+  background-position: 0px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrquestion {
   width: 60px;
   height: 60px; 
-  background-position: 0px 0px;
+  background-position: 0px -280px;
   background-size: 622px 616px;
 }
 
@@ -1016,21 +1016,21 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x60.xtvote {
   width: 60px;
   height: 60px; 
-  background-position: 0px -280px;
+  background-position: -70px -280px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xtword {
   width: 60px;
   height: 60px; 
-  background-position: -280px -350px;
+  background-position: -350px -350px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xtip {
   width: 20px;
   height: 20px; 
-  background-position: -90px -570px;
+  background-position: 0px -570px;
   background-size: 622px 616px;
 }
 
@@ -1051,14 +1051,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xsearch {
   width: 20px;
   height: 20px; 
-  background-position: -180px -570px;
+  background-position: -30px -570px;
   background-size: 622px 616px;
 }
 
 .tw-search-btnbox:hover > .tw-ico.xsearch {
   width: 20px;
   height: 20px; 
-  background-position: -150px -570px;
+  background-position: -60px -570px;
   background-size: 622px 616px;
 }
 

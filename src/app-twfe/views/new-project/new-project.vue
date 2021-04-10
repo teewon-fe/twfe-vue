@@ -313,7 +313,7 @@
                           <el-form-item
                             label-width="0"
                             :prop="`plans.${idx}.start_time`"
-                            :rules="[{ required: true, message: '请输入开始时间', trigger: 'change' }]">
+                            :rules="[{ required: true, message: '请输入开始时间', trigger: 'change' }, {validator: validatorCrossMonth, trigger: 'change'}]">
                             <el-date-picker
                               type="datetime"
                               v-model="plan.start_time"
@@ -379,7 +379,8 @@ export default {
       delPlanIds: [],
       delTimeNodeIds: [],
       overtimeDays: [],
-      vacationDays: []
+      vacationDays: [],
+      crossMonthTask: []
     }
   },
 
@@ -486,20 +487,42 @@ export default {
         overtime: this.overtimeDays
       })
 
-      return workday.computedTime
+      return workday
     },
 
     computeEndTime (startTime) {
       const hourString = startTime.match(/\s(.+)/)[1]
 
       if (this.$ui.timeOptions.includes(hourString)) {
-        this.currentPlan.end_time = this.computeTime(startTime + ':00', this.currentPlan.task_time).endTime
+        const wd = this.computeTime(startTime + ':00', this.currentPlan.task_time)
+
+        if (wd.remainingTaskDayTheMonth < this.currentPlan.task_time) {
+          this.spliceCrossMonthTask(this.currentTaskIndex, wd, startTime)
+          this.computeEndTime(startTime)
+        } else {
+          this.currentPlan.end_time = wd.computedTime.endTime
+        }
       } else {
         this.$ui.msgBox({
           type: 'info',
           message: `只能选择工作时间，且以半小时为单位：${this.$ui.timeOptions.join('、')}`
         })
       }
+    },
+
+    spliceCrossMonthTask (taskINdex, workday, startTime) {
+      const plans = this.$api.project.update.params.plans
+
+      const plan = this.$ui.cloneJson(plans[taskINdex])
+      plan.id = ''
+      plan.task_name += `—${this.$ui.dateFormat(workday.computedTime.endTime, 'mm')}月`
+      plan.start_time = plan.end_time = ''
+      plan.task_time = (plan.task_time - workday.remainingTaskDayTheMonth).toFixed(2)
+      plan.degreen = 12
+      plans.splice(taskINdex + 1, 0, plan)
+
+      plans[taskINdex].task_name += `—${this.$ui.dateFormat(startTime, 'mm')}月`
+      plans[taskINdex].task_time = workday.remainingTaskDayTheMonth.toFixed(2)
     },
 
     setPlanForDeveloper (developerId) {
@@ -526,9 +549,32 @@ export default {
             overtime: this.overtimeDays
           })
 
-          plans[i].end_time = wd.computedTime.endTime
-          startTime = wd.computedTime.nextStartTime
+          if (wd.remainingTaskDayTheMonth < plans[i].task_time) {
+            this.crossMonthTask.push(plans[i])
+
+            // 如果任务跨月，按月份拆分成两个任务
+            this.spliceCrossMonthTask(i, wd, startTime)
+            i--
+          } else {
+            plans[i].end_time = wd.computedTime.endTime
+            startTime = wd.computedTime.nextStartTime
+          }
         }
+      }
+    },
+
+    validatorCrossMonth (rule, value, cb) {
+      const plans = this.$api.project.update.params.plans
+
+      const index = parseInt(rule.field.match(/\.(\d+)\./)[1])
+
+      const startMonth = this.$ui.dateFormat(plans[index].start_time, 'mm')
+      const endMonth = this.$ui.dateFormat(plans[index].end_time, 'mm')
+
+      if (startMonth === endMonth) {
+        cb()
+      } else {
+        cb(new Error('不能跨月，拆分后排期吧'))
       }
     },
 
@@ -556,6 +602,8 @@ export default {
     },
 
     doPlan (type) {
+      this.crossMonthTask = []
+
       if (!this.currentPlan) {
         this.$ui.msgBox({
           type: 'info',
@@ -591,6 +639,14 @@ export default {
         for (developerId of this.$api.project.update.params.project.developer_ids) {
           this.setPlanForDeveloper(developerId)
         }
+      }
+
+      if (this.crossMonthTask.length) {
+        this.$ui.msgBox({
+          type: 'info',
+          confirmButtonText: '联知道了',
+          message: `注意：因任务不支持跨月，共${this.crossMonthTask.length}个跨月任务进行了自动拆解。`
+        })
       }
     },
 
@@ -641,7 +697,7 @@ export default {
       this.overtimeDays = data.list.filter(item => item.type === 'overtime').map(item => item.value)
     })
 
-    this.$api.user.getUsers.send().then(() => {
+    this.$api.user.getUsers.reset().send().then(() => {
       this.init()
     })
   }

@@ -85,7 +85,7 @@
 
         <div class="tw-flex align-items-center text-center">
           <div style="width: 30%;">
-            <el-progress type="circle" :width="150" :percentage="project.progress" :stroke-width="8" :color="project.status==='risky'?'#666':'#f56c6c'"></el-progress>
+            <el-progress type="circle" :width="150" :percentage="project.progress" :stroke-width="8" :color="project.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
             <!-- <div class="text-weaking">总体进度</div> -->
           </div>
           <div class="tw-flex-body">
@@ -132,8 +132,8 @@
                     <th style="width: 150px;">进度</th>
                     <th>难度等级</th>
                     <th style="width: 70px;">工时</th>
-                    <th style="width: 130px;">计划开始时间</th>
-                    <th style="width: 130px;">计划完成时间</th>
+                    <th style="width: 100px;">开始时间</th>
+                    <th style="width: 100px;">完成时间</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,8 +163,8 @@
                       </td>
                       <td>{{$dic.select($api.dic.degreens.data.list, plan.degreen, 'degreen_name')}}</td>
                       <td>{{plan.task_time}}</td>
-                      <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd HH:MM')}}</td>
-                      <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd HH:MM')}}</td>
+                      <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd')}}</td>
+                      <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd')}}</td>
                     </tr>
                   </template>
                 </tbody>
@@ -335,7 +335,7 @@ export default {
           let project = data.list[0].project
 
           if (project.dev_group) {
-            this.$api.user.getUsers.send({ groupIds: project.dev_group.join(',') })
+            this.$api.user.getUsers.send({ groupIds: project.dev_group })
           }
         }
       })

@@ -178,3 +178,31 @@ export const getDoingProjects = {
     }
   }
 }
+
+// 获取某开发的计划列表
+export const getPlansByUserId = {
+  url: '/project/plans',
+  method: 'get',
+
+  request: {
+    mode: 'query',
+
+    params: {
+      developer_id: ''
+    },
+
+    handler (params) {
+      if (!params.developer_id) {
+        params.developer_id = window.$app.user.userId
+      }
+
+      return params
+    }
+  },
+
+  response: {
+    data: {
+      list: []
+    }
+  }
+}

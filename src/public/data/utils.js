@@ -112,7 +112,7 @@ export class Workday {
 
       msTaskTime: {
         get () {
-          return this.taskTime * this.workTimes
+          return parseInt(this.taskTime * this.workTimes)
         }
       },
 
@@ -161,6 +161,18 @@ export class Workday {
           }
 
           return result
+        }
+      },
+
+      nextWorkdaysCurrentMonth: {
+        get () {
+          return this.nextWorkdays.filter(d => window.$ui.dateFormat(d, 'mm') === window.$ui.dateFormat(this.dateString, 'mm'))
+        }
+      },
+
+      remainingTaskDayTheMonth: {
+        get () {
+          return this.remainingTaskDayTheDay + this.nextWorkdaysCurrentMonth.length
         }
       },
 

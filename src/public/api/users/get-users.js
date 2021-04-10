@@ -6,6 +6,16 @@ export const getUsers = {
   request: {
     params: {
       groupIds: ''
+    },
+
+    removeEmptyItem: false,
+
+    handler (params) {
+      if (Array.isArray(params.groupIds)) {
+        params.groupIds = params.groupIds.join(',')
+      }
+
+      return params
     }
   },
 
