@@ -10,20 +10,28 @@
           </div>
         </div>
 
-        <div class="mb-small">
-          <label>选择问题类型：</label>
-          <el-select
-            v-model="$api.kpi.issues.params.type"
-            size="small"
-            clearable
-            @change="$api.kpi.issues.send()">
-            <el-option
-              v-for="item in $dic.issueType"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
+        <div class="tw-flex">
+          <div class="tw-flex-body">
+            <div class="mb-small">
+              <label>选择问题类型：</label>
+              <el-select
+                v-model="$api.kpi.issues.params.type"
+                size="small"
+                clearable
+                @change="$api.kpi.issues.send()">
+                <el-option
+                  v-for="item in $dic.issueType"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </div>
+          </div>
+
+          <div>
+            <el-checkbox v-model="$api.kpi.issues.params.status" true-label="" false-label="doing" class="mx-small" @change="$api.kpi.issues.send()">显示所有任务</el-checkbox>
+          </div>
         </div>
 
         <table class="tw-table">
@@ -31,28 +39,31 @@
             <tr>
               <th style="width: 5em;">序号</th>
               <th>问题描述</th>
-              <th style="width: 160px;">所属项目</th>
+              <!-- <th style="width: 160px;">所属项目</th> -->
               <th style="width: 7em;">问题创建人</th>
               <th style="width: 7em;">问题处理人</th>
               <th style="width: 8em;">期待解决时间</th>
-              <th style="width: 8em;">类型</th>
+              <!-- <th style="width: 8em;">类型</th> -->
               <th style="width: 5em;">状态</th>
-              <th style="width: 160px;">操作</th>
+              <th style="width: 90px;">操作</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(issue,idx) in $api.kpi.issues.data.list" :key="issue.id">
               <td>{{idx + 1}}</td>
-              <td>{{issue.descript}}</td>
-              <td>{{issue.project_name}}</td>
+              <td>
+                <a class="text-link" @click="editIssue(issue)">{{issue.descript}}</a>
+              </td>
+              <!-- <td>{{issue.project_name}}</td> -->
               <td>{{issue.create_developer}}</td>
               <td>{{issue.handle_developer}}</td>
               <td>{{$ui.dateFormat(issue.resolve_time, 'yyyy-mm-dd')}}</td>
-              <td>{{$dic.select($dic.issueType, issue.type)}}</td>
+              <!-- <td>{{$dic.select($dic.issueType, issue.type)}}</td> -->
               <td>{{issue.status==='done'?'已完成':'进行中'}}</td>
               <td>
-                <a class="tw-icobtn" @click="editIssue(issue)"><i class="tw-ico xedit"></i>编辑</a>
-                <a class="tw-icobtn" @click="delIssue(issue)"><i class="tw-ico xdel"></i>删除</a>
+                <a class="tw-icobtn" @click="delIssue(issue)" title="删除"><i class="tw-ico xdel"></i></a>
+                <a v-if="issue.status==='doing'" class="tw-icobtn ml-step" @click="updateIssue(issue, 'done')" title="结束"><i class="tw-ico xstop"></i></a>
+                <!-- <a v-else class="tw-icobtn" @click="updateIssue(issue, 'doing')" title="重新打开"><i class="tw-ico xstart"></i></a> -->
               </td>
             </tr>
           </tbody>
@@ -91,11 +102,16 @@ export default {
       }).catch(() => {
         // noop
       })
+    },
+
+    updateIssue (issue, type) {
+      issue.status = type
+      this.$api.kpi.updateIssue.send(issue)
     }
   },
 
   created () {
-    this.$api.kpi.issues.reset().send()
+    this.$api.kpi.issues.send()
   }
 }
 </script>

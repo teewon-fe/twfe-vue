@@ -34,7 +34,7 @@
             :keyMap="dataMap">
           </tw-tag-filter>
           <div class="tw-filterpane-toolbar">
-            <a class="tw-btn xmain">查询</a>
+            <a class="tw-btn xmain" @click="handleQuery">查询</a>
           </div>
         </div>
       </div>
@@ -44,8 +44,29 @@
         <div class="tw-title">
           <h3 class="tw-title-left text-default">
             <span>工时统计</span>
-            <span class="text-small text-secondary">(按人)</span>
           </h3>
+        </div>
+
+        <div class="tw-flex">
+          <div class="tw-flex-body">
+            <table class="tw-table xsmall">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>姓名</th>
+                  <th>总工时</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, idx) in $api.project.taskTimes.data.list"
+                  :key="idx">
+                  <td>{{idx+1}}</td>
+                  <td>{{item.developer_name}}</td>
+                  <td>{{item.task_times}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -58,7 +79,7 @@ export default {
     return {
       filter: {
         year: this.$cnt.TIME_CUR_YEAR,
-        months: [this.$cnt.TIME_CUR_MONTH],
+        months: [this.$cnt.TIME_CUR_MONTH_MM],
         groups: []
       },
       dataMap: {
@@ -69,7 +90,9 @@ export default {
   },
 
   methods: {
-
+    handleQuery () {
+      this.$api.project.taskTimes.send(this.filter)
+    }
   },
 
   created () {

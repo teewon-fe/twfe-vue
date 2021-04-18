@@ -181,7 +181,7 @@ export const getDoingProjects = {
 
 // 获取某开发的计划列表
 export const getPlansByUserId = {
-  url: '/project/plans',
+  url: '/project/plansByDeveloper',
   method: 'get',
 
   request: {
@@ -198,6 +198,30 @@ export const getPlansByUserId = {
 
       return params
     }
+  },
+
+  response: {
+    data: {
+      list: []
+    }
+  }
+}
+
+// 按开人人员统计工作量
+export const taskTimes = {
+  url: '/project/task-times',
+  method: 'get',
+
+  request: {
+    mode: 'query',
+
+    params: {
+      groups: [],
+      year: [],
+      months: []
+    },
+
+    removeEmptyItem: false
   },
 
   response: {

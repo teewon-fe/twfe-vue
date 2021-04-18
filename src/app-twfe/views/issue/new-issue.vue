@@ -44,7 +44,7 @@
                   </el-form-item>
                 </el-col>
 
-                <el-col>
+                <!-- <el-col>
                   <el-form-item
                     prop="type"
                     label="所属项目:">
@@ -59,7 +59,7 @@
                       </el-option>
                     </el-select>
                   </el-form-item>
-                </el-col>
+                </el-col> -->
 
                 <el-col>
                   <el-form-item

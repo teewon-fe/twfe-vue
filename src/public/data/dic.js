@@ -39,8 +39,9 @@ export const issueStatus = [
 ]
 
 export const issueType = [
-  { id: 'issue', name: '项目协作问题' },
-  { id: 'bug', name: '组内项目Bug' }
+  { id: 'risk', name: '问题与风险' },
+  { id: 'bug', name: '组内项目Bug' },
+  { id: 'me', name: '个人事项记录' }
 ]
 
 // 进度百分比列表
@@ -82,7 +83,7 @@ export const statisticsMonthList = (() => {
 
   while (month <= 12) {
     result.push({
-      id: month,
+      id: `${month < 10 ? '0' + month : '' + month}`,
       name: month + '月'
     })
 

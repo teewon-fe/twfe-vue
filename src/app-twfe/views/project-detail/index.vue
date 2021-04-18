@@ -79,7 +79,14 @@
         <!-- 项目:进度图表 -->
         <div class="text-small">
           <a class="tw-tag xsmall dt-n1 p-0 mr-step" :class="{xrisk: project.status==='risky', xnormal: project.status!=='risky'}"></a>
-          <span v-if="project.status==='risky'" class="text-secondary">有风险, 进度延期{{parseInt(project.expectant_progress - project.progress)}}%</span>
+          <span v-if="project.status==='risky'" class="text-secondary">
+            <span>有风险, 进度延期{{project.delay}}天({{parseInt(project.expectant_progress - project.progress)}}%)；</span>
+            <span v-for="(delayDev, devIdx) in project.delayDevelopers" :key="devIdx">
+              <span>【{{delayDev.developer_name}}】延期</span>
+              <span class="text-bold">{{delayDev.delay}}天</span>
+              <span v-if="devIdx < project.delayDevelopers.length - 1">,</span>
+            </span>
+          </span>
           <span v-else>{{$dic.select($dic.projectStatus, project.status)}}</span>
         </div>
 
@@ -132,8 +139,8 @@
                     <th style="width: 150px;">进度</th>
                     <th>难度等级</th>
                     <th style="width: 70px;">工时</th>
-                    <th style="width: 100px;">开始时间</th>
-                    <th style="width: 100px;">完成时间</th>
+                    <th style="width: 130px;">开始时间</th>
+                    <th style="width: 130px;">完成时间</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,8 +170,8 @@
                       </td>
                       <td>{{$dic.select($api.dic.degreens.data.list, plan.degreen, 'degreen_name')}}</td>
                       <td>{{plan.task_time}}</td>
-                      <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd')}}</td>
-                      <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd')}}</td>
+                      <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd HH:MM')}}</td>
+                      <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd HH:MM')}}</td>
                     </tr>
                   </template>
                 </tbody>
@@ -262,6 +269,7 @@ export default {
 
         return {
           ...project.project,
+          delayDevelopers: project.developers.filter(item => item.delay > 0),
           timeNodes: project.timeNodes,
           plans: project.plans,
           chartDataMaps: [

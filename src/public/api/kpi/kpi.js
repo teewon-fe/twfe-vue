@@ -27,11 +27,12 @@ export const addIssue = {
     params: {
       id: '',
       descript: '',
-      type: 'issue',
+      type: 'risk',
       project_id: '',
       project_name: '',
       create_developer_id: '',
       create_developer: '',
+      group_id: '',
       handle_developer: '',
       resolve_time: '',
       status: 'doing'
@@ -40,6 +41,7 @@ export const addIssue = {
     handler (params) {
       params.create_developer_id = window.$app.user.userId
       params.create_developer = window.$app.user.username
+      params.group_id = window.$app.user.userGroup
       return params
     },
 
@@ -81,7 +83,8 @@ export const issues = {
   request: {
     mode: 'query',
     params: {
-      type: ''
+      type: '',
+      status: 'doing'
     }
   },
 

@@ -38,8 +38,8 @@
                 <th style="width: 150px;">进度</th>
                 <th>难度等级</th>
                 <th style="width: 70px;">工时</th>
-                <th style="width: 100px;">开始时间</th>
-                <th style="width: 100px;">完成时间</th>
+                <th style="width: 130px;">开始时间</th>
+                <th style="width: 130px;">完成时间</th>
               </tr>
             </thead>
             <tbody>
@@ -71,8 +71,8 @@
                   </td>
                   <td>{{$dic.select($api.dic.degreens.data.list, plan.degreen, 'degreen_name')}}</td>
                   <td>{{plan.task_time}}</td>
-                  <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd')}}</td>
-                  <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd')}}</td>
+                  <td>{{$ui.dateFormat(plan.start_time, 'yyyy-mm-dd HH:MM')}}</td>
+                  <td>{{$ui.dateFormat(plan.end_time, 'yyyy-mm-dd HH:MM')}}</td>
                 </tr>
               </template>
             </tbody>

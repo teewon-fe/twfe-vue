@@ -188,7 +188,9 @@ export class Workday {
               nextStartTime = new Date(this.msPmStart)
             }
           } else if (this.msTaskTime <= this.remainingTimesTheDay) {
-            endTime = new Date(this.msPmStart + (this.msTaskTime - this.amRemainingTimesTheDay))
+            const pmStart = this.msCurrentTime > this.msPmStart ? this.msCurrentTime : this.msPmStart
+
+            endTime = new Date(pmStart + (this.msTaskTime - this.amRemainingTimesTheDay))
 
             if (this.msTaskTime === this.remainingTimesTheDay) {
               nextStartTime = new Date(Date.parse(`${this.nextWorkdays[0]}T${this.worktime.amStart}`))

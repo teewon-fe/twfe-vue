@@ -492,6 +492,7 @@ export default {
 
     computeEndTime (startTime) {
       const hourString = startTime.match(/\s(.+)/)[1]
+      this.currentPlan.end_time = ''
 
       if (this.$ui.timeOptions.includes(hourString)) {
         const wd = this.computeTime(startTime + ':00', this.currentPlan.task_time)
@@ -525,9 +526,32 @@ export default {
       plans[taskINdex].task_time = workday.remainingTaskDayTheMonth.toFixed(2)
     },
 
+    joinCrossMonthTask (task, nextTask) {
+      if (nextTask.id) {
+        this.delPlanIds.push(nextTask.id)
+      }
+
+      task.task_name = task.task_name.replace(`—${this.$ui.dateFormat(task.start_time, 'mm')}月`, '')
+      task.task_time = (parseFloat(task.task_time) + parseFloat(nextTask.task_time)).toFixed(2)
+      task.progress += nextTask.progress
+    },
+
     setPlanForDeveloper (developerId) {
       const plans = this.$api.project.update.params.plans
       let startTime = this.currentPlan.start_time
+
+      for (let i = this.currentTaskIndex; i < plans.length; i++) {
+        if (plans[i].developer_id === developerId) {
+        // 如果下一个任务为跨月拆分任务，需要合并后再做拆分
+          const nextPlan = plans[i + 1]
+
+          if (nextPlan && nextPlan.degreen === 12) {
+            this.joinCrossMonthTask(plans[i], nextPlan)
+            plans.splice(i + 1, 1)
+            i--
+          }
+        }
+      }
 
       for (let i = this.currentTaskIndex; i < plans.length; i++) {
         if (plans[i].developer_id === developerId) {
@@ -677,7 +701,7 @@ export default {
               plans,
               timeNodes,
               delTimeNodeIds: this.delTimeNodeIds,
-              delPlanIds: this.delPlanIds
+              delPlanIds: this.delPlanIds.filter(item => item !== '')
             }).then(() => {
               this.$router.push(`/project-detail?id=${this.$route.query.id}`)
             })

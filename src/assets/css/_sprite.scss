@@ -50,56 +50,84 @@ a:hover > .tw-ico.xedit {
 a:hover > .tw-ico.xsync {
   width: 16px;
   height: 16px; 
+  background-position: -52px -600px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xstart {
+  width: 16px;
+  height: 16px; 
   background-position: -78px -600px;
   background-size: 622px 616px;
 }
 
-.tw-ico.xerror {
-  width: 16px;
-  height: 16px; 
-  background-position: -104px -600px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xerror.xlarge {
-  width: 24px;
-  height: 24px; 
-  background-position: -158px -520px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xinfo {
+a:hover > .tw-ico.xstart {
   width: 16px;
   height: 16px; 
   background-position: -130px -600px;
   background-size: 622px 616px;
 }
 
-.tw-ico.xinfo.xlarge {
-  width: 24px;
-  height: 24px; 
-  background-position: -226px -520px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xoff {
-  width: 24px;
-  height: 24px; 
-  background-position: -260px -520px;
-  background-size: 622px 616px;
-}
-
-.tw-ico.xsuccess {
+.tw-ico.xstop {
   width: 16px;
   height: 16px; 
   background-position: -156px -600px;
   background-size: 622px 616px;
 }
 
+a:hover > .tw-ico.xstop {
+  width: 16px;
+  height: 16px; 
+  background-position: -286px -600px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xerror {
+  width: 16px;
+  height: 16px; 
+  background-position: -260px -600px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xerror.xlarge {
+  width: 24px;
+  height: 24px; 
+  background-position: -294px -520px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xinfo {
+  width: 16px;
+  height: 16px; 
+  background-position: -234px -600px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xinfo.xlarge {
+  width: 24px;
+  height: 24px; 
+  background-position: -590px -488px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xoff {
+  width: 24px;
+  height: 24px; 
+  background-position: -590px -522px;
+  background-size: 622px 616px;
+}
+
+.tw-ico.xsuccess {
+  width: 16px;
+  height: 16px; 
+  background-position: -208px -600px;
+  background-size: 622px 616px;
+}
+
 .tw-ico.xsuccess.xlarge {
   width: 24px;
   height: 24px; 
-  background-position: -328px -520px;
+  background-position: -500px -470px;
   background-size: 622px 616px;
 }
 
@@ -113,7 +141,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xwarning.xlarge {
   width: 24px;
   height: 24px; 
-  background-position: -590px -522px;
+  background-position: -192px -520px;
   background-size: 622px 616px;
 }
 
@@ -127,49 +155,49 @@ a:hover > .tw-ico.xsync {
 .js-xcollapse.xopen .tw-ico.xcollapse {
   width: 12px;
   height: 12px; 
-  background-position: -348px -600px;
+  background-position: -452px -600px;
   background-size: 622px 616px;
 }
 
 .tw-filter-collapsebtn > .tw-ico.xcollapse:hover {
   width: 12px;
   height: 12px; 
-  background-position: -392px -600px;
+  background-position: -474px -600px;
   background-size: 622px 616px;
 }
 
 .tw-filter-collapsebtn > .tw-ico.xcollapse {
   width: 12px;
   height: 12px; 
-  background-position: -260px -600px;
+  background-position: -496px -600px;
   background-size: 622px 616px;
 }
 
 .tw-filter-collapsebtn.xcollapse > .tw-ico.xcollapse:hover {
   width: 12px;
   height: 12px; 
-  background-position: -370px -600px;
+  background-position: -364px -600px;
   background-size: 622px 616px;
 }
 
 .tw-filter-collapsebtn.xcollapse > .tw-ico.xcollapse {
   width: 12px;
   height: 12px; 
-  background-position: -282px -600px;
+  background-position: -386px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xcollapse:hover {
   width: 12px;
   height: 12px; 
-  background-position: -304px -600px;
+  background-position: -408px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xcollapse {
   width: 12px;
   height: 12px; 
-  background-position: -326px -600px;
+  background-position: -430px -600px;
   background-size: 622px 616px;
 }
 
@@ -190,14 +218,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xapnext {
   width: 5px;
   height: 10px; 
-  background-position: -501px -600px;
+  background-position: -605px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xapprev {
   width: 5px;
   height: 10px; 
-  background-position: -486px -600px;
+  background-position: -590px -600px;
   background-size: 622px 616px;
 }
 
@@ -386,7 +414,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xmobile {
   width: 32px;
   height: 32px; 
-  background-position: -590px -126px;
+  background-position: -590px 0px;
   background-size: 622px 616px;
 }
 
@@ -400,7 +428,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xmultiple {
   width: 32px;
   height: 32px; 
-  background-position: -590px -42px;
+  background-position: -590px -126px;
   background-size: 622px 616px;
 }
 
@@ -442,7 +470,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xweb {
   width: 32px;
   height: 32px; 
-  background-position: -590px 0px;
+  background-position: -590px -42px;
   background-size: 622px 616px;
 }
 
@@ -456,210 +484,210 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x40.xraudio {
   width: 40px;
   height: 40px; 
-  background-position: -490px -200px;
+  background-position: -490px -400px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrcourseware {
   width: 40px;
   height: 40px; 
-  background-position: -490px -250px;
+  background-position: 0px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrdir {
   width: 40px;
   height: 40px; 
-  background-position: -490px -300px;
+  background-position: -50px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xredue {
   width: 40px;
   height: 40px; 
-  background-position: -490px -350px;
+  background-position: -100px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrepub {
   width: 40px;
   height: 40px; 
-  background-position: -490px -400px;
+  background-position: -150px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrepub2 {
   width: 40px;
   height: 40px; 
-  background-position: 0px -470px;
+  background-position: -200px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrepub3 {
   width: 40px;
   height: 40px; 
-  background-position: -50px -470px;
+  background-position: -250px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrexcel {
   width: 40px;
   height: 40px; 
-  background-position: -100px -470px;
+  background-position: -300px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrflash {
   width: 40px;
   height: 40px; 
-  background-position: -150px -470px;
+  background-position: -350px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrformula {
   width: 40px;
   height: 40px; 
-  background-position: -200px -470px;
+  background-position: -400px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrgoodteaching {
   width: 40px;
   height: 40px; 
-  background-position: -250px -470px;
+  background-position: -450px -470px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrh5 {
   width: 40px;
   height: 40px; 
-  background-position: -300px -470px;
+  background-position: -540px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrimage {
   width: 40px;
   height: 40px; 
-  background-position: -350px -470px;
+  background-position: -540px -50px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrnet {
   width: 40px;
   height: 40px; 
-  background-position: -400px -470px;
+  background-position: -540px -100px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrotcase {
   width: 40px;
   height: 40px; 
-  background-position: -450px -470px;
+  background-position: -540px -150px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrother {
   width: 40px;
   height: 40px; 
-  background-position: -540px 0px;
+  background-position: -540px -200px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrpaper {
   width: 40px;
   height: 40px; 
-  background-position: -540px -50px;
+  background-position: -540px -250px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrpdf {
   width: 40px;
   height: 40px; 
-  background-position: -540px -100px;
+  background-position: -400px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrpformula {
   width: 40px;
   height: 40px; 
-  background-position: -540px -150px;
+  background-position: -540px -350px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrppt {
   width: 40px;
   height: 40px; 
-  background-position: -420px -350px;
+  background-position: -540px -400px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrquestion {
   width: 40px;
   height: 40px; 
-  background-position: -540px -250px;
+  background-position: -540px -450px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrteachcase {
   width: 40px;
   height: 40px; 
-  background-position: -540px -300px;
+  background-position: 0px -520px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrteachtool {
   width: 40px;
   height: 40px; 
-  background-position: -540px -350px;
+  background-position: -490px -300px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrtext {
   width: 40px;
   height: 40px; 
-  background-position: -540px -400px;
+  background-position: -490px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrvideo {
   width: 40px;
   height: 40px; 
-  background-position: -540px -450px;
+  background-position: -350px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrword {
   width: 40px;
   height: 40px; 
-  background-position: 0px -520px;
+  background-position: 0px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrxml {
   width: 40px;
   height: 40px; 
-  background-position: -50px -520px;
+  background-position: -300px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xrzip {
   width: 40px;
   height: 40px; 
-  background-position: -490px -100px;
+  background-position: -250px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtdiscuss {
   width: 40px;
   height: 40px; 
-  background-position: -150px -420px;
+  background-position: -200px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtdrawing {
   width: 40px;
   height: 40px; 
-  background-position: -400px -420px;
+  background-position: -150px -420px;
   background-size: 622px 616px;
 }
 
@@ -680,14 +708,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x40.xtmicroclass {
   width: 40px;
   height: 40px; 
-  background-position: 0px -420px;
+  background-position: -420px -350px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtmind {
   width: 40px;
   height: 40px; 
-  background-position: -490px -150px;
+  background-position: -490px -100px;
   background-size: 622px 616px;
 }
 
@@ -701,84 +729,84 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x40.xtpractise {
   width: 40px;
   height: 40px; 
-  background-position: -490px 0px;
+  background-position: -50px -520px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtpreparation {
   width: 40px;
   height: 40px; 
-  background-position: -350px -420px;
+  background-position: -540px -300px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtresource {
   width: 40px;
   height: 40px; 
-  background-position: -300px -420px;
+  background-position: -490px -350px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xttest {
   width: 40px;
   height: 40px; 
-  background-position: -250px -420px;
+  background-position: -490px -250px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtvote {
   width: 40px;
   height: 40px; 
-  background-position: -200px -420px;
+  background-position: -490px -200px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x40.xtwork {
   width: 40px;
   height: 40px; 
-  background-position: -540px -200px;
+  background-position: -490px -150px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xraudio {
   width: 60px;
   height: 60px; 
-  background-position: -70px 0px;
+  background-position: -420px -280px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrcourseware {
   width: 60px;
   height: 60px; 
-  background-position: -420px -280px;
+  background-position: -420px -210px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrdir {
   width: 60px;
   height: 60px; 
-  background-position: -420px -210px;
+  background-position: -420px -140px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xredue {
   width: 60px;
   height: 60px; 
-  background-position: -420px -140px;
+  background-position: -420px -70px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrepub {
   width: 60px;
   height: 60px; 
-  background-position: -420px -70px;
+  background-position: -70px 0px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrepub2 {
   width: 60px;
   height: 60px; 
-  background-position: -420px 0px;
+  background-position: -350px -350px;
   background-size: 622px 616px;
 }
 
@@ -876,14 +904,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x60.xrppt {
   width: 60px;
   height: 60px; 
-  background-position: 0px 0px;
+  background-position: -70px -280px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xrquestion {
   width: 60px;
   height: 60px; 
-  background-position: 0px -280px;
+  background-position: 0px 0px;
   background-size: 622px 616px;
 }
 
@@ -1016,14 +1044,14 @@ a:hover > .tw-ico.xsync {
 .tw-ico.x60.xtvote {
   width: 60px;
   height: 60px; 
-  background-position: -70px -280px;
+  background-position: 0px -280px;
   background-size: 622px 616px;
 }
 
 .tw-ico.x60.xtword {
   width: 60px;
   height: 60px; 
-  background-position: -350px -350px;
+  background-position: -420px 0px;
   background-size: 622px 616px;
 }
 
@@ -1037,7 +1065,7 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xuldel1 {
   width: 24px;
   height: 24px; 
-  background-position: -294px -520px;
+  background-position: -158px -520px;
   background-size: 622px 616px;
 }
 
@@ -1065,14 +1093,14 @@ a:hover > .tw-ico.xsync {
 .tw-body-sidebar-toolbar.xcollapse  > .tw-ico.xsidebtn {
   width: 16px;
   height: 14px; 
-  background-position: -234px -600px;
+  background-position: -338px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xsidebtn {
   width: 16px;
   height: 14px; 
-  background-position: -208px -600px;
+  background-position: -312px -600px;
   background-size: 622px 616px;
 }
 
@@ -1107,21 +1135,21 @@ a:hover > .tw-ico.xsync {
 .tw-ico.xsort {
   width: 8px;
   height: 11px; 
-  background-position: -432px -600px;
+  background-position: -536px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xsort.xasc {
   width: 8px;
   height: 11px; 
-  background-position: -450px -600px;
+  background-position: -554px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xsort.xdesc {
   width: 8px;
   height: 11px; 
-  background-position: -414px -600px;
+  background-position: -518px -600px;
   background-size: 622px 616px;
 }
 
@@ -1135,41 +1163,41 @@ a:hover > .tw-ico.xrefresh {
 a:hover > .tw-ico.xsetting {
   width: 16px;
   height: 16px; 
-  background-position: -52px -600px;
+  background-position: -104px -600px;
   background-size: 622px 616px;
 }
 
 a:hover > .tw-ico.xsort {
   width: 8px;
   height: 11px; 
-  background-position: -468px -600px;
+  background-position: -572px -600px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xtftoggle:hover {
   width: 24px;
   height: 24px; 
-  background-position: -192px -520px;
+  background-position: -450px -420px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xtftoggle {
   width: 24px;
   height: 24px; 
-  background-position: -500px -470px;
+  background-position: -328px -520px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xtftoggle.xopen:hover {
   width: 24px;
   height: 24px; 
-  background-position: -450px -420px;
+  background-position: -260px -520px;
   background-size: 622px 616px;
 }
 
 .tw-ico.xtftoggle.xopen {
   width: 24px;
   height: 24px; 
-  background-position: -590px -488px;
+  background-position: -226px -520px;
   background-size: 622px 616px;
 }

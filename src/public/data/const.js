@@ -47,3 +47,6 @@ export const TIME_CUR_YEAR = new Date().getFullYear()
 
 // 当前月份
 export const TIME_CUR_MONTH = new Date().getMonth() + 1
+
+// 当前月格式化
+export const TIME_CUR_MONTH_MM = TIME_CUR_MONTH < 10 ? `0${TIME_CUR_MONTH}` : `${TIME_CUR_MONTH}`

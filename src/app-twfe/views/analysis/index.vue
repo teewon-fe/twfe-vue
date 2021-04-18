@@ -48,22 +48,24 @@
             <tr>
               <th style="width: 5em; text-align: left;">序号</th>
               <th style="text-align: left;">问题描述</th>
-              <th style="width: 160px; text-align: left;">所属项目</th>
+              <!-- <th style="width: 160px; text-align: left;">所属项目</th> -->
               <th style="width: 7em; text-align: left;">问题创建人</th>
               <th style="width: 10em; text-align: left;">问题处理人</th>
-              <th style="width: 10em; text-align: left;">期待解决时间</th>
+              <th style="width: 10em; text-align: left;">需解决时间</th>
               <th style="width: 5em; text-align: left;">状态</th>
+              <th style="width: 300px;">备注</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(issue,idx) in $api.kpi.issues.data.list" :key="issue.id">
               <td>{{idx + 1}}</td>
               <td>{{issue.descript}}</td>
-              <td>{{issue.project_name}}</td>
+              <!-- <td>{{issue.project_name}}</td> -->
               <td>{{issue.create_developer}}</td>
               <td>{{issue.handle_developer}}</td>
               <td>{{$ui.dateFormat(issue.resolve_time, 'yyyy-mm-dd')}}</td>
               <td>{{issue.stauts==='done'?'已完成':'进行中'}}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -94,7 +96,7 @@
               </td>
               <td>{{project.project_leader_name}}</td>
               <td class="pr-huge">
-                <el-progress :percentage="project.progress" :color="project.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
+                <el-progress :percentage="project.progress || 0" :color="project.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
               </td>
               <td>{{project.task_time}}</td>
               <!-- <td>{{project.status}}</td> -->
@@ -229,7 +231,7 @@ export default {
     this.$api.project.mounthTaskTime.send({ ym })
     this.$api.project.mounthProgress.send({ ym })
     this.$api.kpi.list.send({ ym, user_group: userGroup })
-    this.$api.kpi.issues.send({ type: 'issue' })
+    this.$api.kpi.issues.send({ type: 'risk' })
   }
 }
 </script>

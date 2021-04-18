@@ -40,6 +40,12 @@
                <span>统计</span>
              </router-link>
            </li>
+
+           <li>
+             <a href="http://192.168.112.179:83" target="_blank">
+               <span>前端规范</span>
+             </a>
+           </li>
            <!-- <li>
              <a>
                <i class="tw-ico xname"></i>
@@ -69,7 +75,21 @@
        </div>
 
       <div v-if="!$app.testVersion.includes('twfe')">
-        <tw-api-select
+        <el-select
+          size="small"
+          class="xtop"
+          v-model="currentGroupId"
+          clearable
+          placeholder="请选择开发组"
+          @change="changeGlobalGroup">
+          <el-option v-for="item in groups"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+
+        <!-- <tw-api-select
           size="small"
           class="xtop"
           v-model="currentGroupId"
@@ -78,7 +98,7 @@
           placeholder="请选择开发组"
           option-value-key="id"
           @change="changeGlobalGroup">
-        </tw-api-select>
+        </tw-api-select> -->
       </div>
 
        <div class="tw-header-right">
@@ -99,13 +119,13 @@ export default {
 
   data () {
     return {
-      currentGroupId: ''
+      currentGroupId: '',
+      groups: []
     }
   },
 
   methods: {
     changeGlobalGroup (val) {
-      console.log(3)
       this.$axios.defaults.headers.common['global-dev-group'] = this.currentGroupId
 
       if (this.$route.path === '/home') {
@@ -114,12 +134,17 @@ export default {
       } else if (this.$route.path === '/project-detail') {
         // 项目详情页时刷新计划排期列表等
         this.$api.project.getProjects.send()
+      } else if (this.$route.path === '/issue') {
+        this.$api.kpi.issues.send()
       }
     }
   },
 
   created () {
     this.currentGroupId = this.$app.user.globalDevGroup
+    this.$api.user.getGroups.send().then(data => {
+      this.groups = data.list
+    })
   }
 }
 </script>
