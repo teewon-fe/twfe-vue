@@ -87,6 +87,11 @@ $modal-footer-bg: #fff !default; // 底部背景
   width: $modal-size-huge;
 }
 
+// 弹窗:窗体-全屏
+.tw-modal.xfull > .tw-modal-window  {
+  width: 100%;
+}
+
 // 弹窗:窗体-头部
 .tw-modal-window-header {
   position: relative;

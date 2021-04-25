@@ -7,6 +7,7 @@ import Search from '@comps/search/search'
 import Chart from '@comps/chart/chart'
 import TagFilter from '@comps/tag-filter/tag-filter'
 import Scope from '@comps/scope/scope'
+import Modal from '@comps/modal/modal'
 
 export default [
   Poppane,
@@ -17,5 +18,6 @@ export default [
   Search,
   Chart,
   TagFilter,
-  Scope
+  Scope,
+  Modal
 ]

@@ -408,3 +408,7 @@ textarea::placeholder {
 .el-select .el-icon-circle-close:before {
   content: "\E6DB";
 }
+
+.el-progress.xgray .el-progress-bar__innerText {
+  color: #bbb;
+}

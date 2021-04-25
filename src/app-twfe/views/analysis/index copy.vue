@@ -40,9 +40,9 @@
         </div>
       </div>
 
-      <!-- <h3 class="tw-report-title">
+      <h3 class="tw-report-title">
         <img src="data:image/png;base64,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" alt="">
-        <span style="display: inline-block; position: relative; top: 35px;">前端青云榜周榜<span class="text-secondary text-default">(一把键盘码世界，行行代码醉红尘)</span></span>
+        <span style="display: inline-block; position: relative; top: 35px;">前端青云榜周榜<span class="text-secondary text-default">(一把键盘码世界，三行代码醉红尘)</span></span>
       </h3>
 
       <ul class="tw-rank">
@@ -55,6 +55,7 @@
             <img v-else-if="idx === 2" src="./images/n3.png" />
             <i v-else class="tw-rank-no">{{idx+1}}</i>
             <h4>{{developer.user_name}}<span class="tw-rank-score">(230分)</span></h4>
+            <!-- <i class="tw-rank-item-no" :class="[`xno${idx}`]">{{['榜首','榜眼','探花'][idx]}}</i> -->
 
             <div class="tw-rank-item-nobox">
               <img v-if="idx === 0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAAA7CAMAAADy+wKBAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAhlQTFRF/9Nl/7YA/9Nm////AAAA/9Nm/////9Jm/////9Jm/////9Nm/////9Nn/////9Jl/9Nm/////9Nm/9Nm/////9Rl/9Nm/////9Jm/7Yx/8kh/8Bz//TW/9ch/9Nm/////9Jn/+vv///v//j3///3/+NK/////9Nm/9e9/////+ha/8Ah/////9Rm/8BC/+C1//f3//7///jG//f///GU/7Yh/8AA//////H3//i1/9+9/+FK/+be//LW//3n/9Nm/////9Nm/9OM/+Gl//fv//rn//3///be/9oA/9Nm/////9Nm/+HO//3e/+il/+je/+hK/9Nm/////9Rm/8Br//3W/+zO//Ln//73//CM/9Jm/////9Nm/9a9/+yU/9FS/8xj/+re//zG/+fe/9ql/95K/9Nm/////8Ux/+/3/+mU//X3/8xa//7v/9cA/9Nl/////9Rm/9WU/+e9/+61/95j/+PW/+iU/+zW/9Nm/////8wA//al/9Nl/9Nl/8yc//re//Sc/8Ax/9Jm/8yU//r//+6M/8yM//bW/88h/+LO/9EA/////9qE/8+U/9YA/9Jm/////97G//m9/9Ih/9Nm//nO/+St//DO/9ut//Sl/+l7//T3/+7e/+Rz/9Rm/9q9//i9//jv//St/9rG/9W1/9Rr/9Jm/9Nm/9Nm/9Jm/7YA/9Nl/9Rl/9Jn/9Nn/9Nl/9Jm/9JnwdfuzwAAALN0Uk5Tkv//jgCMiniAZ31zcpBcg/tOf/U8iPNIif//////90ea//////9Knv////8Bk////////////z7/////////8jV6/////////+wrbv//////5Bxr////////1BOA////////////yg3/////////xAyH/////////8EI//+1dP////+3//////////8K////sQT///+j////////////cf////////+PdZ1s/mJld4uXjnKmRoy3AAACZUlEQVR4nKXW91/TQBQA8Baf4p6oKIraptqHqMQW3FvirAujoCgo7rq3dStRcFQtTlTEgRPnX2i47BBeQnI/Xd7nvsm95O5eQqFwzy2vD1AtBH0p3I+2kE/h/rSFARQeSFsYROHBtIUhFB5KWxhG4OEjaAsjCTyqgLYwmsBjxtIWCrubceOLJkzs6hRPoi1M7manRKJcjPWKp9IWptltHLFkutLNc8jZbEtnmOHMWWWI/OxEsryC5TyHtAAmXD4XEefNX7AQFy1mOS9ZSltYptvlK6LcykoB+VU8t5pF1qylLazTbFEZF1uf2rARN8UxqYQ2b6EtVBk0vDUhbtuOQjVfowR37KQt1LJhu6p319XvkVPe24DJffvVyRw4SFtQTpJDh2WIR9Li0cSx4/pbOHGStnCKDTt95uy589yFdOpizPTlLmVoq047HBcvd+ErlvVyNUNbuMaGXRduRPHmrQrrYrudoa16hjVKeEc3d5ualdvouAfrsJ8bJfGeeJ/hB7TVcjbaw6yEkUes+/gJbe04hy1ZKfVUuXjmYq3TziEnPE9j6sVLtjEKXaz5yTlE8ZWATRJiKwvUulgDy/T1GxnL0xablVC+i9VwDiNvuTYbfudi1ZzjPLY2MMy3ZCu1jVHlYrUX1q5gxPemVeZmLfiDhbpbLed2/JiwUg9Ww5/QRr1YFXfYqSer1qrPNurNwpewU/Nm1WPIn4WvAawT9mwdirt3C98C2FJ7ce+FNVfJ3lujSvqw8P2HfwudASz8DGDhVwBrnNs+rI79WA37smp99mfhdwALfwJY+BvAyr8V/i38+w/Pc50DcydTRgAAAABJRU5ErkJggg==" />
@@ -82,22 +83,12 @@
           </div>
 
           <div class="tw-rank-scoreitem">
-            <label>转测不通过：</label>
-            <span class="tw-rank-scoreitem-num">+20分</span>
-          </div>
-
-          <div class="tw-rank-scoreitem">
             <label>普通Bug数：</label>
             <span class="tw-rank-scoreitem-num">-10分</span>
           </div>
 
           <div class="tw-rank-scoreitem">
-            <label>红橙线Bug数：</label>
-            <span class="tw-rank-scoreitem-num">-20分</span>
-          </div>
-
-          <div class="tw-rank-scoreitem">
-            <label>未及时处理的问题单：</label>
+            <label>红线Bug数：</label>
             <span class="tw-rank-scoreitem-num">-20分</span>
           </div>
 
@@ -112,28 +103,28 @@
           </div>
 
           <div class="tw-rank-scoreitem">
+            <label>工作进度提交：</label>
+            <span class="tw-rank-scoreitem-num">-10分</span>
+          </div>
+
+          <div class="tw-rank-scoreitem">
+            <label>未及时处理的问题单：</label>
+            <span class="tw-rank-scoreitem-num">-20分</span>
+          </div>
+
+          <div class="tw-rank-scoreitem">
             <label>攻关性任务：</label>
             <span class="tw-rank-scoreitem-num">+10分</span>
           </div>
 
           <div class="tw-rank-scoreitem">
-            <label>设计文档：</label>
+            <label>组内优化单：</label>
             <span class="tw-rank-scoreitem-num">+7.5分</span>
           </div>
 
           <div class="tw-rank-scoreitem">
-            <label>培训：</label>
+            <label>遗留问题优化：</label>
             <span class="tw-rank-scoreitem-num">+10分</span>
-          </div>
-
-          <div class="tw-rank-scoreitem">
-            <label>专利：</label>
-            <span class="tw-rank-scoreitem-num">+10分</span>
-          </div>
-
-          <div class="tw-rank-scoreitem">
-            <label>工作进度提交：</label>
-            <span class="tw-rank-scoreitem-num">-10分</span>
           </div>
 
           <div class="tw-rank-scoreitem">
@@ -141,7 +132,7 @@
             <span class="tw-rank-scoreitem-num"></span>
           </div>
         </li>
-      </ul> -->
+      </ul>
 
       <h3 class="tw-report-title">项目问题</h3>
 
@@ -174,7 +165,7 @@
         </table>
       </div>
 
-      <h3 class="tw-report-title">进度延期的攻城狮<span class="text-default text-secondary">（延期3天以上请主动加班处理）</span></h3>
+      <h3 class="tw-report-title">项目风险</h3>
 
       <table class="tw-table">
         <thead>
@@ -201,46 +192,7 @@
         </tbody>
       </table>
 
-      <h3 class="tw-report-title">5天内即将转测或发布的项目<span class="text-default text-secondary">（各位前端ADC，停止打野，开始团战，不要坑队友）</span></h3>
-
-      <div class="tw-repoert-body">
-        <ul class="text-small text-weaking mb-small">
-          <li>考核相关点：</li>
-          <li>1、转测时间每延1天，延期责任人减10分，同项目组其他成员减5分，有特殊原因不减分(如插入了临时需求，大于30人天的需求转测前1天测试才给出1级用例)</li>
-          <li>2、转测1级用例未验证全，不可转测，哪怕是已经延期，也必须自验证所有一级用例通过后方可转测</li>
-          <li>3、转测失败，主责任人减10分每次，同项目组其他成员减5分每次</li>
-        </ul>
-
-        <table class="tw-table">
-          <thead>
-            <tr>
-              <td style="width: 5em; text-align: left;">序号</td>
-              <td style="text-align: left;">项目名称</td>
-              <td style="width: 200px; text-align: left;">开发(ADC)</td>
-              <td style="width: 180px; text-align: left;">进度</td>
-              <td style="width: 10em; text-align: left;">总工时(人/天)</td>
-              <td style="width: 15em; text-align: left;">下一里程碑</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(project,idx) in nearProjects"
-              :key="project.id">
-              <td>{{idx+1}}</td>
-              <td>
-                <router-link :to="`/project-detail?id=${project.id}`" class="text-link">{{project.project_name}}</router-link>
-              </td>
-              <td>{{project.developer_names.join('、')}}</td>
-              <td class="pr-huge">
-                <el-progress :percentage="project.progress || 0" :color="project.status==='risky'?'#f56c6c':'#218fff'"></el-progress>
-              </td>
-              <td>{{project.task_time}}</td>
-              <td class="text-bold text-highlight">{{project.next_time_node.text}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="tw-report-title">所有进行中的项目及进度</h3>
+      <h3 class="tw-report-title">进行中的项目及进度</h3>
 
       <div class="tw-repoert-body">
         <table class="tw-table">
@@ -261,7 +213,7 @@
               :key="project.id">
               <td>{{idx+1}}</td>
               <td>
-                <router-link :to="`/project-detail?id=${project.id}`" class="text-link" target="_blank">{{project.project_name}}</router-link>
+                <router-link :to="`/project-detail?id=${project.id}`" class="text-link">{{project.project_name}}</router-link>
               </td>
               <td>{{project.project_leader_name}}</td>
               <td class="pr-huge">
@@ -279,62 +231,6 @@
         </table>
       </div>
 
-      <h3 class="tw-report-title">里程碑看板</h3>
-
-      <div class="tw-repoert-body">
-        <table class="tw-table">
-          <thead>
-            <tr>
-              <td style="width: 2em; text-align: left;"></td>
-              <td style="width: 330px; left;">项目名称</td>
-              <td class="px-step" style="text-align: left;">里程碑进度</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(project,idx) in projects"
-              :key="project.id">
-              <td class="text-small px-step">{{idx+1}}</td>
-              <td class="text-small">
-                <router-link :to="`/project-detail?id=${project.id}`" class="text-link" target="_blank">{{project.project_name}}</router-link>
-              </td>
-              <td class="pb-step">
-                <tw-time-node
-                  v-if="project.developers && project.developers.length > 0"
-                  :developers="project.developers"
-                  :time-nodes="project.timeNodes">
-                </tw-time-node>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- <div class="tw-repoert-body">
-        <table class="tw-table">
-          <thead>
-            <tr>
-              <td style="width: 4em; text-align: left;">序号</td>
-              <td>项目名称</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(project,idx) in projects"
-              :key="project.id">
-              <td>{{idx+1}}</td>
-              <td>
-                <div class="text-bold mb-tiny"><router-link :to="`/project-detail?id=${project.id}`" class="text-link" target="_blank">{{project.project_name}}</router-link></div>
-                <div>
-                  <tw-time-node
-                    v-if="project.developers && project.developers.length > 0"
-                    :developers="project.developers"
-                    :time-nodes="project.timeNodes">
-                  </tw-time-node>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
     </div>
   </div>
 </template>
@@ -346,8 +242,6 @@ export default {
   computed: {
     projects () {
       return this.$api.project.getProjects.data.list.map(item => {
-        item.project.developers = item.developers
-        item.project.timeNodes = item.timeNodes
         item.project.delayDevelopers = item.developers.filter(item => item.delay > 0)
         return item.project
       }).sort((a, b) => parseInt(a.next_time_node.start.replace(/-/g, '')) - parseInt(b.next_time_node.start.replace(/-/g, '')))
@@ -355,12 +249,6 @@ export default {
 
     riskyProjects () {
       return this.projects.filter(item => item.status === 'risky')
-    },
-
-    nearProjects () {
-      return this.projects.filter(item => {
-        return new Date(item.next_time_node.start) - Date.now() < 24 * 60 * 60 * 1000 * 5
-      })
     }
   },
 

@@ -29,6 +29,7 @@ export const timeNodeTypes = [
   '需求评审',
   '高保真评审',
   '启动开发',
+  '版本发布',
   '转测SDV1',
   '转测SDV2',
   '转测SDV3',
@@ -39,7 +40,8 @@ export const timeNodeTypes = [
   '转测SDV8',
   '转测SDV9',
   '转测SDV10',
-  '版本发布'
+  '转测SDV11',
+  '转测SDV12'
 ]
 
 // 当前年份

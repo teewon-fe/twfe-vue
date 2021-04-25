@@ -25,7 +25,7 @@
             </router-link>
           </li>
 
-           <li>
+           <li v-if="!$app.testVersion.includes('twfe')">
              <router-link
               to="/issue"
               :class="{xcurrent:$route.meta.isIssue}">
@@ -33,7 +33,7 @@
              </router-link>
            </li>
 
-           <li>
+           <li v-if="$app.user.role === $cnt.ROLE_TEAM_LEADER">
              <router-link
               to="/work-statistics"
               :class="{xcurrent:$route.meta.isStatistics}">

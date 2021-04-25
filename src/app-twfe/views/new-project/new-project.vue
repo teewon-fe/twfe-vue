@@ -172,7 +172,7 @@
                           :prop="`timeNodes.${idx}.time_node_name`"
                           :rules="[{ required: true, message: '请输入里程碑名称', trigger: 'change' }]">
                           <!-- <el-input v-model="timeNode.time_node_name" size="small" /> -->
-                          <el-select v-model="timeNode.time_node_name" filterable allow-create placeholder="选择或输入里程碑名称">
+                          <el-select v-model="timeNode.time_node_name" filterable placeholder="选择或输入里程碑名称">
                             <el-option
                               v-for="item in $cnt.timeNodeTypes"
                               :key="item"
@@ -185,8 +185,7 @@
                       <td>
                         <el-form-item
                           label-width="0"
-                          :prop="`timeNodes.${idx}.start_time`"
-                          :rules="[{ required: true, message: '请输入开始时间', trigger: 'change' }]">
+                          :prop="`timeNodes.${idx}.start_time`">
                           <el-date-picker
                             v-model="timeNode.start_time"
                             value-format="yyyy-MM-dd"

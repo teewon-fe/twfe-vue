@@ -6,9 +6,11 @@
 
 import Vue from 'vue'
 import publicComponents from '../../public/config/public-comps'
+import timeNodes from '../components/time-node'
 
 const components = [
-  ...publicComponents
+  ...publicComponents,
+  timeNodes
 ]
 
 components.forEach(function (component) {

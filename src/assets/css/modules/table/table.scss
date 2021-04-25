@@ -40,7 +40,8 @@ $table-border-color: $color-border-secondary !default; // 边框色
 
 // 表格：单元格
 // stylelint-disable selector-max-type
-.tw-table > thead > tr > th {
+.tw-table > thead > tr > th,
+.tw-table > thead > tr > td {
   padding: $table-cell-px;
   font-size: $table-header-font-size;
   font-weight: 700;

@@ -230,3 +230,45 @@ export const taskTimes = {
     }
   }
 }
+
+// 更新需求评审数
+export const updatePrdReviewNum = {
+  url: '/project/updatePrdReviewNum',
+  method: 'put',
+
+  request: {
+    params: {
+      id: '',
+      prd_review_nums: null
+    }
+  },
+
+  response: {
+    data: {
+    }
+  }
+}
+
+// 更新测试相关信息
+export const updateTestInfo = {
+  url: '/project/updateTestInfo',
+  method: 'put',
+
+  request: {
+    params: {
+      id: '',
+      done_time: '',
+      delay_developer_id: [],
+      delay_cause: '',
+      ng_status: '',
+      ng_developer_id: [],
+      secondary_ng_developer_id: [],
+      secondary_delay_developer_ids: []
+    }
+  },
+
+  response: {
+    data: {
+    }
+  }
+}

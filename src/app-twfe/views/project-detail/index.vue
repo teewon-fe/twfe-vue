@@ -63,16 +63,11 @@
         <div class="tw-title">
           <h3 class="tw-title-left text-default">项目详情</h3>
           <div class="tw-title-right">
-            <ul class="tw-steps xstripe">
-              <li v-for="(tn, idx) in project.timeNodes"
-                :key="idx"
-                class="tw-steps-item"
-                :class="{xdone: tn.status === 'done', xactive: tn.status === 'active', xrisk: tn.status === 'risk'}"
-                :style="`z-index:${project.timeNodes.length - idx};`">
-                <span>{{tn.text}}</span>
-                <a v-if="(!tn.status || tn.status === 'risk') && tn.time_node_name.includes('转测')" class="text-link" style="margin-right: -5px; padding-left: 5px;">转测</a>
-              </li>
-            </ul>
+            <tw-time-node
+              v-if="project.developers && project.developers.length > 0"
+              :developers="project.developers"
+              :time-nodes="project.timeNodes">
+            </tw-time-node>
           </div>
         </div>
 
@@ -269,6 +264,7 @@ export default {
 
         return {
           ...project.project,
+          developers: project.developers,
           delayDevelopers: project.developers.filter(item => item.delay > 0),
           timeNodes: project.timeNodes,
           plans: project.plans,
@@ -402,11 +398,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .tw-steps-item.xrisk .text-link {
-    color: #6ec940 !important;
 
-    &:hover {
-      color: #5dbe2d !important;
-    }
-  }
 </style>
