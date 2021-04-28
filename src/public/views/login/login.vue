@@ -56,6 +56,7 @@ export default {
       window.$ui.setDefaultHeaders({
         'token': data.token,
         'user-id': data.userId,
+        'user-group': data.userGroup,
         'global-dev-group': globalDevGroup
       })
 

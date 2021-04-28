@@ -36,7 +36,7 @@
         </div>
 
         <div class="tw-report-header-time">
-          <span>2021团队目标：质量++</span>
+          <span>2021团队目标：质量</span>
         </div>
       </div>
 
@@ -286,22 +286,39 @@
           <thead>
             <tr>
               <td style="width: 2em; text-align: left;"></td>
-              <td style="width: 330px; left;">项目名称</td>
-              <td class="px-step" style="text-align: left;">里程碑进度</td>
+              <td style="width: 420px; left;">项目名称</td>
+              <td class="px-step" style="text-align: left;">
+                <span>里程碑进度</span>
+                <span class="ml-tiny text-small text-normal">
+                  <i class="tw-tag xsmall xwaiting"></i>
+                  <span> 未启动</span>
+
+                  <i class="tw-tag xsmall xactive ml-tiny"></i>
+                  <span> 进行中</span>
+
+                  <i class="tw-tag xsmall xrisk ml-tiny"></i>
+                  <span> 已延期</span>
+
+                  <i class="tw-tag xsmall xfaile ml-tiny"></i>
+                  <span> 转测失败</span>
+
+                  <i class="tw-tag xsmall xdone ml-tiny"></i>
+                  <span> 已完成</span>
+                </span>
+              </td>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(project,idx) in projects"
+            <tr v-for="(project,idx) in projects.sort((a, b))"
               :key="project.id">
-              <td class="text-small px-step">{{idx+1}}</td>
-              <td class="text-small">
+              <td class="px-step">{{idx+1}}</td>
+              <td>
                 <router-link :to="`/project-detail?id=${project.id}`" class="text-link" target="_blank">{{project.project_name}}</router-link>
               </td>
               <td class="pb-step">
                 <tw-time-node
                   v-if="project.developers && project.developers.length > 0"
-                  :developers="project.developers"
-                  :time-nodes="project.timeNodes">
+                  :project="project">
                 </tw-time-node>
               </td>
             </tr>

@@ -65,8 +65,8 @@
           <div class="tw-title-right">
             <tw-time-node
               v-if="project.developers && project.developers.length > 0"
-              :developers="project.developers"
-              :time-nodes="project.timeNodes">
+              :project="project"
+              @submit="getProject">
             </tw-time-node>
           </div>
         </div>

@@ -1,6 +1,6 @@
 /* 标签 */ 
 $tag-height: 24px !default; // 标签高度 
-$tag-small-height: 12px !default; // 小标签高度 --sync--
+$tag-small-height: 10px !default; // 小标签高度 --sync--
 $tag-large-height: 30px !default; // 大标签高度
 $tag-px: $spacing-tiny !default; // 标签内边距
 $tag-font-size: $font-size-small !default; // 字体大小
@@ -61,9 +61,13 @@ $tag-tabel-border: #a1e0ba !default; // 表格标签边框色
 
 // 标签: 小尺寸
 .tw-tag.xsmall {
+  position: relative;
+  top: -1px;
   min-width: $tag-small-height;
   height: $tag-small-height;
   line-height: $tag-small-height;
+  padding: 0;
+  border: 1px solid #333
 }
 
 .tw-tag.xround.xlarge {
@@ -120,6 +124,31 @@ $tag-tabel-border: #a1e0ba !default; // 表格标签边框色
 // 标签: 有风险
 .tw-tag.xrisk {
   background: $color-error;
+}
+
+// 标签: 未启动
+.tw-tag.xwaiting {
+  background: #d4ebff;
+}
+
+// 标签: 进行中
+.tw-tag.xactive {
+  background: #218fff;
+}
+
+// 标签: 延期
+.tw-tag.xrisk {
+  background: #fb6c84;
+}
+
+// 标签: 失败
+.tw-tag.xfaile {
+  background: #88880d;
+}
+
+// 标签: 完成
+.tw-tag.xdone {
+  background: #333;
 }
 
 // 标签: 类别

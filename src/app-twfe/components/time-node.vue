@@ -6,7 +6,7 @@
         class="tw-steps-item"
         :class="{xdone: tn.status === 'done', xactive: tn.status === 'active', xrisk: tn.status === 'risk'}"
         :style="`z-index:${timeNodes.length - idx};`"
-        @click="handleTimeNode(tn)">
+        @click="handleTimeNode(tn, idx)">
         <span>{{tn.text.replace(/\d{4}-/g, '')}}</span>
         <!-- <a v-if="(!tn.status || tn.status === 'risk') && tn.time_node_name.includes('转测')" class="text-link" style="margin-right: -5px; padding-left: 5px;">转测</a> -->
       </li>
@@ -23,7 +23,7 @@
               label-width="5em"
               size="medium"
               :model="params">
-              <div class="tw-card pl-medium pr-huge pb-medium">
+              <div class="tw-card pl-medium pr-huge pb-step">
                 <el-form-item
                   v-for="developer in developersPrd"
                   :key="developer.developer_id"
@@ -32,9 +32,13 @@
                   <el-input v-model="developer.num"></el-input>
                 </el-form-item>
               </div>
-            </el-form>
+          </el-form>
           </template>
         </tw-scope>
+
+        <div class="pb-tiny">
+          <a class="text-link" :href="project.project_prd_url" target="_blank">需求地址：{{project.project_name}}</a>
+        </div>
       </template>
       <template slot="footer">
         <a class="tw-btn xmain" @click="submitPrdReviewNum">确定</a>
@@ -44,7 +48,7 @@
     <!-- /弹窗:提交需求评审 -->
 
     <!-- 弹窗:提交转测 -->
-    <tw-modal class="xfull" :visible.sync="testModal.visible">
+    <tw-modal class="xmedium" :visible.sync="testModal.visible">
       <template slot="header">提交转测</template>
       <template slot="body">
         <tw-scope :data="$api.project.updateTestInfo.params">
@@ -61,7 +65,7 @@
                   label="转测日期：">
                   <el-date-picker
                     style="width: 100%;"
-                    v-model="params.done_time"
+                    v-model="params.actual_start_time"
                     value-format="yyyy-MM-dd"
                     format="yyyy-MM-dd"
                     type="date">
@@ -71,9 +75,9 @@
                 <template v-if="currentTimeNodeIsDelay">
                   <el-form-item
                     prop="num"
-                    label="延期主负责人：">
-                    <el-select v-model="params.delay_developer_id" multiple clearable>
-                      <el-option v-for="devloper in developers"
+                    label="本组延期负责人：">
+                    <el-select v-model="testParams.delay_developer_id" multiple clearable>
+                      <el-option v-for="devloper in sameGroupDevelopers"
                         :key="devloper.developer_id"
                         :label="devloper.developer_name"
                         :value="devloper.developer_id">
@@ -102,9 +106,9 @@
                   <el-form-item
                     v-if="params.ng_status === 'ng'"
                     prop="num"
-                    label="转测失败主负责人：">
-                    <el-select v-model="params.ng_developer_id" multiple clearable>
-                      <el-option v-for="devloper in developers"
+                    label="本组转测失败负责人：">
+                    <el-select v-model="testParams.ng_developer_id" multiple clearable>
+                      <el-option v-for="devloper in sameGroupDevelopers"
                         :key="devloper.developer_id"
                         :label="devloper.developer_name"
                         :value="devloper.developer_id">
@@ -112,6 +116,18 @@
                     </el-select>
                   </el-form-item>
                 </template>
+
+                <div class="tw-title xsub">
+                  <h3 class="tw-title-left">本轮转测遗留Bug数</h3>
+                </div>
+
+                <el-form-item
+                  v-for="developer in params.delay_bug_num"
+                  :key="developer.developer_id"
+                  prop="num"
+                  :label="developer.developer_name+':'">
+                  <el-input v-model="developer.num"></el-input>
+                </el-form-item>
               </div>
             </el-form>
           </template>
@@ -123,6 +139,43 @@
       </template>
     </tw-modal>
     <!-- /弹窗:提交转测 -->
+
+    <!-- 弹窗:版本发布 -->
+    <tw-modal class="xmedium" :visible.sync="prdReviewModal.visible">
+      <template slot="header">版本发布</template>
+
+      <template slot="body">
+        <tw-scope :data="$api.project.updatePrdReviewNum.params">
+          <template v-slot="params">
+            <el-form
+              ref="form"
+              label-width="5em"
+              size="medium"
+              :model="params">
+              <div class="tw-card pl-medium pr-huge pb-step">
+                <el-form-item
+                  v-for="developer in developersPrd"
+                  :key="developer.developer_id"
+                  prop="num"
+                  :label="developer.developer_name+':'">
+                  <el-input v-model="developer.num"></el-input>
+                </el-form-item>
+              </div>
+          </el-form>
+          </template>
+        </tw-scope>
+
+        <div class="pb-tiny">
+          <a class="text-link" :href="project.project_prd_url" target="_blank">需求地址：{{project.project_name}}</a>
+        </div>
+      </template>
+
+      <template slot="footer">
+        <a class="tw-btn xmain" @click="submitPrdReviewNum">确定</a>
+        <a class="tw-btn xweaking" @click="prdReviewModal.visible=false">取消</a>
+      </template>
+    </tw-modal>
+    <!-- /弹窗:版本发布 -->
   </div>
 </template>
 
@@ -131,15 +184,8 @@ export default {
   name: 'tw-time-node',
 
   props: {
-    developers: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-
-    timeNodes: {
-      type: Array,
+    project: {
+      type: Object,
       require: true
     }
   },
@@ -147,6 +193,7 @@ export default {
   data () {
     return {
       currentTimeNode: null,
+      currentTimeNodeIndex: 0,
 
       prdReviewModal: {
         visible: false
@@ -156,11 +203,25 @@ export default {
         visible: false
       },
 
-      developersPrd: []
+      developersPrd: [],
+
+      testParams: {
+        delay_developer_id: [],
+        ng_developer_id: [],
+        delay_bug_num: []
+      }
     }
   },
 
   computed: {
+    developers () {
+      return this.project.developers
+    },
+
+    timeNodes () {
+      return this.project.timeNodes
+    },
+
     currentTimeNodeIsDelay () {
       if (this.currentTimeNode) {
         const doneTime = this.$api.project.updateTestInfo.params.done_time
@@ -172,41 +233,89 @@ export default {
 
     developerIds () {
       return this.developers.map(item => item.developer_id)
+    },
+
+    sameGroupDevelopers () {
+      return this.developers.filter(item => item.dev_group === this.$app.user.userGroup).map(item => ({
+        dev_group: item.dev_group,
+        developer_id: item.developer_id,
+        developer_name: item.developer_name
+      }))
     }
   },
 
   methods: {
-    handleTimeNode (timeNode) {
+    handleTimeNode (timeNode, idx) {
+      this.currentTimeNodeIndex = idx
       this.currentTimeNode = timeNode
 
       if (timeNode.time_node_name.includes('启动开发')) {
+        this.generateDeveloperPrd()
         this.prdReviewModal.visible = true
       } else if (timeNode.time_node_name.includes('转测')) {
+        this.generateTestParams()
         this.testModal.visible = true
+      } else if (timeNode.time_node_name.includes('版本')) {
+
       }
     },
 
-    generateDeveloperPrd () {
-      this.developersPrd = []
+    generateDeveloperPrd (type) {
+      this.developersPrd = JSON.parse(JSON.stringify(this.currentTimeNode.prd_review_num)) || []
 
       for (const item of this.developers) {
-        // 只能修改自己同组的人的数据
-        if (item.dev_group === this.$app.user.userGroup) {
+        // 以下if语句为判断，只添加在接口返回的数组中不存在的开发
+        if (!this.$ui.arr.hasMode(this.developersPrd, { developer_id: item.developer_id })) {
           this.developersPrd.push({
+            dev_group: item.dev_group,
             developer_id: item.developer_id,
             developer_name: item.developer_name,
             num: 0
           })
         }
       }
+
+      // 只能改同组的开发人员的数据
+      this.developersPrd = this.developersPrd.filter(item => item.dev_group === this.$app.user.userGroup)
+    },
+
+    generateTestParams () {
+      const testApiParams = this.$api.project.updateTestInfo.params
+      testApiParams.actual_start_time = this.currentTimeNode.actual_start_time
+      testApiParams.delay_cause = this.currentTimeNode.delay_cause
+      testApiParams.ng_status = this.currentTimeNode.ng_status
+
+      for (const key of Object.keys(this.testParams)) {
+        this.$set(testApiParams, key, JSON.parse(JSON.stringify(this.currentTimeNode[key])) || [])
+        this.testParams[key] = testApiParams[key].map(item => item.developer_id)
+      }
+
+      for (const item of this.developers) {
+        // 以下if语句为判断，只添加在接口返回的数组中不存在的开发
+        if (!this.$ui.arr.hasMode(testApiParams.delay_bug_num, { developer_id: item.developer_id })) {
+          testApiParams.delay_bug_num.push({
+            dev_group: item.dev_group,
+            developer_id: item.developer_id,
+            developer_name: item.developer_name,
+            num: 0
+          })
+        }
+      }
+
+      // 只能改同组的开发人员的数据
+      testApiParams.delay_bug_num = testApiParams.delay_bug_num.filter(item => item.dev_group === this.$app.user.userGroup)
     },
 
     submitPrdReviewNum () {
       this.$api.project.updatePrdReviewNum.send({
         id: this.currentTimeNode.id,
-        prd_review_nums: this.developersPrd
+        prd_review_num: this.developersPrd.map(item => {
+          item.num = parseInt(item.num)
+          return item
+        })
       }).then(() => {
         this.prdReviewModal.visible = false
+        this.$emit('submit')
       })
     },
 
@@ -216,15 +325,18 @@ export default {
       params.id = this.currentTimeNode.id
 
       if (this.currentTimeNodeIsDelay) {
-        params.secondary_ng_developer_id = this.developerIds.filter(item => !params.delay_developer_id.includes(item))
+        params.delay_developer_id = this.sameGroupDevelopers.filter(item => this.testParams.delay_developer_id.includes(item.developer_id))
+        params.secondary_delay_developer_id = this.sameGroupDevelopers.filter(item => !this.testParams.delay_developer_id.includes(item.developer_id))
       }
 
       if (params.ng_status === 'ng') {
-        params.secondary_delay_developer_ids = this.developerIds.filter(item => !params.ng_developer_id.includes(item))
+        params.ng_developer_id = this.sameGroupDevelopers.filter(item => this.testParams.ng_developer_id.includes(item.developer_id))
+        params.secondary_ng_developer_id = this.sameGroupDevelopers.filter(item => !this.testParams.ng_developer_id.includes(item.developer_id))
       }
 
       this.$api.project.updateTestInfo.send().then(() => {
         this.testModal.visible = false
+        this.$emit('submit')
       })
     }
   },
@@ -232,7 +344,6 @@ export default {
   created () {
     this.$api.project.updatePrdReviewNum.reset()
     this.$api.project.updateTestInfo.reset()
-    this.generateDeveloperPrd()
   },
 
   watch: {
@@ -240,8 +351,8 @@ export default {
       if (!val) {
         const params = this.$api.project.updateTestInfo.params
         params.delay_cause = ''
-        params.secondary_delay_developer_ids = []
-        params.secondary_delay_developer_ids = []
+        params.secondary_delay_developer_id = []
+        params.secondary_delay_developer_id = []
       }
     }
   }
@@ -269,13 +380,13 @@ export default {
 
   .tw-steps.xstripe > .tw-steps-item {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 6px;
     margin-bottom: 5px;
     width: 110px;
   }
 
   .tw-steps-item  {
-    color: #666;
+    color: #333;
   }
 
   .tw-steps.xstripe > .tw-steps-item {

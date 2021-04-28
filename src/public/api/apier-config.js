@@ -8,6 +8,7 @@ export default {
   headers: {
     'token': window.$app.user.token,
     'user-id': window.$app.user.userId,
+    'user-group': window.$app.user.userGroup,
     'global-dev-group': window.$app.user.globalDevGroup
   },
 

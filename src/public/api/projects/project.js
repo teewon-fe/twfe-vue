@@ -239,7 +239,7 @@ export const updatePrdReviewNum = {
   request: {
     params: {
       id: '',
-      prd_review_nums: null
+      prd_review_num: null
     }
   },
 
@@ -257,7 +257,7 @@ export const updateTestInfo = {
   request: {
     params: {
       id: '',
-      done_time: '',
+      actual_start_time: '',
       delay_developer_id: [],
       delay_cause: '',
       ng_status: '',

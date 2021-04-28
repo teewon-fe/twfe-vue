@@ -13,7 +13,7 @@ $step-stripe-size: 24px !default; // 条带高度
 $step-stripe-bg: #d4ebff !default; // 条带背景
 $step-stripe-disabled-bg: #eef7ff !default; // 条带禁用背景
 $step-stripe-border-color: #fff !default; // 头带边框颜色
-$step-stripe-done-bg: #666 !default; // 条带激活背景
+$step-stripe-done-bg: #333 !default; // 条带激活背景
 $step-stripe-active-bg: $color-main !default; // 条带激活背景
 $step-done-color: $color-main !default; // 完成文本色
 $step-active-bg: $color-main !default; // 激活背景色
@@ -120,6 +120,11 @@ $big-round-border-color: #dcedff !default; // 大圆边框颜色
     color: $step-reverse;
     background: #fb6c84;
   }
+
+  &.xfaile {
+    color: $step-reverse;
+    background: #88880d;
+  }
 }
 
 // 步骤条: 条带式-箭头
@@ -152,11 +157,6 @@ $big-round-border-color: #dcedff !default; // 大圆边框颜色
   border: none;
 }
 
-// 步骤条: 条带式-箭头-完成
-.tw-steps.xstripe > .tw-steps-item.xdone:after {
-  background: $step-stripe-done-bg;
-}
-
 // 步骤条: 条带式-箭头-激活
 .tw-steps.xstripe > .tw-steps-item.xactive:after {
   background: $step-stripe-active-bg;
@@ -165,6 +165,16 @@ $big-round-border-color: #dcedff !default; // 大圆边框颜色
 // 步骤条: 条带式-箭头-有风险
 .tw-steps.xstripe > .tw-steps-item.xrisk:after {
   background: #fb6c84;
+}
+
+// 步骤条: 条带式-箭头-失败
+.tw-steps.xstripe > .tw-steps-item.xfaile:after {
+  background: #88880d;
+}
+
+// 步骤条: 条带式-箭头-完成
+.tw-steps.xstripe > .tw-steps-item.xdone:after {
+  background: $step-stripe-done-bg;
 }
 
 // ------------------------------ 步骤条: 圆形 ------------------------------
