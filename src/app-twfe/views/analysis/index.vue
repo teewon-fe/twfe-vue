@@ -300,7 +300,7 @@
                   <span> 已延期</span>
 
                   <i class="tw-tag xsmall xfaile ml-tiny"></i>
-                  <span> 转测失败</span>
+                  <span> 转测未通过</span>
 
                   <i class="tw-tag xsmall xdone ml-tiny"></i>
                   <span> 已完成</span>
@@ -309,7 +309,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(project,idx) in projects.sort((a, b))"
+            <tr v-for="(project,idx) in projects"
               :key="project.id">
               <td class="px-step">{{idx+1}}</td>
               <td>
@@ -362,12 +362,16 @@ export default {
 
   computed: {
     projects () {
+      const projectNames = this.$api.project.getProjects.data.list.map(i => i.project.project_name).sort()
+
       return this.$api.project.getProjects.data.list.map(item => {
         item.project.developers = item.developers
         item.project.timeNodes = item.timeNodes
         item.project.delayDevelopers = item.developers.filter(item => item.delay > 0)
         return item.project
-      }).sort((a, b) => parseInt(a.next_time_node.start.replace(/-/g, '')) - parseInt(b.next_time_node.start.replace(/-/g, '')))
+      }).sort((p1, p2) => {
+        return projectNames.indexOf(p1.project_name) - projectNames.indexOf(p2.project_name)
+      })
     },
 
     riskyProjects () {

@@ -259,11 +259,12 @@ export const updateTestInfo = {
       id: '',
       actual_start_time: '',
       delay_developer_id: [],
+      secondary_delay_developer_ids: [],
       delay_cause: '',
       ng_status: '',
       ng_developer_id: [],
       secondary_ng_developer_id: [],
-      secondary_delay_developer_ids: []
+      delay_bug_num: []
     }
   },
 
