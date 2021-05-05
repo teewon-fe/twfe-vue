@@ -139,10 +139,21 @@
 
                   <template v-if="$app.user.role === $cnt.ROLE_TEAM_LEADER && currentTimeNode.time_node_name.includes('转测')">
                     <el-form-item
+                      label="转测状态登记日期：">
+                      <el-date-picker
+                        style="width: 100%;"
+                        v-model="testStatusTime"
+                        value-format="yyyy-MM-dd"
+                        format="yyyy-MM-dd"
+                        type="date">
+                      </el-date-picker>
+                    </el-form-item>
+
+                    <el-form-item
                       prop="num"
                       label="转测状态：">
                       <el-select v-model="currentTimeNode.ng_status" clearable>
-                        <el-option label="未出结论" value=""></el-option>
+                        <el-option label="未出结论" value="unknown"></el-option>
                         <el-option label="通过" value="pass"></el-option>
                         <el-option label="失败" value="ng"></el-option>
                       </el-select>
@@ -258,6 +269,20 @@
                       :label="developer.developer_name+':'">
                       <el-input v-model.number="developer.kpi_num"></el-input>
                     </el-form-item>
+
+                    <template v-if="key === 'normal_bug_num'">
+                      <div class="tw-title xsub">
+                        <h3 class="tw-title-left">Bug修正系数</h3>
+                      </div>
+
+                      <el-form-item
+                        v-for="developer in kpiItem"
+                        :key="developer.developer_id"
+                        prop="kpi_num"
+                        :label="developer.developer_name+':'">
+                        <el-input v-model="developer.kpi_fix_num"></el-input>
+                      </el-form-item>
+                    </template>
                   </div>
                 </template>
               </div>
@@ -295,6 +320,7 @@ export default {
       currentTimeNode: null,
       currentTimeNodeIndex: 0,
       noKpi: false,
+      testStatusTime: '',
 
       prdReviewModal: {
         visible: false
@@ -312,6 +338,7 @@ export default {
         normal_bug_num: '普通Bug数',
         red_bug_num: '红线Bug数',
         org_bug_num: '橙线Bug数',
+        key_task: '关键任务',
         design_doc: '设计文档得分'
       },
 
@@ -375,9 +402,11 @@ export default {
           'normal_bug_num',
           'red_bug_num',
           'org_bug_num',
+          'key_task',
           'design_doc'
         ])
 
+        this.testStatusTime = ''
         this.publishModal.visible = true
       }
     },
@@ -410,7 +439,8 @@ export default {
               developer_name: item.developer_name,
               dev_group: item.dev_group,
               project_id: this.project.id,
-              time_node_id: this.currentTimeNode.id
+              time_node_id: this.currentTimeNode.id,
+              normal_bug_num: 1
             })
           }
         }
@@ -454,6 +484,17 @@ export default {
       } else {
         params.ng_developer_id = []
         params.secondary_ng_developer_id = []
+      }
+
+      // 如果指定了转测状态登记时间，所有的转测状态时间都要用登记的时间
+      if (this.testStatusTime) {
+        params.ng_developer_id.forEach(item => {
+          item.kpi_time = this.testStatusTime
+        })
+
+        params.secondary_ng_developer_id.forEach(item => {
+          item.kpi_time = this.testStatusTime
+        })
       }
 
       // 遗留bug没有时，不需要记录其kpi
