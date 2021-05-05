@@ -18,6 +18,56 @@ export const list = {
   }
 }
 
+// 插入kpi
+export const submitKpi = {
+  url: '/kpi',
+  method: 'post',
+
+  request: {
+    params: {
+      time_node: null,
+      kpis: {}
+    }
+  }
+}
+
+// 更新kpi
+export const updateKpi = {
+  url: '/kpi',
+  method: 'put',
+
+  request: {
+    params: {
+      time_node: null,
+      kpis: {}
+    }
+  }
+}
+
+// 按时间节点查询kpi
+export const getApisByTimeNode = {
+  url: '/kpi/getApisByTimeNode',
+  method: 'get',
+
+  request: {
+    mode: 'query',
+    params: {
+      time_node_id: ''
+    },
+
+    handler (params) {
+      params.time_node_id = parseInt(params.time_node_id)
+      return params
+    }
+  },
+
+  response: {
+    data: {
+      list: 0
+    }
+  }
+}
+
 // 新增问题
 export const addIssue = {
   url: '/kpi/issue',
@@ -91,6 +141,26 @@ export const issues = {
   response: {
     data: {
       list: 0
+    }
+  }
+}
+
+// 在jira中查询问题列表
+export const jira = {
+  url: '/kpi/jira',
+  method: 'get',
+
+  request: {
+    mode: 'query',
+    params: {
+      keyword: '',
+      users: []
+    }
+  },
+
+  response: {
+    data: {
+      list: []
     }
   }
 }

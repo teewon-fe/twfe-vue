@@ -239,6 +239,7 @@ export const updatePrdReviewNum = {
   request: {
     params: {
       id: '',
+      project_id: '',
       prd_review_num: null
     }
   },
@@ -265,6 +266,40 @@ export const updateTestInfo = {
       ng_developer_id: [],
       secondary_ng_developer_id: [],
       delay_bug_num: []
+    }
+  },
+
+  response: {
+    data: {
+    }
+  }
+}
+
+// 更新时间节点的实际开始时间
+export const updateActualStartTime = {
+  url: '/project/updateActualStartTime',
+  method: 'put',
+
+  request: {
+    params: {
+      id: '',
+      actual_start_time: ''
+    }
+  }
+}
+
+// 更新项目相关Bug信息
+export const updatePublishInfo = {
+  url: '/project/updatePublishInfo',
+  method: 'put',
+
+  request: {
+    params: {
+      id: '',
+      normal_bug_num: [],
+      red_bug_num: [],
+      org_bug_num: [],
+      design_doc: []
     }
   },
 

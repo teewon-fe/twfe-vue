@@ -116,24 +116,34 @@ $tag-tabel-border: #a1e0ba !default; // 表格标签边框色
   font-size: $font-size-small;
 }
 
+// 标签: 未启动
+.tw-tag.xwaiting {
+  background: #d4ebff;
+}
+
+// 标签: 未启动
+.tw-tag.xnoplan {
+  background: #bbb;
+}
+
 // 标签: 正常
 .tw-tag.xnormal {
+  background: #218fff;
+}
+
+// 标签: 完成
+.tw-tag.xdone {
+  background: #333;
+}
+
+// 标签: 进行中
+.tw-tag.xactive {
   background: #218fff;
 }
 
 // 标签: 有风险
 .tw-tag.xrisk {
   background: $color-error;
-}
-
-// 标签: 未启动
-.tw-tag.xwaiting {
-  background: #d4ebff;
-}
-
-// 标签: 进行中
-.tw-tag.xactive {
-  background: #218fff;
 }
 
 // 标签: 延期
@@ -144,11 +154,6 @@ $tag-tabel-border: #a1e0ba !default; // 表格标签边框色
 // 标签: 失败
 .tw-tag.xfaile {
   background: #88880d;
-}
-
-// 标签: 完成
-.tw-tag.xdone {
-  background: #333;
 }
 
 // 标签: 类别

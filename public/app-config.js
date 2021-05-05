@@ -3,5 +3,6 @@
  */
 window.$app = {
   apiBaseUrl: 'http://localhost:3000',
-  loginPage: '/#/login'
+  loginPage: '/#/login',
+  jiraUrl: 'http://192.168.102.222:8888'
 }

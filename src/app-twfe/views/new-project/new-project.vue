@@ -191,7 +191,8 @@
                             value-format="yyyy-MM-dd"
                             format="yyyy-MM-dd"
                             size="small"
-                            type="date">
+                            type="date"
+                            :picker-options="pickerOptions">
                           </el-date-picker>
                         </el-form-item>
                       </td>
@@ -379,7 +380,32 @@ export default {
       delTimeNodeIds: [],
       overtimeDays: [],
       vacationDays: [],
-      crossMonthTask: []
+      crossMonthTask: [],
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: '今天',
+            onClick (picker) {
+              const date = new Date()
+              picker.$emit('pick', date)
+            }
+          },
+          {
+            text: '七天后',
+            onClick (picker) {
+              const date = new Date()
+              date.setTime(date.getTime() + 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', date)
+            }
+          },
+          {
+            text: '未排期',
+            onClick (picker) {
+              picker.$emit('pick', new Date('9999-01-01'))
+            }
+          }
+        ]
+      }
     }
   },
 

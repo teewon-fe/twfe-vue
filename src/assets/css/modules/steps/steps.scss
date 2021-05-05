@@ -116,6 +116,11 @@ $big-round-border-color: #dcedff !default; // 大圆边框颜色
     background: $step-stripe-active-bg;
   }
 
+  &.xnoplan {
+    color: $step-reverse;
+    background: #bbb;
+  }
+
   &.xrisk {
     color: $step-reverse;
     background: #fb6c84;

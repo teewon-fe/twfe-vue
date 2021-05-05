@@ -293,6 +293,9 @@
                   <i class="tw-tag xsmall xwaiting"></i>
                   <span> 未启动</span>
 
+                  <i class="tw-tag xsmall xnoplan ml-tiny"></i>
+                  <span> 未排期</span>
+
                   <i class="tw-tag xsmall xactive ml-tiny"></i>
                   <span> 进行中</span>
 
@@ -318,7 +321,8 @@
               <td class="pb-step">
                 <tw-time-node
                   v-if="project.developers && project.developers.length > 0"
-                  :project="project">
+                  :project="project"
+                  @submit="init">
                 </tw-time-node>
               </td>
             </tr>
@@ -385,25 +389,32 @@ export default {
     }
   },
 
+  methods: {
+    init () {
+      const ym = this.$route.query.ym || `${this.$cnt.TIME_CUR_YEAR}-${this.$cnt.TIME_CUR_MONTH}`
+      const userGroup = this.$app.user.userGroup || this.$ui.urlQuery.userGroup
+
+      this.$api.project.getProjects.reset().send({
+        status: ['doing', 'done'],
+        ym: this.$route.query.ym,
+        pageNo: '',
+        pageSize: ''
+      })
+
+      this.$api.user.count.reset().send({
+        groupId: userGroup
+      })
+
+      this.$api.global.time.send()
+      this.$api.project.mounthTaskTime.send({ ym })
+      this.$api.project.mounthProgress.send({ ym })
+      this.$api.kpi.list.send({ ym, user_group: userGroup })
+      this.$api.kpi.issues.send({ type: 'risk' })
+    }
+  },
+
   created () {
-    const ym = this.$route.query.ym || `${this.$cnt.TIME_CUR_YEAR}-${this.$cnt.TIME_CUR_MONTH}`
-    const userGroup = this.$app.user.userGroup || this.$ui.urlQuery.userGroup
-
-    this.$api.project.getProjects.reset().send({
-      status: 'doing',
-      pageNo: '',
-      pageSize: ''
-    })
-
-    this.$api.user.count.reset().send({
-      groupId: userGroup
-    })
-
-    this.$api.global.time.send()
-    this.$api.project.mounthTaskTime.send({ ym })
-    this.$api.project.mounthProgress.send({ ym })
-    this.$api.kpi.list.send({ ym, user_group: userGroup })
-    this.$api.kpi.issues.send({ type: 'risk' })
+    this.init()
   }
 }
 </script>
